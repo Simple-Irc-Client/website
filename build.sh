@@ -1,1 +1,0 @@
-npx tailwindcss -i ./app.css -o ./css/style.css
