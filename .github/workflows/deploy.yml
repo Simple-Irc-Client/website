@@ -19,11 +19,13 @@ jobs:
         with:
           aws-access-key-id:${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key:${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region:us-east-1
+
       - name: Setup node
         uses: actions/setup-node@v1
         with:
           node-version: 16.x
+
       - name: Deploy
         run: npx tailwindcss -i ./public/app.css -o ./public/css/style.css
         run: aws s3 sync $DEPLOY_DIR s3://$DEPLOY_S3_ARN
