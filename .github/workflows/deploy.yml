@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+env:
+  DEPLOY_DIR: ./public
+  DEPLOY_S3_ARN: simpleircclient.com
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -21,7 +25,5 @@ jobs:
         with:
           node-version: 16.x
       - name: Deploy
-        # run: npm ci
-        # run: npm run build
         run: npx tailwindcss -i ./public/app.css -o ./public/css/style.css
-        run: aws s3 sync ./dist s3://simpleircclient.com
+        run: aws s3 sync $DEPLOY_DIR s3://$DEPLOY_S3_ARN
