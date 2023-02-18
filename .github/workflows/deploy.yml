@@ -29,6 +29,7 @@ jobs:
           node-version: 16.x
 
       - name: Deploy
-        run: npm ci
-        run: npx tailwindcss -i ./public/app.css -o ./public/css/style.css
-        run: aws s3 sync $DEPLOY_DIR s3://$DEPLOY_S3_BUCKET
+        run: |
+          npm ci
+          npx tailwindcss -i ./public/app.css -o ./public/css/style.css
+          aws s3 sync $DEPLOY_DIR s3://$DEPLOY_S3_BUCKET
