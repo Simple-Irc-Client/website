@@ -1,22 +1,12 @@
 {
   "name": "simple-irc-client-website",
-  "version": "1.0.0",
   "description": "Simple Irc Client",
-  "main": "index.html",
+  "version": "1.0.0",
+  "license": "AGPL-3.0-or-later",
   "scripts": {
     "build": "npm ci && npx tailwindcss -i ./public/app.css -o ./public/css/style.css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Simple-Irc-Client/website.git"
-  },
-  "author": "",
-  "license": "AGPL-3.0-or-later",
-  "bugs": {
-    "url": "https://github.com/Simple-Irc-Client/website/issues"
-  },
-  "homepage": "https://github.com/Simple-Irc-Client/website#readme",
   "dependencies": {
     "tailwindcss": "^3.2.7"
   }
