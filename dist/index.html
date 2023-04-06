@@ -5,10 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simple Irc Client</title>
 
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css" integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/brands.min.css" integrity="sha512-+oRH6u1nDGSm3hH8poU85YFIVTdSnS2f+texdPGrURaJh8hzmhMiZrQth6l56P4ZQmxeZzd2DqVEMqQoJ8J89A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css"
+      integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/brands.min.css"
+      integrity="sha512-+oRH6u1nDGSm3hH8poU85YFIVTdSnS2f+texdPGrURaJh8hzmhMiZrQth6l56P4ZQmxeZzd2DqVEMqQoJ8J89A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary" />
@@ -16,7 +30,7 @@
     <meta name="twitter:site" content="@simpleircclient" />
     <meta name="twitter:image" content="https://simpleircclient.com/img/logo.png" />
     <meta name="twitter:creator" content="@simpleircclient" />
-    <meta name="twitter:description" content="Simple Irc Client is modern irc app">
+    <meta name="twitter:description" content="Simple Irc Client is modern irc app" />
 
     <!-- Open Graph -->
     <meta property="og:locale" content="pl_PL" />
@@ -29,13 +43,13 @@
     <meta property="og:url" content="https://simpleircclient.com/" />
 
     <!-- DublinCore -->
-    <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
-    <meta name="DC.title" lang="pl" content="Simple Irc Client">
-    <meta name="DC.description" lang="pl" content="Simple Irc Client is modern irc app">
-    <meta name="DC.publisher" content="Simple Irc Client">
-    <meta name="DC.identifier" content="https://simpleircclient.com">
-    <meta name="DC.format" content="text/html">
-    <meta name="DC.type" content="Text">
+    <link rel="schema.dcterms" href="http://purl.org/dc/terms/" />
+    <meta name="DC.title" lang="pl" content="Simple Irc Client" />
+    <meta name="DC.description" lang="pl" content="Simple Irc Client is modern irc app" />
+    <meta name="DC.publisher" content="Simple Irc Client" />
+    <meta name="DC.identifier" content="https://simpleircclient.com" />
+    <meta name="DC.format" content="text/html" />
+    <meta name="DC.type" content="Text" />
 
     <meta name="google-site-verification" content="ya-qujgxFF0XOIxwS9BfV50AM0rb8-hz58ytQihPzE0" />
 
@@ -50,44 +64,50 @@
     <link rel="shortcut icon" type="image/png" href="https://simpleircclient.com/favicon.ico" />
 
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TBXK7KK');</script>
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-TBXK7KK");
+    </script>
     <!-- End Google Tag Manager -->
 
-  <link href="/css/style.css" rel="stylesheet">
-
+    <link href="/css/style.css" rel="stylesheet" />
   </head>
   <body>
     <nav class="bg-slate-50 h-14 flex items-center justify-between">
       <div class="ml-5">
-          <p class="uppercase font-bold">Simple Irc Client</p>
+        <p class="uppercase font-bold">Simple Irc Client</p>
       </div>
-  
+
       <div class="mr-5 text-right">
-          <a href="https://www.facebook.com/SimpleIrcClient/" target="_blank" rel="noopener">
-              <i class="fa-brands fa-facebook-f text-[#3b5998]"></i>
-          </a>
-  
-          <a href="https://www.twitter.com/SimpleIrcClient/" target="_blank" rel="noopener">
-              <i class="fa-brands fa-twitter ml-3 text-[#55acee]"></i>
-          </a>
-  
-          <a href="https://discord.gg/CzAqxxC" target="_blank" rel="noopener">
-              <i class="fa-brands fa-discord ml-3 text-[#738ADB]"></i>
-          </a>
+        <a href="https://www.facebook.com/SimpleIrcClient/" target="_blank" rel="noopener" aria-label="facebook">
+          <i class="fa-brands fa-facebook-f text-[#3b5998]"></i>
+        </a>
+
+        <a href="https://www.twitter.com/SimpleIrcClient/" target="_blank" rel="noopener" aria-label="twitter">
+          <i class="fa-brands fa-twitter ml-3 text-[#55acee]"></i>
+        </a>
+
+        <a href="https://discord.gg/CzAqxxC" target="_blank" rel="noopener" aria-label="discord">
+          <i class="fa-brands fa-discord ml-3 text-[#738ADB]"></i>
+        </a>
       </div>
     </nav>
     <div class="container mx-auto">
       <div class="flex flex-col items-center">
         <div class="mt-3">
-            <img src="/assets/logo.svg" alt="logo" width="250"/>
-            <h1 class="text-center font-bold text-5xl mt-10">Coming soon</h1>
-            <p class="text-center mt-3">We are still working on it</p>
+          <img src="/assets/logo.svg" alt="logo" width="250" height="246" />
+          <h1 class="text-center font-bold text-5xl mt-10">Coming soon</h1>
+          <p class="text-center mt-3">We are still working on it</p>
         </div>
-    </div>
+      </div>
     </div>
   </body>
 </html>
