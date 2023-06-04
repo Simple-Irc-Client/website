@@ -9,4 +9,4 @@ To get started with the continuous deployment process, simply make your changes 
 For more information on Cloudflare Pages visit [official documentation](https://developers.cloudflare.com/pages/).
 
 Domains:
-[simpleircclient.pages.dev](simpleircclient.pages.dev) and [simpleircclient.com](simpleircclient.com)
+[https://simpleircclient.pages.dev](simpleircclient.pages.dev) and [https://simpleircclient.com](simpleircclient.com)
