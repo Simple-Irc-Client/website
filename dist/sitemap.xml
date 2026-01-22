@@ -10,4 +10,9 @@
         <changefreq>weekly</changefreq>
     </url>
 
+    <url>
+        <loc>https://simpleircclient.com/downloads.html</loc>
+        <changefreq>weekly</changefreq>
+    </url>
+
 </urlset>
