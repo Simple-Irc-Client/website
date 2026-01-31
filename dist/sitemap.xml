@@ -15,4 +15,9 @@
         <changefreq>weekly</changefreq>
     </url>
 
+    <url>
+        <loc>https://simpleircclient.com/chat/</loc>
+        <changefreq>weekly</changefreq>
+    </url>
+
 </urlset>
