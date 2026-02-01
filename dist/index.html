@@ -9,7 +9,7 @@
     <link rel="canonical" href="https://simpleircclient.com/" />
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" />
 
     <link
       rel="stylesheet"
@@ -84,6 +84,8 @@
     <link rel="stylesheet" href="https://simpleircclient.com/css/style.css" />
   </head>
   <body>
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-slate-800 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg">Skip to main content</a>
+
     <nav class="bg-slate-50 h-14 flex items-center justify-between">
       <div class="ml-5">
         <a href="https://simpleircclient.com" class="uppercase font-bold hover:text-slate-600">Simple Irc Client</a>
@@ -102,7 +104,7 @@
     </nav>
 
     <!-- Hero Section -->
-    <div class="container mx-auto px-4">
+    <main id="main" class="container mx-auto px-4">
       <div class="flex flex-col items-center text-center py-12">
         <img src="https://simpleircclient.com/assets/logo.svg" alt="Simple IRC Client logo" width="120" height="118" />
         <h1 class="font-bold text-4xl md:text-5xl mt-6">Simple IRC Client</h1>
@@ -123,6 +125,7 @@
           src="https://raw.githubusercontent.com/Simple-Irc-Client/.github/main/profile/screenshot.png"
           alt="Simple IRC Client screenshot"
           class="rounded-lg shadow-lg max-w-full md:max-w-4xl border border-slate-200"
+          loading="lazy"
         />
       </div>
 
@@ -157,7 +160,7 @@
           View on GitHub
         </a>
       </div>
-    </div>
+    </main>
 
     <!-- Footer -->
     <footer class="bg-slate-50 py-6 mt-12">
