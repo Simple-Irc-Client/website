@@ -1,1 +1,6 @@
 User-agent: *
+Allow: /
+Disallow: /assets/
+Disallow: /css/
+
+Sitemap: https://simpleircclient.com/sitemap.xml
