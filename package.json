@@ -5,7 +5,7 @@
   "license": "AGPL-3.0-or-later",
   "scripts": {
     "build:css": "npx tailwindcss -i ./dist/app.css -o ./dist/css/style.css",
-    "build:web": "cd core && printf 'VITE_GATEWAY_HOST=irc.simpleircclient.com\\nVITE_GATEWAY_PORT=443\\nVITE_GATEWAY_PATH=/irc\\n' > .env.gateway && npm install && npm run build:gateway && cp -r dist/* ../dist/web/",
+    "build:web": "cd core && printf 'VITE_GATEWAY_HOST=irc.simpleircclient.com\\nVITE_GATEWAY_PORT=443\\nVITE_GATEWAY_PATH=/webirc\\n' > .env.gateway && npm install && npm run build:gateway && cp -r dist/* ../dist/web/",
     "build": "npm run build:css && npm run build:web",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
