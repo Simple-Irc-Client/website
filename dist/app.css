@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "./**/*.html";
 
 html {
     font-family: 'Roboto';
