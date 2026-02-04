@@ -49,7 +49,7 @@ jobs:
             for d in dist/*/; do
               [ -d "$d" ] || continue
               dirname=$(basename "$d")
-              echo "mkdir $dirname"
+              echo "-mkdir $dirname"
               echo "cd $dirname"
               echo "put -r dist/$dirname/*"
               echo "cd .."
