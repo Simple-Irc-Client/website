@@ -26,11 +26,26 @@ jobs:
           npm ci
           npm run build
 
-      - name: Deploy via SCP
+      - name: Deploy via SFTP with SSH Key
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |
+          # Set up SSH key
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/sftp_key
+          chmod 600 ~/.ssh/sftp_key
+          
+          # Add host to known hosts to avoid prompt
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-          scp -r dist/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_PATH }}
+          
+          # Create a temporary batch file for SFTP commands
+          cat > sftp_commands.txt << EOF
+          cd ${{ secrets.SSH_PATH }}
+          # Remove all files in the target directory (clean deployment)
+          rm *
+          # Upload all files from dist directory
+          put -r dist/*
+          bye
+          EOF
+          
+          # Execute SFTP deployment using SSH key authentication
+          sftp -oBatchMode=no -oIdentityFile=~/.ssh/sftp_key -b sftp_commands.txt ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
