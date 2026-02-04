@@ -26,12 +26,11 @@ jobs:
           npm ci
           npm run build
 
-      - name: Deploy via SFTP                                                                                                                                                                                                                                                                                
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'                                                                                                                                                                                                                                   
-        run: |                                                                                                                                                                                                                                                                                               
-          sudo apt-get update && sudo apt-get install -y lftp                                                                                                                                                                                                                                                
-          mkdir -p ~/.ssh                                                                                                                                                                                                                                                                                    
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa                                                                                                                                                                                                                                              
-          chmod 600 ~/.ssh/id_rsa                                                                                                                                                                                                                                                                            
-          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts                                                                                                                                                                                                                                       
-          lftp -e "set sftp:connect-program 'ssh -o StrictHostKeyChecking=no'; mirror --reverse --delete --verbose dist/ ${{ secrets.SSH_PATH }}; quit" sftp://${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}                                                                                               
+      - name: Deploy via SCP
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          scp -r dist/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_PATH }}
