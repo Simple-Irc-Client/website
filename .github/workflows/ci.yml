@@ -40,7 +40,7 @@ jobs:
           # Build SFTP batch file dynamically from actual dist contents
           {
             echo "cd ${{ secrets.SSH_PATH }}"
-            echo "rm *"
+            echo "-rm *"
             # Upload all files in dist root
             for f in dist/*; do
               [ -f "$f" ] && echo "put $f"
