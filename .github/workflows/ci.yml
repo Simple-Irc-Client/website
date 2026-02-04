@@ -51,7 +51,7 @@ jobs:
               dirname=$(basename "$d")
               echo "mkdir $dirname"
               echo "cd $dirname"
-              echo "put -r ../dist/$dirname/*"
+              echo "put -r dist/$dirname/*"
               echo "cd .."
             done
             echo "bye"
