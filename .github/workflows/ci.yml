@@ -37,44 +37,25 @@ jobs:
           # Add host to known hosts to avoid prompt
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
           
-          # Create a temporary batch file for SFTP commands
-          # Using individual file operations to avoid mod_sftp path canonicalization issues
-          cat > sftp_commands.txt << EOF
-          cd ${{ secrets.SSH_PATH }}
-          # Remove all files in the target directory (clean deployment)
-          rm *
-          # Upload files individually to avoid directory path issues with mod_sftp
-          put -r dist/*.html
-          put -r dist/*.css
-          put -r dist/*.js
-          put -r dist/*.txt
-          put -r dist/*.xml
-          put -r dist/*.ico
-          put -r dist/*.svg
-          put -r dist/*.png
-          put -r dist/*.jpg
-          put -r dist/*.jpeg
-          put -r dist/*.gif
-          put -r dist/*.webp
-          # Handle subdirectories individually
-          mkdir assets
-          cd assets
-          put -r ../dist/assets/*
-          cd ..
-          mkdir css
-          cd css
-          put -r ../dist/css/*
-          cd ..
-          mkdir img
-          cd img
-          put -r ../dist/img/*
-          cd ..
-          mkdir web
-          cd web
-          put -r ../dist/web/*
-          cd ..
-          bye
-          EOF
+          # Build SFTP batch file dynamically from actual dist contents
+          {
+            echo "cd ${{ secrets.SSH_PATH }}"
+            echo "rm *"
+            # Upload all files in dist root
+            for f in dist/*; do
+              [ -f "$f" ] && echo "put $f"
+            done
+            # Upload subdirectories
+            for d in dist/*/; do
+              [ -d "$d" ] || continue
+              dirname=$(basename "$d")
+              echo "mkdir $dirname"
+              echo "cd $dirname"
+              echo "put -r ../dist/$dirname/*"
+              echo "cd .."
+            done
+            echo "bye"
+          } > sftp_commands.txt
           
           # Execute SFTP deployment using SSH key authentication
           sftp -oBatchMode=no -oIdentityFile=~/.ssh/sftp_key -b sftp_commands.txt ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
