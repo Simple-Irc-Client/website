@@ -38,21 +38,18 @@ jobs:
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
           
           # Build SFTP batch file dynamically from actual dist contents
+          # Avoids put -r which breaks with mod_sftp path canonicalization
           {
             echo "cd ${{ secrets.SSH_PATH }}"
             echo "-rm *"
-            # Upload all files in dist root
-            for f in dist/*; do
-              [ -f "$f" ] && echo "put $f"
+            # Create all subdirectories first (sorted so parents precede children)
+            find dist -mindepth 1 -type d | sort | while read -r dir; do
+              echo "-mkdir ${dir#dist/}"
             done
-            # Upload subdirectories
-            for d in dist/*/; do
-              [ -d "$d" ] || continue
-              dirname=$(basename "$d")
-              echo "-mkdir $dirname"
-              echo "cd $dirname"
-              echo "put -r dist/$dirname/*"
-              echo "cd .."
+            # Upload each file individually with explicit remote path
+            find dist -type f | sort | while read -r file; do
+              remote="${file#dist/}"
+              echo "put $file $remote"
             done
             echo "bye"
           } > sftp_commands.txt
