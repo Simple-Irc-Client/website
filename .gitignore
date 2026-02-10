@@ -23,5 +23,5 @@ dist-ssr
 *.sw?
 
 # SIC
-dist/css/style.css
+public/css/style.css
 .env*

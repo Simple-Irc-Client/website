@@ -37,18 +37,18 @@ jobs:
           # Add host to known hosts to avoid prompt
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
           
-          # Build SFTP batch file dynamically from actual dist contents
+          # Build SFTP batch file dynamically from actual public contents
           # Avoids put -r which breaks with mod_sftp path canonicalization
           {
             echo "cd ${{ secrets.SSH_PATH }}"
             echo "-rm *"
             # Create all subdirectories first (sorted so parents precede children)
-            find dist -mindepth 1 -type d | sort | while read -r dir; do
-              echo "-mkdir ${dir#dist/}"
+            find public -mindepth 1 -type d | sort | while read -r dir; do
+              echo "-mkdir ${dir#public/}"
             done
             # Upload each file individually with explicit remote path
-            find dist -type f | sort | while read -r file; do
-              remote="${file#dist/}"
+            find public -type f | sort | while read -r file; do
+              remote="${file#public/}"
               echo "put $file $remote"
             done
             echo "bye"
