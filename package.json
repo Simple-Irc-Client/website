@@ -4,7 +4,7 @@
   "version": "1.0.17",
   "license": "AGPL-3.0-or-later",
   "scripts": {
-    "build:css": "npx tailwindcss -i ./public/app.css -o ./public/css/style.css",
+    "build:css": "npx tailwindcss -i ./public/app.css -o ./public/css/style.css --minify",
     "build:web": "cd core && printf 'VITE_GATEWAY_HOST=irc.simpleircclient.com\\nVITE_GATEWAY_PORT=443\\nVITE_GATEWAY_PATH=/webirc\\n' > .env.gateway && npm install && npm run build:gateway && cp -r dist/* ../public/web/",
     "build": "npm run build:css && npm run build:web",
     "test": "echo \"Error: no test specified\" && exit 1"
