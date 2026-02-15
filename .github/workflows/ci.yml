@@ -42,6 +42,7 @@ jobs:
           {
             echo "cd ${{ secrets.SSH_PATH }}"
             echo "-rm *"
+            echo "-rm .*"
             # Create all subdirectories first (sorted so parents precede children)
             find public -mindepth 1 -type d | sort | while read -r dir; do
               echo "-mkdir ${dir#public/}"
