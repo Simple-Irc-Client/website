@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @source not "..";
-@source "./**/*.html";
+@source "../src/**/*.html";
 
 /* Print styles */
 @media print {
