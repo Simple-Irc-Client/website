@@ -41,8 +41,10 @@ jobs:
           # Avoids put -r which breaks with mod_sftp path canonicalization
           {
             echo "cd ${{ secrets.SSH_PATH }}"
+            # Upload .htaccess first so security headers are always present
+            echo "put public/.htaccess .htaccess"
+            # Remove old non-dotfiles (dotfiles like .htaccess are overwritten, not deleted)
             echo "-rm *"
-            echo "-rm .*"
             # Create all subdirectories first (sorted so parents precede children)
             find public -mindepth 1 -type d | sort | while read -r dir; do
               echo "-mkdir ${dir#public/}"
