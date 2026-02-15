@@ -1,6 +1,5 @@
 import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { createHash } from "node:crypto";
-import { join } from "node:path";
 
 const srcDir = new URL("./src/", import.meta.url);
 const publicDir = new URL("./public/", import.meta.url);
