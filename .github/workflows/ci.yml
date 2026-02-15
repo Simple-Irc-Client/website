@@ -56,3 +56,8 @@ jobs:
           
           # Execute SFTP deployment using SSH key authentication
           sftp -oBatchMode=no -oIdentityFile=~/.ssh/sftp_key -b sftp_commands.txt ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
+
+      - name: Clean up deployment credentials
+        if: always()
+        run: |
+          rm -f ~/.ssh/sftp_key sftp_commands.txt
