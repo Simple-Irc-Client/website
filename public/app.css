@@ -1,10 +1,6 @@
 @import "tailwindcss";
 @source "./**/*.html";
 
-html {
-    font-family: 'Roboto';
-}
-
 /* Print styles */
 @media print {
     nav,
