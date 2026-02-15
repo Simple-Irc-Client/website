@@ -11,13 +11,20 @@
     AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
 </IfModule>
 
-# Cache static assets
+# Cache static assets — short default for mutable (non-hashed) files
 <IfModule mod_expires.c>
     ExpiresActive On
-    ExpiresByType text/css "access plus 1 year"
-    ExpiresByType image/svg+xml "access plus 1 year"
-    ExpiresByType image/png "access plus 1 year"
-    ExpiresByType image/x-icon "access plus 1 year"
-    ExpiresByType image/webp "access plus 1 year"
-    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType text/css "access plus 1 hour"
+    ExpiresByType image/svg+xml "access plus 1 week"
+    ExpiresByType image/png "access plus 1 week"
+    ExpiresByType image/x-icon "access plus 1 week"
+    ExpiresByType image/webp "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 hour"
+</IfModule>
+
+# Long cache for Vite-built hashed assets (web/assets/)
+<IfModule mod_headers.c>
+    <FilesMatch "^web/assets/.+\.[a-f0-9]{8,}\.(js|css)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
 </IfModule>
