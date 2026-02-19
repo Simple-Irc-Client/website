@@ -33,30 +33,40 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/sftp_key
           chmod 600 ~/.ssh/sftp_key
-          
+
           # Add host to known hosts to avoid prompt
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-          
-          # Build SFTP batch file dynamically from actual public contents
-          # Avoids put -r which breaks with mod_sftp path canonicalization
+
+          # Blue/green deploy: upload to _staging, then rename to live
           {
             echo "cd ${{ secrets.SSH_PATH }}"
-            # Upload .htaccess first so security headers are always present
-            echo "put public/.htaccess .htaccess"
-            # Remove old non-dotfiles (dotfiles like .htaccess are overwritten, not deleted)
-            echo "-rm *"
-            # Create all subdirectories first (sorted so parents precede children)
-            find public -mindepth 1 -type d | sort | while read -r dir; do
-              echo "-mkdir ${dir#public/}"
+
+            # 1. Clean up _old from previous deploy (deepest-first)
+            find public -type f | while read -r file; do
+              echo "-rm _old/${file#public/}"
             done
-            # Upload each file individually with explicit remote path
+            find public -mindepth 1 -type d | sort -r | while read -r dir; do
+              echo "-rmdir _old/${dir#public/}"
+            done
+            echo "-rm _old/.htaccess"
+            echo "-rmdir _old"
+
+            # 2. Upload to _staging
+            echo "-mkdir _staging"
+            find public -mindepth 1 -type d | sort | while read -r dir; do
+              echo "-mkdir _staging/${dir#public/}"
+            done
             find public -type f | sort | while read -r file; do
               remote="${file#public/}"
-              echo "put $file $remote"
+              echo "put $file _staging/$remote"
             done
+
+            # 3. Swap: live → _old, _staging → live
+            echo "rename live _old"
+            echo "rename _staging live"
             echo "bye"
           } > sftp_commands.txt
-          
+
           # Execute SFTP deployment using SSH key authentication
           sftp -oBatchMode=no -oIdentityFile=~/.ssh/sftp_key -b sftp_commands.txt ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}
 
