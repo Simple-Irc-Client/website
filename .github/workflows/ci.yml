@@ -37,7 +37,8 @@ jobs:
           # Add host to known hosts to avoid prompt
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-          SFTP_CONN="-oIdentityFile=~/.ssh/sftp_key ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}"
+          SFTP_KEY=~/.ssh/sftp_key
+          SFTP_DEST="${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}"
           DEPLOY_TS=$(date +%s)
 
           # Generate manifest of current build (deployed alongside the site)
@@ -49,7 +50,7 @@ jobs:
             echo "-get live/.deploy-manifest old-manifest.txt"
             echo "bye"
           } > sftp_get_manifest.txt
-          sftp -oBatchMode=no ${SFTP_CONN} -b sftp_get_manifest.txt 2>/dev/null || true
+          sftp -oBatchMode=no -oIdentityFile=${SFTP_KEY} -b sftp_get_manifest.txt ${SFTP_DEST} 2>/dev/null || true
 
           # Pass 2: Deploy and clean up
           {
@@ -84,7 +85,7 @@ jobs:
           } > sftp_commands.txt
 
           # Execute SFTP deployment
-          sftp -oBatchMode=no ${SFTP_CONN} -b sftp_commands.txt
+          sftp -oBatchMode=no -oIdentityFile=${SFTP_KEY} -b sftp_commands.txt ${SFTP_DEST}
 
       - name: Clean up deployment credentials
         if: always()
