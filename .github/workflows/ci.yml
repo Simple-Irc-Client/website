@@ -46,19 +46,19 @@ jobs:
             # 1. Move _old out of the way (unique name avoids conflicts)
             echo "-rename _old _old_${DEPLOY_TS}"
 
-            # 2. Upload to _staging
-            echo "-mkdir _staging"
+            # 2. Upload to _staging_<ts>
+            echo "-mkdir _staging_${DEPLOY_TS}"
             find public -mindepth 1 -type d | sort | while read -r dir; do
-              echo "-mkdir _staging/${dir#public/}"
+              echo "-mkdir _staging_${DEPLOY_TS}/${dir#public/}"
             done
             find public -type f | sort | while read -r file; do
               remote="${file#public/}"
-              echo "put $file _staging/$remote"
+              echo "put $file _staging_${DEPLOY_TS}/$remote"
             done
 
-            # 3. Swap: live → _old, _staging → live
+            # 3. Swap: live → _old, _staging_<ts> → live
             echo "rename live _old"
-            echo "rename _staging live"
+            echo "rename _staging_${DEPLOY_TS} live"
 
             # 4. Clean up old backup (best-effort, based on current file list)
             find public -type f | while read -r file; do
