@@ -1,7 +1,7 @@
 {
   "name": "simple-irc-client-website",
   "description": "Simple Irc Client",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "license": "AGPL-3.0-or-later",
   "scripts": {
     "build:css": "npx tailwindcss -i ./public/app.css -o ./public/css/style.css --minify",
