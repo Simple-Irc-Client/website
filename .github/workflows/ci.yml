@@ -37,19 +37,14 @@ jobs:
           # Add host to known hosts to avoid prompt
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
+          DEPLOY_TS=$(date +%s)
+
           # Blue/green deploy: upload to _staging, then rename to live
           {
             echo "cd ${{ secrets.SSH_PATH }}"
 
-            # 1. Clean up _old from previous deploy (deepest-first)
-            find public -type f | while read -r file; do
-              echo "-rm _old/${file#public/}"
-            done
-            find public -mindepth 1 -type d | sort -r | while read -r dir; do
-              echo "-rmdir _old/${dir#public/}"
-            done
-            echo "-rm _old/.htaccess"
-            echo "-rmdir _old"
+            # 1. Move _old out of the way (unique name avoids conflicts)
+            echo "-rename _old _old_${DEPLOY_TS}"
 
             # 2. Upload to _staging
             echo "-mkdir _staging"
@@ -64,6 +59,17 @@ jobs:
             # 3. Swap: live → _old, _staging → live
             echo "rename live _old"
             echo "rename _staging live"
+
+            # 4. Clean up old backup (best-effort, based on current file list)
+            find public -type f | while read -r file; do
+              echo "-rm _old_${DEPLOY_TS}/${file#public/}"
+            done
+            find public -mindepth 1 -type d | sort -r | while read -r dir; do
+              echo "-rmdir _old_${DEPLOY_TS}/${dir#public/}"
+            done
+            echo "-rm _old_${DEPLOY_TS}/.htaccess"
+            echo "-rmdir _old_${DEPLOY_TS}"
+
             echo "bye"
           } > sftp_commands.txt
 
