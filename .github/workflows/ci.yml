@@ -66,11 +66,22 @@ jobs:
               echo "put $file _staging_${DEPLOY_TS}/$remote"
             done
 
-            # 2. Swap: live → _old, _staging_<ts> → live
+            # 2. Clean up leftover _old from a previous failed deploy
+            if [[ -f old-manifest.txt ]]; then
+              while IFS= read -r file; do
+                echo "-rm _old/$file"
+              done < old-manifest.txt
+            fi
+            find public -mindepth 1 -type d | sort -r | while read -r dir; do
+              echo "-rmdir _old/${dir#public/}"
+            done
+            echo "-rmdir _old"
+
+            # 3. Swap: live → _old, _staging_<ts> → live
             echo "rename live _old"
             echo "rename _staging_${DEPLOY_TS} live"
 
-            # 3. Clean up _old using the old manifest (exact file list)
+            # 4. Clean up _old using the old manifest (exact file list)
             if [[ -f old-manifest.txt ]]; then
               while IFS= read -r file; do
                 echo "-rm _old/$file"
