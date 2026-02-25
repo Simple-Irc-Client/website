@@ -8,17 +8,28 @@
 </IfModule>
 
 # Enable compression
+<IfModule mod_brotli.c>
+    AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
 </IfModule>
 
-# Cache static assets — short default for mutable (non-hashed) files
-<IfModule mod_expires.c>
-    ExpiresActive On
-    ExpiresByType text/css "access plus 1 hour"
-    ExpiresByType image/svg+xml "access plus 1 week"
-    ExpiresByType image/png "access plus 1 week"
-    ExpiresByType image/x-icon "access plus 1 week"
-    ExpiresByType image/webp "access plus 1 week"
-    ExpiresByType application/javascript "access plus 1 hour"
+# Cache-Control
+<IfModule mod_headers.c>
+    # HTML: CSS is inlined by the build, so the HTML file IS the full page.
+    # 5 minutes lets CDNs and browsers cache while keeping deploys fast to propagate.
+    <FilesMatch "\.html$">
+        Header set Cache-Control "public, max-age=300, must-revalidate"
+    </FilesMatch>
+
+    # analytics.js: not content-hashed, but changes rarely. 1 day.
+    <FilesMatch "\.js$">
+        Header set Cache-Control "public, max-age=86400, stale-while-revalidate=3600"
+    </FilesMatch>
+
+    # Images and icons: 1 year. These change only when the URL changes (e.g. logo.png → logo.webp).
+    <FilesMatch "\.(webp|png|ico|svg)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
 </IfModule>
