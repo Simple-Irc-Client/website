@@ -49,8 +49,8 @@ jobs:
             echo "cd ${{ secrets.SSH_PATH }}"
             echo "-get live/.deploy-manifest old-manifest.txt"
             echo "bye"
-          } > sftp_get_manifest.txt
-          sftp -oBatchMode=no -oIdentityFile=${SFTP_KEY} -b sftp_get_manifest.txt ${SFTP_DEST} 2>/dev/null || true
+          } > sftp_get_web_manifest.txt
+          sftp -oBatchMode=no -oIdentityFile=${SFTP_KEY} -b sftp_get_web_manifest.txt ${SFTP_DEST} 2>/dev/null || true
 
           # Pass 2: Deploy and clean up
           {
@@ -93,10 +93,10 @@ jobs:
             echo "-rmdir _old"
 
             echo "bye"
-          } > sftp_commands.txt
+          } > sftp_web_commands.txt
 
           # Execute SFTP deployment
-          sftp -oBatchMode=no -oIdentityFile=${SFTP_KEY} -b sftp_commands.txt ${SFTP_DEST}
+          sftp -oBatchMode=no -oIdentityFile=${SFTP_KEY} -b sftp_web_commands.txt ${SFTP_DEST}
 
       - name: Deploy app via SFTP (blue/green)
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
@@ -164,4 +164,4 @@ jobs:
       - name: Clean up deployment credentials
         if: always()
         run: |
-          rm -f ~/.ssh/sftp_key sftp_commands.txt sftp_get_manifest.txt sftp_app_commands.txt sftp_get_app_manifest.txt
+          rm -f ~/.ssh/sftp_key sftp_web_commands.txt sftp_get_web_manifest.txt sftp_app_commands.txt sftp_get_app_manifest.txt
