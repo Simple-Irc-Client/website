@@ -71,10 +71,10 @@ jobs:
               while IFS= read -r file; do
                 echo "-rm _old/$file"
               done < old-manifest.txt
+              sed 's|/[^/]*$||' old-manifest.txt | sort -ru | while IFS= read -r dir; do
+                [[ -n "$dir" ]] && echo "-rmdir _old/$dir"
+              done
             fi
-            find public -mindepth 1 -type d | sort -r | while read -r dir; do
-              echo "-rmdir _old/${dir#public/}"
-            done
             echo "-rmdir _old"
 
             # 3. Swap: live → _old, _staging_<ts> → live
@@ -86,10 +86,10 @@ jobs:
               while IFS= read -r file; do
                 echo "-rm _old/$file"
               done < old-manifest.txt
+              sed 's|/[^/]*$||' old-manifest.txt | sort -ru | while IFS= read -r dir; do
+                [[ -n "$dir" ]] && echo "-rmdir _old/$dir"
+              done
             fi
-            find public -mindepth 1 -type d | sort -r | while read -r dir; do
-              echo "-rmdir _old/${dir#public/}"
-            done
             echo "-rmdir _old"
 
             echo "bye"
@@ -135,10 +135,10 @@ jobs:
               while IFS= read -r file; do
                 echo "-rm _old_app/$file"
               done < old-app-manifest.txt
+              sed 's|/[^/]*$||' old-app-manifest.txt | sort -ru | while IFS= read -r dir; do
+                [[ -n "$dir" ]] && echo "-rmdir _old_app/$dir"
+              done
             fi
-            find dist-app -mindepth 1 -type d | sort -r | while read -r dir; do
-              echo "-rmdir _old_app/${dir#dist-app/}"
-            done
             echo "-rmdir _old_app"
 
             # 3. Swap: app → _old_app, _staging_app_<ts> → app
@@ -150,10 +150,10 @@ jobs:
               while IFS= read -r file; do
                 echo "-rm _old_app/$file"
               done < old-app-manifest.txt
+              sed 's|/[^/]*$||' old-app-manifest.txt | sort -ru | while IFS= read -r dir; do
+                [[ -n "$dir" ]] && echo "-rmdir _old_app/$dir"
+              done
             fi
-            find dist-app -mindepth 1 -type d | sort -r | while read -r dir; do
-              echo "-rmdir _old_app/${dir#dist-app/}"
-            done
             echo "-rmdir _old_app"
 
             echo "bye"
