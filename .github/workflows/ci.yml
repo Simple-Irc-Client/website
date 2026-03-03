@@ -98,7 +98,70 @@ jobs:
           # Execute SFTP deployment
           sftp -oBatchMode=no -oIdentityFile=${SFTP_KEY} -b sftp_commands.txt ${SFTP_DEST}
 
+      - name: Deploy app via SFTP (blue/green)
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          SFTP_KEY=~/.ssh/sftp_key
+          SFTP_DEST="${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}"
+          DEPLOY_TS=$(date +%s)
+
+          # Generate manifest of current app build
+          find dist-app -type f | sed 's|^dist-app/||' | sort > dist-app/.deploy-manifest
+
+          # Pass 1: Download manifest from current live app
+          {
+            echo "cd ${{ secrets.SSH_PATH }}"
+            echo "-get app/.deploy-manifest old-app-manifest.txt"
+            echo "bye"
+          } > sftp_get_app_manifest.txt
+          sftp -oBatchMode=no -oIdentityFile=${SFTP_KEY} -b sftp_get_app_manifest.txt ${SFTP_DEST} 2>/dev/null || true
+
+          # Pass 2: Deploy and clean up
+          {
+            echo "cd ${{ secrets.SSH_PATH }}"
+
+            # 1. Upload to _staging_app_<ts>
+            echo "-mkdir _staging_app_${DEPLOY_TS}"
+            find dist-app -mindepth 1 -type d | sort | while read -r dir; do
+              echo "-mkdir _staging_app_${DEPLOY_TS}/${dir#dist-app/}"
+            done
+            find dist-app -type f | sort | while read -r file; do
+              remote="${file#dist-app/}"
+              echo "put $file _staging_app_${DEPLOY_TS}/$remote"
+            done
+
+            # 2. Clean up leftover _old_app from a previous failed deploy
+            if [[ -f old-app-manifest.txt ]]; then
+              while IFS= read -r file; do
+                echo "-rm _old_app/$file"
+              done < old-app-manifest.txt
+            fi
+            find dist-app -mindepth 1 -type d | sort -r | while read -r dir; do
+              echo "-rmdir _old_app/${dir#dist-app/}"
+            done
+            echo "-rmdir _old_app"
+
+            # 3. Swap: app → _old_app, _staging_app_<ts> → app
+            echo "rename app _old_app"
+            echo "rename _staging_app_${DEPLOY_TS} app"
+
+            # 4. Clean up _old_app using the old manifest
+            if [[ -f old-app-manifest.txt ]]; then
+              while IFS= read -r file; do
+                echo "-rm _old_app/$file"
+              done < old-app-manifest.txt
+            fi
+            find dist-app -mindepth 1 -type d | sort -r | while read -r dir; do
+              echo "-rmdir _old_app/${dir#dist-app/}"
+            done
+            echo "-rmdir _old_app"
+
+            echo "bye"
+          } > sftp_app_commands.txt
+
+          sftp -oBatchMode=no -oIdentityFile=${SFTP_KEY} -b sftp_app_commands.txt ${SFTP_DEST}
+
       - name: Clean up deployment credentials
         if: always()
         run: |
-          rm -f ~/.ssh/sftp_key sftp_commands.txt
+          rm -f ~/.ssh/sftp_key sftp_commands.txt sftp_get_manifest.txt sftp_app_commands.txt sftp_get_app_manifest.txt

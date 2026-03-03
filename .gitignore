@@ -27,4 +27,5 @@ public/css/style.css
 public/index.html
 public/downloads.html
 public/404.html
+dist-app/
 .env*
