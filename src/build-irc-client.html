@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Build Your Own IRC Client - Simple Irc Client</title>
+    <meta name="description" content="Learn how to build a simple IRC client from scratch in Python, JavaScript, Go, Rust, C, Java, Ruby, and C#. Step-by-step examples using raw sockets and the IRC protocol." />
+    <meta name="theme-color" content="#1e293b" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self'; img-src 'self'; connect-src https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com; base-uri 'self'; form-action 'self';" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <link rel="canonical" href="https://simpleircclient.com/build-irc-client.html" />
+
+    <!-- Open Graph -->
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Simple IRC Client" />
+    <meta property="og:title" content="Build Your Own IRC Client - Simple IRC Client" />
+    <meta property="og:description" content="Learn how to build a simple IRC client from scratch in Python, JavaScript, Go, Rust, C, Java, Ruby, and C#. Step-by-step examples using raw sockets and the IRC protocol." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://simpleircclient.com/build-irc-client.html" />
+    <meta property="og:image" content="https://simpleircclient.com/assets/logo.webp" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+
+    <meta name="google-site-verification" content="ya-qujgxFF0XOIxwS9BfV50AM0rb8-hz58ytQihPzE0" />
+
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Build Your Own IRC Client",
+      "description": "Learn how to build a simple IRC client from scratch in Python, JavaScript, Go, Rust, C, Java, Ruby, and C#.",
+      "url": "https://simpleircclient.com/build-irc-client.html",
+      "author": {
+        "@type": "Organization",
+        "name": "Simple IRC Client",
+        "url": "https://github.com/Simple-Irc-Client"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Simple IRC Client",
+        "url": "https://simpleircclient.com"
+      }
+    }
+    </script>
+
+    <!-- Google Analytics (GA4) -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RJYVVSG10S"></script>
+    <script async src="/js/analytics.js"></script>
+  </head>
+  <body>
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-slate-800 focus:text-white focus:px-4 focus:py-2 focus:rounded-lg">Skip to main content</a>
+
+    <nav aria-label="Main navigation" class="bg-slate-50 h-14 flex items-center justify-between">
+      <div class="ml-5">
+        <a href="https://simpleircclient.com" class="uppercase font-bold hover:text-slate-600">Simple Irc Client</a>
+      </div>
+
+      <div class="mr-5 text-right flex items-center">
+        <a href="https://app.simpleircclient.com/" class="mr-4 font-medium hover:text-slate-600">Web Chat</a>
+        <a href="https://simpleircclient.com/downloads.html" class="mr-4 font-medium hover:text-slate-600 hidden sm:inline">Downloads</a>
+        <a href="https://discord.gg/CzAqxxC" target="_blank" rel="noopener noreferrer" aria-label="Join us on Discord" class="hidden sm:inline">
+          <span class="sr-only">Discord</span>
+          <svg class="ml-3 inline-block w-4 h-4 text-[#738ADB]" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg>
+        </a>
+        <a href="https://matrix.to/#/#simpleircclient:matrix.org" target="_blank" rel="noopener noreferrer" aria-label="Join us on Matrix" class="hidden sm:inline">
+          <span class="sr-only">Matrix</span>
+          <svg class="ml-3 inline-block w-4 h-4 text-slate-800" width="16" height="16" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M30 2v28h-3v2h5V0l-5 0v2z"/><path d="M9.952 10.594v1.544h.044c.385-.564.893-1.032 1.487-1.368.58-.323 1.245-.485 1.993-.485.72 0 1.377.14 1.972.42.595.279 1.047.771 1.355 1.477.338-.5.796-.941 1.377-1.323.58-.383 1.266-.574 2.06-.574.602 0 1.16.074 1.674.22.514.148.954.383 1.322.707.366.323.653.746.859 1.268.205.522.308 1.15.308 1.887v7.633h-3.127v-6.464c0-.383-.015-.743-.044-1.082a2.26 2.26 0 00-.242-.882 1.39 1.39 0 00-.584-.596c-.257-.146-.606-.22-1.047-.22-.44 0-.796.085-1.068.253-.272.17-.485.39-.639.662a2.78 2.78 0 00-.308.927c-.052.347-.078.697-.078 1.048v6.354h-3.128v-6.398c0-.338-.007-.673-.021-1.004a2.47 2.47 0 00-.188-.916 1.34 1.34 0 00-.55-.673c-.258-.168-.636-.253-1.135-.253a1.77 1.77 0 00-.584.1 1.98 1.98 0 00-.705.374c-.228.184-.422.449-.584.794-.161.346-.242.798-.242 1.357v6.619H6.999V10.59z"/><path d="M2 2v28h3v2H0V0l5 0v2z"/></svg>
+        </a>
+      </div>
+    </nav>
+
+    <main id="main" class="container mx-auto px-4">
+      <!-- Header -->
+      <div class="text-center py-12">
+        <h1 class="font-bold text-4xl md:text-5xl">Build Your Own IRC Client</h1>
+        <p class="text-slate-600 text-lg mt-3 max-w-xl mx-auto">Learn the IRC protocol by writing a simple client from scratch</p>
+      </div>
+
+      <div class="max-w-3xl mx-auto pb-12">
+        <!-- Introduction -->
+        <h2 class="text-2xl font-bold mb-4">The IRC Protocol</h2>
+        <p class="text-slate-600 mt-4">IRC is one of the simplest network protocols to implement. At its core, it's just text messages sent over a TCP connection. Each message is a single line terminated by <code class="bg-slate-100 px-1 rounded text-sm">\r\n</code> (carriage return + line feed). To build a minimal IRC client, you only need to understand a handful of commands:</p>
+        <ul class="text-slate-600 mt-4 list-disc list-inside space-y-1">
+          <li><code class="bg-slate-100 px-1 rounded text-sm">NICK &lt;nickname&gt;</code> &mdash; set your nickname</li>
+          <li><code class="bg-slate-100 px-1 rounded text-sm">USER &lt;username&gt; 0 * :&lt;realname&gt;</code> &mdash; identify yourself to the server</li>
+          <li><code class="bg-slate-100 px-1 rounded text-sm">JOIN &lt;#channel&gt;</code> &mdash; join a channel</li>
+          <li><code class="bg-slate-100 px-1 rounded text-sm">PRIVMSG &lt;target&gt; :&lt;message&gt;</code> &mdash; send a message to a channel or user</li>
+          <li><code class="bg-slate-100 px-1 rounded text-sm">PING &lt;token&gt;</code> / <code class="bg-slate-100 px-1 rounded text-sm">PONG &lt;token&gt;</code> &mdash; keep-alive mechanism (reply to server PINGs)</li>
+          <li><code class="bg-slate-100 px-1 rounded text-sm">QUIT :&lt;message&gt;</code> &mdash; disconnect from the server</li>
+        </ul>
+        <p class="text-slate-600 mt-4">A typical connection flow looks like this: open a TCP socket to the server on port 6667 (or 6697 for TLS), send NICK and USER to register, respond to PING messages to stay connected, then JOIN channels and send PRIVMSG to chat.</p>
+        <p class="text-slate-600 mt-4">Every example below connects to <strong>Libera Chat</strong>, joins <strong>#test</strong>, sends a message, and then disconnects. They all handle the PING/PONG keep-alive that servers require.</p>
+
+        <!-- Python -->
+        <h2 class="text-2xl font-bold mt-12 mb-4">Python</h2>
+        <p class="text-slate-600 mt-4">Python's built-in <code class="bg-slate-100 px-1 rounded text-sm">socket</code> module makes this straightforward. This example uses SSL/TLS for a secure connection.</p>
+        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>import socket
+import ssl
+
+server = "irc.libera.chat"
+port = 6697
+nick = "mybot"
+channel = "#test"
+
+sock = socket.create_connection((server, port))
+irc = ssl.create_default_context().wrap_socket(sock, server_hostname=server)
+
+def send(msg):
+    irc.send(f"{msg}\r\n".encode())
+
+send(f"NICK {nick}")
+send(f"USER {nick} 0 * :{nick}")
+
+buf = b""
+while True:
+    buf += irc.recv(4096)
+    while b"\r\n" in buf:
+        line, buf = buf.split(b"\r\n", 1)
+        line = line.decode("utf-8", errors="replace")
+        print(line)
+
+        if line.startswith("PING"):
+            send("PONG" + line[4:])
+
+        # 001 = RPL_WELCOME, meaning registration is complete
+        if " 001 " in line:
+            send(f"JOIN {channel}")
+            send(f"PRIVMSG {channel} :Hello from Python!")
+            send("QUIT :Bye")
+            irc.close()
+            exit()</code></pre>
+
+        <!-- JavaScript (Node.js) -->
+        <h2 class="text-2xl font-bold mt-12 mb-4">JavaScript (Node.js)</h2>
+        <p class="text-slate-600 mt-4">Node.js provides the <code class="bg-slate-100 px-1 rounded text-sm">tls</code> module for secure TCP connections.</p>
+        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>const tls = require("tls");
+
+const server = "irc.libera.chat";
+const port = 6697;
+const nick = "mybot";
+const channel = "#test";
+
+const socket = tls.connect(port, server, () =&gt; {
+  send(`NICK ${nick}`);
+  send(`USER ${nick} 0 * :${nick}`);
+});
+
+function send(msg) {
+  socket.write(msg + "\r\n");
+}
+
+let buffer = "";
+socket.setEncoding("utf8");
+socket.on("data", (data) =&gt; {
+  buffer += data;
+  const lines = buffer.split("\r\n");
+  buffer = lines.pop();
+
+  for (const line of lines) {
+    console.log(line);
+
+    if (line.startsWith("PING")) {
+      send("PONG" + line.slice(4));
+    }
+
+    // 001 = RPL_WELCOME
+    if (line.includes(" 001 ")) {
+      send(`JOIN ${channel}`);
+      send(`PRIVMSG ${channel} :Hello from Node.js!`);
+      send("QUIT :Bye");
+    }
+  }
+});</code></pre>
+
+        <!-- Go -->
+        <h2 class="text-2xl font-bold mt-12 mb-4">Go</h2>
+        <p class="text-slate-600 mt-4">Go's standard library has everything needed with <code class="bg-slate-100 px-1 rounded text-sm">crypto/tls</code> and <code class="bg-slate-100 px-1 rounded text-sm">bufio</code>.</p>
+        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>package main
+
+import (
+	"bufio"
+	"crypto/tls"
+	"fmt"
+	"strings"
+)
+
+func main() {
+	server := "irc.libera.chat:6697"
+	nick := "mybot"
+	channel := "#test"
+
+	conn, err := tls.Dial("tcp", server, nil)
+	if err != nil {
+		panic(err)
+	}
+	defer conn.Close()
+
+	send := func(msg string) {
+		fmt.Fprintf(conn, "%s\r\n", msg)
+	}
+
+	send("NICK " + nick)
+	send("USER " + nick + " 0 * :" + nick)
+
+	scanner := bufio.NewScanner(conn)
+	for scanner.Scan() {
+		line := scanner.Text()
+		fmt.Println(line)
+
+		if strings.HasPrefix(line, "PING") {
+			send("PONG" + line[4:])
+		}
+
+		// 001 = RPL_WELCOME
+		if strings.Contains(line, " 001 ") {
+			send("JOIN " + channel)
+			send("PRIVMSG " + channel + " :Hello from Go!")
+			send("QUIT :Bye")
+			return
+		}
+	}
+}</code></pre>
+
+        <!-- Rust -->
+        <h2 class="text-2xl font-bold mt-12 mb-4">Rust</h2>
+        <p class="text-slate-600 mt-4">Using Rust's standard library with the <code class="bg-slate-100 px-1 rounded text-sm">native-tls</code> crate for TLS support.</p>
+        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>use native_tls::TlsConnector;
+use std::io::{BufRead, BufReader, Write};
+use std::net::TcpStream;
+
+fn send(stream: &amp;mut impl Write, msg: &amp;str) {
+    write!(stream, "{msg}\r\n").unwrap();
+    stream.flush().unwrap();
+}
+
+fn main() {
+    let server = "irc.libera.chat";
+    let port = 6697;
+    let nick = "mybot";
+    let channel = "#test";
+
+    let connector = TlsConnector::new().unwrap();
+    let tcp = TcpStream::connect(format!("{server}:{port}")).unwrap();
+    let tls = connector.connect(server, tcp).unwrap();
+
+    let mut reader = BufReader::new(tls);
+
+    send(reader.get_mut(), &amp;format!("NICK {nick}"));
+    send(reader.get_mut(), &amp;format!("USER {nick} 0 * :{nick}"));
+
+    let mut line = String::new();
+    while reader.read_line(&amp;mut line).unwrap() &gt; 0 {
+        print!("{line}");
+
+        if line.starts_with("PING") {
+            let pong = format!("PONG{}", &amp;line[4..].trim());
+            send(reader.get_mut(), &amp;pong);
+        }
+
+        // 001 = RPL_WELCOME
+        if line.contains(" 001 ") {
+            send(reader.get_mut(), &amp;format!("JOIN {channel}"));
+            send(reader.get_mut(), &amp;format!("PRIVMSG {channel} :Hello from Rust!"));
+            send(reader.get_mut(), "QUIT :Bye");
+            break;
+        }
+
+        line.clear();
+    }
+}
+
+// Cargo.toml:
+// [dependencies]
+// native-tls = "0.2"</code></pre>
+
+        <!-- C -->
+        <h2 class="text-2xl font-bold mt-12 mb-4">C</h2>
+        <p class="text-slate-600 mt-4">A plain TCP example using POSIX sockets. For production use, you would add TLS via OpenSSL.</p>
+        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;netdb.h&gt;
+#include &lt;sys/socket.h&gt;
+
+static int irc_fd;
+
+void irc_send(const char *msg) {
+    dprintf(irc_fd, "%s\r\n", msg);
+}
+
+/* Strip trailing \r\n */
+void chomp(char *s) {
+    size_t len = strlen(s);
+    while (len &gt; 0 &amp;&amp; (s[len - 1] == '\r' || s[len - 1] == '\n'))
+        s[--len] = '\0';
+}
+
+int main(void) {
+    const char *server = "irc.libera.chat";
+    const char *port = "6667";
+    const char *nick = "mybot";
+    const char *channel = "#test";
+
+    struct addrinfo hints = { .ai_socktype = SOCK_STREAM }, *res;
+    getaddrinfo(server, port, &amp;hints, &amp;res);
+
+    irc_fd = socket(res-&gt;ai_family, res-&gt;ai_socktype, res-&gt;ai_protocol);
+    connect(irc_fd, res-&gt;ai_addr, res-&gt;ai_addrlen);
+    freeaddrinfo(res);
+
+    char buf[512];
+    snprintf(buf, sizeof(buf), "NICK %s", nick);
+    irc_send(buf);
+    snprintf(buf, sizeof(buf), "USER %s 0 * :%s", nick, nick);
+    irc_send(buf);
+
+    char line[512];
+    FILE *fp = fdopen(dup(irc_fd), "r");
+    while (fgets(line, sizeof(line), fp)) {
+        chomp(line);
+        printf("%s\n", line);
+
+        if (strncmp(line, "PING", 4) == 0) {
+            snprintf(buf, sizeof(buf), "PONG%s", line + 4);
+            irc_send(buf);
+        }
+
+        /* 001 = RPL_WELCOME */
+        if (strstr(line, " 001 ")) {
+            snprintf(buf, sizeof(buf), "JOIN %s", channel);
+            irc_send(buf);
+            snprintf(buf, sizeof(buf), "PRIVMSG %s :Hello from C!", channel);
+            irc_send(buf);
+            irc_send("QUIT :Bye");
+            break;
+        }
+    }
+
+    fclose(fp);
+    close(irc_fd);
+    return 0;
+}
+
+/* Compile: gcc -o irc irc.c */</code></pre>
+
+        <!-- Java -->
+        <h2 class="text-2xl font-bold mt-12 mb-4">Java</h2>
+        <p class="text-slate-600 mt-4">Java's <code class="bg-slate-100 px-1 rounded text-sm">SSLSocketFactory</code> provides TLS out of the box.</p>
+        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>import javax.net.ssl.SSLSocketFactory;
+import java.io.*;
+
+public class IrcClient {
+    static OutputStream raw;
+
+    static void send(String msg) throws Exception {
+        raw.write((msg + "\r\n").getBytes("UTF-8"));
+        raw.flush();
+    }
+
+    public static void main(String[] args) throws Exception {
+        String server = "irc.libera.chat";
+        int port = 6697;
+        String nick = "mybot";
+        String channel = "#test";
+
+        var socket = SSLSocketFactory.getDefault()
+            .createSocket(server, port);
+        raw = socket.getOutputStream();
+        var in = new BufferedReader(
+            new InputStreamReader(socket.getInputStream()));
+
+        send("NICK " + nick);
+        send("USER " + nick + " 0 * :" + nick);
+
+        String line;
+        while ((line = in.readLine()) != null) {
+            System.out.println(line);
+
+            if (line.startsWith("PING")) {
+                send("PONG" + line.substring(4));
+            }
+
+            // 001 = RPL_WELCOME
+            if (line.contains(" 001 ")) {
+                send("JOIN " + channel);
+                send("PRIVMSG " + channel + " :Hello from Java!");
+                send("QUIT :Bye");
+                break;
+            }
+        }
+
+        socket.close();
+    }
+}</code></pre>
+
+        <!-- Ruby -->
+        <h2 class="text-2xl font-bold mt-12 mb-4">Ruby</h2>
+        <p class="text-slate-600 mt-4">Ruby's <code class="bg-slate-100 px-1 rounded text-sm">openssl</code> standard library handles TLS connections.</p>
+        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>require "socket"
+require "openssl"
+
+server = "irc.libera.chat"
+port = 6697
+nick = "mybot"
+channel = "#test"
+
+tcp = TCPSocket.new(server, port)
+ctx = OpenSSL::SSL::SSLContext.new
+irc = OpenSSL::SSL::SSLSocket.new(tcp, ctx)
+irc.connect
+
+def irc_send(conn, msg)
+  conn.write("#{msg}\r\n")
+end
+
+irc_send(irc, "NICK #{nick}")
+irc_send(irc, "USER #{nick} 0 * :#{nick}")
+
+while line = irc.gets
+  line.chomp!
+  puts line
+
+  if line.start_with?("PING")
+    irc_send(irc, "PONG#{line[4..]}")
+  end
+
+  # 001 = RPL_WELCOME
+  if line.include?(" 001 ")
+    irc_send(irc, "JOIN #{channel}")
+    irc_send(irc, "PRIVMSG #{channel} :Hello from Ruby!")
+    irc_send(irc, "QUIT :Bye")
+    break
+  end
+end
+
+irc.close</code></pre>
+
+        <!-- C# -->
+        <h2 class="text-2xl font-bold mt-12 mb-4">C#</h2>
+        <p class="text-slate-600 mt-4">Using .NET's <code class="bg-slate-100 px-1 rounded text-sm">SslStream</code> for a secure connection.</p>
+        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>using System.Net.Security;
+using System.Net.Sockets;
+using System.Text;
+
+var server = "irc.libera.chat";
+var port = 6697;
+var nick = "mybot";
+var channel = "#test";
+
+using var tcp = new TcpClient(server, port);
+using var ssl = new SslStream(tcp.GetStream());
+ssl.AuthenticateAsClient(server);
+
+using var reader = new StreamReader(ssl, Encoding.UTF8);
+
+void Send(string msg)
+{
+    var bytes = Encoding.UTF8.GetBytes(msg + "\r\n");
+    ssl.Write(bytes);
+    ssl.Flush();
+}
+
+Send($"NICK {nick}");
+Send($"USER {nick} 0 * :{nick}");
+
+string? line;
+while ((line = reader.ReadLine()) != null)
+{
+    Console.WriteLine(line);
+
+    if (line.StartsWith("PING"))
+        Send("PONG" + line[4..]);
+
+    // 001 = RPL_WELCOME
+    if (line.Contains(" 001 "))
+    {
+        Send($"JOIN {channel}");
+        Send($"PRIVMSG {channel} :Hello from C#!");
+        Send("QUIT :Bye");
+        break;
+    }
+}</code></pre>
+
+        <!-- PHP -->
+        <h2 class="text-2xl font-bold mt-12 mb-4">PHP</h2>
+        <p class="text-slate-600 mt-4">PHP can open TLS sockets using the <code class="bg-slate-100 px-1 rounded text-sm">ssl://</code> stream wrapper.</p>
+        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>&lt;?php
+
+$server = "irc.libera.chat";
+$port = 6697;
+$nick = "mybot";
+$channel = "#test";
+
+$irc = stream_socket_client("ssl://{$server}:{$port}");
+
+function irc_send($conn, string $msg): void {
+    fwrite($conn, "{$msg}\r\n");
+}
+
+irc_send($irc, "NICK {$nick}");
+irc_send($irc, "USER {$nick} 0 * :{$nick}");
+
+while ($line = fgets($irc)) {
+    $line = rtrim($line, "\r\n");
+    echo $line . "\n";
+
+    if (str_starts_with($line, "PING")) {
+        irc_send($irc, "PONG" . substr($line, 4));
+    }
+
+    // 001 = RPL_WELCOME
+    if (str_contains($line, " 001 ")) {
+        irc_send($irc, "JOIN {$channel}");
+        irc_send($irc, "PRIVMSG {$channel} :Hello from PHP!");
+        irc_send($irc, "QUIT :Bye");
+        break;
+    }
+}
+
+fclose($irc);</code></pre>
+
+        <!-- Next Steps -->
+        <h2 class="text-2xl font-bold mt-12 mb-4">Next Steps</h2>
+        <p class="text-slate-600 mt-4">These examples cover the bare minimum. A real IRC client would need to handle:</p>
+        <ul class="text-slate-600 mt-4 list-disc list-inside space-y-1">
+          <li><strong>Message parsing</strong> &mdash; properly parse the IRC message format (<code class="bg-slate-100 px-1 rounded text-sm">:prefix COMMAND params :trailing</code>)</li>
+          <li><strong>Multiple channels</strong> &mdash; track joined channels and route messages accordingly</li>
+          <li><strong>Nick collision</strong> &mdash; handle <code class="bg-slate-100 px-1 rounded text-sm">433 ERR_NICKNAMEINUSE</code> by trying alternative nicknames</li>
+          <li><strong>Reconnection</strong> &mdash; automatically reconnect on connection loss</li>
+          <li><strong>SASL authentication</strong> &mdash; log in to registered accounts via the <a href="https://ircv3.net/" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-slate-800 underline">IRCv3</a> SASL mechanism</li>
+          <li><strong>CAP negotiation</strong> &mdash; request IRCv3 capabilities for modern features like message history and tags</li>
+          <li><strong>User interface</strong> &mdash; a terminal UI, graphical interface, or web frontend for interactive use</li>
+        </ul>
+
+        <!-- Sources -->
+        <div class="mt-12 py-12 border-t border-slate-200">
+          <h2 class="text-2xl font-bold mb-4">References</h2>
+          <ul class="text-slate-600 space-y-1 list-disc list-inside">
+            <li><a href="https://datatracker.ietf.org/doc/html/rfc1459" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-slate-800 underline">RFC 1459 &mdash; Internet Relay Chat Protocol</a></li>
+            <li><a href="https://datatracker.ietf.org/doc/html/rfc2812" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-slate-800 underline">RFC 2812 &mdash; Internet Relay Chat: Client Protocol</a></li>
+            <li><a href="https://modern.ircdocs.horse/" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-slate-800 underline">Modern IRC Client Protocol</a></li>
+            <li><a href="https://ircv3.net/" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-slate-800 underline">IRCv3 Specifications</a></li>
+          </ul>
+        </div>
+
+        <!-- CTA -->
+        <div class="mt-12 text-center py-12 border-t border-slate-200">
+          <h2 class="text-2xl font-bold mb-4">Or Just Use Simple IRC Client</h2>
+          <p class="text-slate-600 max-w-xl mx-auto">Don't want to build your own? Simple IRC Client is ready to go &mdash; clean, modern, and open source.</p>
+          <div class="mt-6 flex flex-col items-center gap-4">
+            <a href="https://app.simpleircclient.com/" class="bg-slate-800 text-white px-6 py-3 rounded-lg font-medium hover:bg-slate-700 transition-colors">
+              Try Web Chat
+            </a>
+            <a href="https://simpleircclient.com/downloads.html" class="border-2 border-slate-800 text-slate-800 px-6 py-3 rounded-lg font-medium hover:bg-slate-100 transition-colors">
+              Download Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-50 py-6 mt-12">
+      <div class="container mx-auto px-4 text-center text-slate-600 text-sm">
+        <p>&copy; 2026 Simple IRC Client. Open source under AGPL-3.0 license.</p>
+      </div>
+    </footer>
+    <script async src="/js/sw-register.js"></script>
+  </body>
+</html>
