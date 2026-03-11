@@ -118,22 +118,609 @@
         <p class="text-slate-600 mt-4">Internet Relay Chat (IRC) is one of the oldest real-time communication protocols on the internet. Created in 1988 by Jarkko Oikarinen in Finland, IRC allows people to communicate in group channels or privately through text messages. It operates on a client-server model where users connect to an IRC server using a client application, then join channels to participate in conversations.</p>
         <p class="text-slate-600 mt-4">Unlike modern chat platforms, IRC is an open protocol &mdash; meaning anyone can run a server, build a client, or join a network without being tied to a single company. Today, IRC still serves around 300,000 users daily across over 120,000 channels. Major open-source projects, developer communities, and tech organizations rely on IRC networks like Libera Chat, OFTC, and Undernet for collaboration and support.</p>
         <p class="text-slate-600 mt-4">The protocol continues to evolve through the <a href="https://ircv3.net/" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-slate-800 underline">IRCv3 Working Group</a>, which develops modern extensions including standardized authentication, message history, and enhanced metadata &mdash; all while maintaining backward compatibility with the classic protocol.</p>
-        <div class="text-center mt-6">
-          <a href="https://simpleircclient.com/what-is-irc.html" class="inline-block border-2 border-slate-800 text-slate-800 px-6 py-3 rounded-lg font-medium hover:bg-slate-100 transition-colors">
-            Continue Reading
-          </a>
-        </div>
+        <details class="mt-6">
+          <summary class="cursor-pointer inline-block border-2 border-slate-800 text-slate-800 px-6 py-3 rounded-lg font-medium hover:bg-slate-100 transition-colors text-center mx-auto block w-fit">Continue Reading</summary>
+
+          <h3 class="text-2xl font-bold mt-8 mb-4">The Origins of IRC</h3>
+          <p class="text-slate-600 mt-4">Internet Relay Chat (IRC) is a text-based communication protocol created in August 1988 by Jarkko Oikarinen at the University of Oulu in Finland. Originally designed as a replacement for a program called MUT (MultiUser Talk) on the OuluBox BBS, IRC quickly spread across the internet. By mid-1989, there were approximately 40 servers worldwide. The first IRC server was <em>tolsun.oulu.fi</em>, and the first network formed when Jyrki Kuoppala installed a second server after the University of Oulu released the IRC code.</p>
+          <p class="text-slate-600 mt-4">IRC operates on a client-server model. Users run an IRC client application that connects to an IRC server. Servers can be linked together to form a network, allowing thousands of users across different servers to communicate with each other. Conversations take place in channels (prefixed with #), which are group chat rooms that anyone can create or join, as well as through private messages between individual users.</p>
+          <p class="text-slate-600 mt-4">The protocol was formalized in RFC 1459 (May 1993) and later updated in RFC 2812 (2000). IRC reached its peak between 2004 and 2005 with approximately 10 million simultaneous users. While usage declined with the rise of social media, IRC remains actively used &mdash; according to <a href="https://irclab.org/" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-slate-800 underline">IRCLab</a>, around 300,000 users connect daily across more than 120,000 channels. Open-source projects, developer communities, and technology organizations continue to value IRC for its openness, simplicity, and lack of corporate control.</p>
+          <p class="text-slate-600 mt-4">IRC also played a notable role in history &mdash; it was used to report on the 1991 Soviet coup d'&eacute;tat attempt during a media blackout, demonstrating the power of decentralized communication.</p>
+
+          <h3 class="text-2xl font-bold mt-12 mb-4">How IRC Works</h3>
+          <p class="text-slate-600 mt-4">At its core, IRC is a simple text-based protocol. When you connect to an IRC server, you choose a nickname and can then join any number of channels. Messages you send to a channel are broadcast to everyone in that channel. The protocol supports a range of features:</p>
+          <ul class="text-slate-600 mt-4 list-disc list-inside space-y-1">
+            <li><strong>Channels</strong> &mdash; group chat rooms, typically prefixed with # (e.g., #linux, #python)</li>
+            <li><strong>Private messages</strong> &mdash; direct one-on-one conversations between users</li>
+            <li><strong>Nicknames</strong> &mdash; unique display names that can be registered with network services</li>
+            <li><strong>Operators</strong> &mdash; channel and server administrators who manage access and moderation</li>
+            <li><strong>File transfers</strong> &mdash; direct file sharing through DCC (Direct Client-to-Client) connections</li>
+            <li><strong>SSL/TLS</strong> &mdash; encrypted connections for privacy and security</li>
+          </ul>
+
+          <h3 class="text-2xl font-bold mt-12 mb-4">The Modern Protocol: IRCv3</h3>
+          <p class="text-slate-600 mt-4">IRC continues to evolve through the <a href="https://ircv3.net/" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-slate-800 underline">IRCv3 Working Group</a>, a community effort to develop modern extensions for the protocol. The IRCv3 specifications build upon the original RFCs while maintaining backward compatibility, ensuring that older clients and servers continue to work alongside newer ones.</p>
+          <p class="text-slate-600 mt-4">Key improvements introduced by IRCv3 include:</p>
+          <ul class="text-slate-600 mt-4 list-disc list-inside space-y-1">
+            <li><strong>SASL authentication</strong> &mdash; standardized account login for faster, more secure registration</li>
+            <li><strong>Message tags</strong> &mdash; extensible metadata attached to messages for features like reactions and replies</li>
+            <li><strong>Chat history</strong> &mdash; server-side message history so you can catch up on missed conversations</li>
+            <li><strong>Server time</strong> &mdash; accurate timestamps on messages for proper chronological display</li>
+            <li><strong>Account tracking</strong> &mdash; awareness of user account information across the network</li>
+            <li><strong>Batch messages</strong> &mdash; grouping related messages for efficient delivery</li>
+            <li><strong>STS (Strict Transport Security)</strong> &mdash; automatic secure connection upgrades</li>
+          </ul>
+          <p class="text-slate-600 mt-4">The IRCv3 Working Group includes participation from major projects like InspIRCd, UnrealIRCd, WeeChat, HexChat, Irssi, and many others. Active development continues on features such as account registration, Unicode nickname support, and client avatars.</p>
+
+          <h3 class="text-2xl font-bold mt-12 mb-4">Popular IRC Networks</h3>
+          <p class="text-slate-600 mt-4">IRC is decentralized &mdash; there is no single "IRC" service. Instead, there are many independent networks, each with their own servers, rules, and communities. According to <a href="https://irclab.org/" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-slate-800 underline">IRCLab</a>, around 300,000 users connect to IRC daily across more than 120,000 channels. Here are the most notable networks:</p>
+          <div class="mt-6 grid gap-6">
+            <div class="border border-slate-200 rounded-lg p-6">
+              <h4 class="font-bold text-lg">Libera Chat</h4>
+              <p class="text-slate-600 mt-2">The largest IRC network with around 34,000 users and 22,000 channels. Launched in May 2021 as a successor to Freenode, it is home to most major open-source projects including Ubuntu, Fedora, Arch Linux, PostgreSQL, and many more.</p>
+            </div>
+            <div class="border border-slate-200 rounded-lg p-6">
+              <h4 class="font-bold text-lg">Undernet</h4>
+              <p class="text-slate-600 mt-2">Founded in October 1992, currently the second largest network with around 20,000 users and 5,700 channels. One of the largest networks globally with a significant user base in Latin America and Europe. Features its own Channel Service (CService) for channel registration and management.</p>
+            </div>
+            <div class="border border-slate-200 rounded-lg p-6">
+              <h4 class="font-bold text-lg">OFTC (Open and Free Technology Community)</h4>
+              <p class="text-slate-600 mt-2">A network focused on free and open-source software communities with around 18,000 users and 4,200 channels. Hosts Debian, Tor, and numerous other projects. Known for its stability and strong governance.</p>
+            </div>
+            <div class="border border-slate-200 rounded-lg p-6">
+              <h4 class="font-bold text-lg">EFnet</h4>
+              <p class="text-slate-600 mt-2">One of the original IRC networks, formed from the first major network split in August 1990. EFnet (Eris-Free network) remains one of the oldest continuously operating networks. Had around 50,000 users at its peak in 2000. Known for its no-services policy and traditional IRC culture.</p>
+            </div>
+            <div class="border border-slate-200 rounded-lg p-6">
+              <h4 class="font-bold text-lg">HybridIRC</h4>
+              <p class="text-slate-600 mt-2">A growing network with around 17,000 users. Known for its hybrid IRCd server software and active community.</p>
+            </div>
+            <div class="border border-slate-200 rounded-lg p-6">
+              <h4 class="font-bold text-lg">IRCnet</h4>
+              <p class="text-slate-600 mt-2">Formed in July 1996 during "The Great Split," currently serves around 16,000 users and 9,200 channels. Particularly popular in Europe, IRCnet had approximately 70,000 users at its peak in 2000. Maintains a more traditional approach to IRC without centralized nickname or channel registration services.</p>
+            </div>
+            <div class="border border-slate-200 rounded-lg p-6">
+              <h4 class="font-bold text-lg">DALnet</h4>
+              <p class="text-slate-600 mt-2">Forked from Undernet in summer 1994, DALnet was the first network to introduce nickname and channel registration services. Known for being beginner-friendly and having a strong community focus.</p>
+            </div>
+            <div class="border border-slate-200 rounded-lg p-6">
+              <h4 class="font-bold text-lg">QuakeNet</h4>
+              <p class="text-slate-600 mt-2">Originally created for the gaming community around Quake in 1997, QuakeNet grew into one of the largest IRC networks, peaking at 240,000 users in 2004. It remains active with a focus on gaming and European communities.</p>
+            </div>
+            <div class="border border-slate-200 rounded-lg p-6">
+              <h4 class="font-bold text-lg">Rizon</h4>
+              <p class="text-slate-600 mt-2">A popular network hosting communities around anime, gaming, and software development. Known for its feature-rich services and active user base.</p>
+            </div>
+          </div>
+
+          <h3 class="text-2xl font-bold mt-12 mb-4">Popular IRC Clients</h3>
+          <p class="text-slate-600 mt-4">There are many IRC clients available for every platform, from graphical applications to terminal-based tools. Here are some of the most popular ones:</p>
+          <div class="mt-6 grid md:grid-cols-2 gap-6">
+            <div class="border border-slate-200 rounded-lg p-6">
+              <h4 class="font-bold text-lg">Simple IRC Client</h4>
+              <p class="text-slate-600 mt-2">A modern, minimalist IRC client focused on simplicity and clean design. Available for Windows, Linux, and as a web application. Open source under AGPL-3.0.</p>
+              <p class="mt-2"><span class="text-sm text-slate-500">Platforms: Windows, Linux, Web</span></p>
+            </div>
+            <div class="border border-slate-200 rounded-lg p-6">
+              <h4 class="font-bold text-lg">HexChat</h4>
+              <p class="text-slate-600 mt-2">A free, open-source graphical IRC client based on XChat. Popular on Linux and Windows with a tabbed interface, scripting support, and a large plugin ecosystem.</p>
+              <p class="mt-2"><span class="text-sm text-slate-500">Platforms: Windows, Linux, macOS</span></p>
+            </div>
+            <div class="border border-slate-200 rounded-lg p-6">
+              <h4 class="font-bold text-lg">irssi</h4>
+              <p class="text-slate-600 mt-2">A terminal-based IRC client known for its scriptability and extensibility through Perl. A favourite among system administrators and developers who prefer working in the terminal.</p>
+              <p class="mt-2"><span class="text-sm text-slate-500">Platforms: Linux, macOS, Windows (WSL)</span></p>
+            </div>
+            <div class="border border-slate-200 rounded-lg p-6">
+              <h4 class="font-bold text-lg">WeeChat</h4>
+              <p class="text-slate-600 mt-2">A fast, extensible terminal-based chat client. Supports multiple protocols beyond IRC, with scripting in Python, Perl, Ruby, Lua, and more. Highly customizable with a plugin architecture.</p>
+              <p class="mt-2"><span class="text-sm text-slate-500">Platforms: Linux, macOS, Windows (WSL)</span></p>
+            </div>
+            <div class="border border-slate-200 rounded-lg p-6">
+              <h4 class="font-bold text-lg">mIRC</h4>
+              <p class="text-slate-600 mt-2">One of the most well-known IRC clients for Windows, first released in 1995. Features a built-in scripting language and has been a staple of IRC for decades. Shareware.</p>
+              <p class="mt-2"><span class="text-sm text-slate-500">Platforms: Windows</span></p>
+            </div>
+            <div class="border border-slate-200 rounded-lg p-6">
+              <h4 class="font-bold text-lg">Konversation</h4>
+              <p class="text-slate-600 mt-2">A user-friendly graphical IRC client for the KDE desktop environment. Designed for ease of use with a clean interface and good integration with the KDE ecosystem.</p>
+              <p class="mt-2"><span class="text-sm text-slate-500">Platforms: Linux</span></p>
+            </div>
+            <div class="border border-slate-200 rounded-lg p-6">
+              <h4 class="font-bold text-lg">Textual</h4>
+              <p class="text-slate-600 mt-2">A popular IRC client for macOS with a polished native interface. Features advanced scripting support, inline media display, and iCloud synchronization.</p>
+              <p class="mt-2"><span class="text-sm text-slate-500">Platforms: macOS</span></p>
+            </div>
+            <div class="border border-slate-200 rounded-lg p-6">
+              <h4 class="font-bold text-lg">The Lounge</h4>
+              <p class="text-slate-600 mt-2">A self-hosted web IRC client. Always connected through a server component, The Lounge lets you access IRC from any browser with a modern, responsive interface.</p>
+              <p class="mt-2"><span class="text-sm text-slate-500">Platforms: Web (self-hosted)</span></p>
+            </div>
+          </div>
+
+          <h3 class="text-2xl font-bold mt-12 mb-4">Why IRC Still Matters</h3>
+          <p class="text-slate-600 mt-4">In an era of proprietary chat platforms, IRC stands out for several reasons:</p>
+          <ul class="text-slate-600 mt-4 list-disc list-inside space-y-1">
+            <li><strong>Open protocol</strong> &mdash; no single company controls IRC; anyone can run servers, build clients, and participate</li>
+            <li><strong>Privacy</strong> &mdash; no mandatory account creation, no tracking, no ads, no data harvesting</li>
+            <li><strong>Lightweight</strong> &mdash; text-based protocol that works on minimal hardware and bandwidth</li>
+            <li><strong>Mature ecosystem</strong> &mdash; decades of development have produced robust, battle-tested software</li>
+            <li><strong>Extensibility</strong> &mdash; bots, scripts, and integrations are straightforward to build</li>
+            <li><strong>Community governance</strong> &mdash; networks are typically run by volunteers for the benefit of users</li>
+          </ul>
+
+          <div class="mt-12 py-12 border-t border-slate-200">
+            <h3 class="text-2xl font-bold mb-4">Sources</h3>
+            <ul class="text-slate-600 space-y-1 list-disc list-inside">
+              <li><a href="https://en.wikipedia.org/wiki/IRC" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-slate-800 underline">Internet Relay Chat &mdash; Wikipedia</a></li>
+              <li><a href="https://irclab.org/" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-slate-800 underline">IRCLab &mdash; IRC Network Statistics</a></li>
+              <li><a href="https://ircv3.net/" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-slate-800 underline">IRCv3 Working Group</a></li>
+            </ul>
+          </div>
+        </details>
       </div>
 
       <!-- Build Your Own IRC Client -->
       <div class="py-12 border-t border-slate-200 max-w-3xl mx-auto">
         <h2 class="text-2xl font-bold text-center mb-6">Build Your Own IRC Client</h2>
         <p class="text-slate-600 mt-4">One of the best things about IRC is how simple the protocol is. At its core, IRC is just text commands sent over a TCP connection &mdash; making it one of the most approachable network protocols to implement. With just a few lines of code in any language, you can connect to a server, join a channel, and send messages. It's an excellent project for learning about networking, sockets, and protocol design.</p>
-        <div class="text-center mt-6">
-          <a href="https://simpleircclient.com/build-irc-client.html" class="inline-block border-2 border-slate-800 text-slate-800 px-6 py-3 rounded-lg font-medium hover:bg-slate-100 transition-colors">
-            Continue Reading
-          </a>
-        </div>
+        <details class="mt-6">
+          <summary class="cursor-pointer inline-block border-2 border-slate-800 text-slate-800 px-6 py-3 rounded-lg font-medium hover:bg-slate-100 transition-colors text-center mx-auto block w-fit">Continue Reading</summary>
+
+          <h3 class="text-2xl font-bold mt-8 mb-4">The IRC Protocol</h3>
+          <p class="text-slate-600 mt-4">IRC is one of the simplest network protocols to implement. At its core, it's just text messages sent over a TCP connection. Each message is a single line terminated by <code class="bg-slate-100 px-1 rounded text-sm">\r\n</code> (carriage return + line feed). To build a minimal IRC client, you only need to understand a handful of commands:</p>
+          <ul class="text-slate-600 mt-4 list-disc list-inside space-y-1">
+            <li><code class="bg-slate-100 px-1 rounded text-sm">NICK &lt;nickname&gt;</code> &mdash; set your nickname</li>
+            <li><code class="bg-slate-100 px-1 rounded text-sm">USER &lt;username&gt; 0 * :&lt;realname&gt;</code> &mdash; identify yourself to the server</li>
+            <li><code class="bg-slate-100 px-1 rounded text-sm">JOIN &lt;#channel&gt;</code> &mdash; join a channel</li>
+            <li><code class="bg-slate-100 px-1 rounded text-sm">PRIVMSG &lt;target&gt; :&lt;message&gt;</code> &mdash; send a message to a channel or user</li>
+            <li><code class="bg-slate-100 px-1 rounded text-sm">PING &lt;token&gt;</code> / <code class="bg-slate-100 px-1 rounded text-sm">PONG &lt;token&gt;</code> &mdash; keep-alive mechanism (reply to server PINGs)</li>
+            <li><code class="bg-slate-100 px-1 rounded text-sm">QUIT :&lt;message&gt;</code> &mdash; disconnect from the server</li>
+          </ul>
+          <p class="text-slate-600 mt-4">A typical connection flow looks like this: open a TCP socket to the server on port 6667 (or 6697 for TLS), send NICK and USER to register, respond to PING messages to stay connected, then JOIN channels and send PRIVMSG to chat.</p>
+          <p class="text-slate-600 mt-4">Every example below connects to <strong>Libera Chat</strong>, joins <strong>#test</strong>, sends a message, and then disconnects. They all handle the PING/PONG keep-alive that servers require.</p>
+
+          <h3 class="text-2xl font-bold mt-12 mb-4">Python</h3>
+          <p class="text-slate-600 mt-4">Python's built-in <code class="bg-slate-100 px-1 rounded text-sm">socket</code> module makes this straightforward. This example uses SSL/TLS for a secure connection.</p>
+          <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>import socket
+import ssl
+
+server = "irc.libera.chat"
+port = 6697
+nick = "mybot"
+channel = "#test"
+
+sock = socket.create_connection((server, port))
+irc = ssl.create_default_context().wrap_socket(sock, server_hostname=server)
+
+def send(msg):
+    irc.send(f"{msg}\r\n".encode())
+
+send(f"NICK {nick}")
+send(f"USER {nick} 0 * :{nick}")
+
+buf = b""
+while True:
+    buf += irc.recv(4096)
+    while b"\r\n" in buf:
+        line, buf = buf.split(b"\r\n", 1)
+        line = line.decode("utf-8", errors="replace")
+        print(line)
+
+        if line.startswith("PING"):
+            send("PONG" + line[4:])
+
+        # 001 = RPL_WELCOME, meaning registration is complete
+        if " 001 " in line:
+            send(f"JOIN {channel}")
+            send(f"PRIVMSG {channel} :Hello from Python!")
+            send("QUIT :Bye")
+            irc.close()
+            exit()</code></pre>
+
+          <h3 class="text-2xl font-bold mt-12 mb-4">JavaScript (Node.js)</h3>
+          <p class="text-slate-600 mt-4">Node.js provides the <code class="bg-slate-100 px-1 rounded text-sm">tls</code> module for secure TCP connections.</p>
+          <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>const tls = require("tls");
+
+const server = "irc.libera.chat";
+const port = 6697;
+const nick = "mybot";
+const channel = "#test";
+
+const socket = tls.connect(port, server, () =&gt; {
+  send(`NICK ${nick}`);
+  send(`USER ${nick} 0 * :${nick}`);
+});
+
+function send(msg) {
+  socket.write(msg + "\r\n");
+}
+
+let buffer = "";
+socket.setEncoding("utf8");
+socket.on("data", (data) =&gt; {
+  buffer += data;
+  const lines = buffer.split("\r\n");
+  buffer = lines.pop();
+
+  for (const line of lines) {
+    console.log(line);
+
+    if (line.startsWith("PING")) {
+      send("PONG" + line.slice(4));
+    }
+
+    // 001 = RPL_WELCOME
+    if (line.includes(" 001 ")) {
+      send(`JOIN ${channel}`);
+      send(`PRIVMSG ${channel} :Hello from Node.js!`);
+      send("QUIT :Bye");
+    }
+  }
+});</code></pre>
+
+          <h3 class="text-2xl font-bold mt-12 mb-4">Go</h3>
+          <p class="text-slate-600 mt-4">Go's standard library has everything needed with <code class="bg-slate-100 px-1 rounded text-sm">crypto/tls</code> and <code class="bg-slate-100 px-1 rounded text-sm">bufio</code>.</p>
+          <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>package main
+
+import (
+	"bufio"
+	"crypto/tls"
+	"fmt"
+	"strings"
+)
+
+func main() {
+	server := "irc.libera.chat:6697"
+	nick := "mybot"
+	channel := "#test"
+
+	conn, err := tls.Dial("tcp", server, nil)
+	if err != nil {
+		panic(err)
+	}
+	defer conn.Close()
+
+	send := func(msg string) {
+		fmt.Fprintf(conn, "%s\r\n", msg)
+	}
+
+	send("NICK " + nick)
+	send("USER " + nick + " 0 * :" + nick)
+
+	scanner := bufio.NewScanner(conn)
+	for scanner.Scan() {
+		line := scanner.Text()
+		fmt.Println(line)
+
+		if strings.HasPrefix(line, "PING") {
+			send("PONG" + line[4:])
+		}
+
+		// 001 = RPL_WELCOME
+		if strings.Contains(line, " 001 ") {
+			send("JOIN " + channel)
+			send("PRIVMSG " + channel + " :Hello from Go!")
+			send("QUIT :Bye")
+			return
+		}
+	}
+}</code></pre>
+
+          <h3 class="text-2xl font-bold mt-12 mb-4">Rust</h3>
+          <p class="text-slate-600 mt-4">Using Rust's standard library with the <code class="bg-slate-100 px-1 rounded text-sm">native-tls</code> crate for TLS support.</p>
+          <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>use native_tls::TlsConnector;
+use std::io::{BufRead, BufReader, Write};
+use std::net::TcpStream;
+
+fn send(stream: &amp;mut impl Write, msg: &amp;str) {
+    write!(stream, "{msg}\r\n").unwrap();
+    stream.flush().unwrap();
+}
+
+fn main() {
+    let server = "irc.libera.chat";
+    let port = 6697;
+    let nick = "mybot";
+    let channel = "#test";
+
+    let connector = TlsConnector::new().unwrap();
+    let tcp = TcpStream::connect(format!("{server}:{port}")).unwrap();
+    let tls = connector.connect(server, tcp).unwrap();
+
+    let mut reader = BufReader::new(tls);
+
+    send(reader.get_mut(), &amp;format!("NICK {nick}"));
+    send(reader.get_mut(), &amp;format!("USER {nick} 0 * :{nick}"));
+
+    let mut line = String::new();
+    while reader.read_line(&amp;mut line).unwrap() &gt; 0 {
+        print!("{line}");
+
+        if line.starts_with("PING") {
+            let pong = format!("PONG{}", &amp;line[4..].trim());
+            send(reader.get_mut(), &amp;pong);
+        }
+
+        // 001 = RPL_WELCOME
+        if line.contains(" 001 ") {
+            send(reader.get_mut(), &amp;format!("JOIN {channel}"));
+            send(reader.get_mut(), &amp;format!("PRIVMSG {channel} :Hello from Rust!"));
+            send(reader.get_mut(), "QUIT :Bye");
+            break;
+        }
+
+        line.clear();
+    }
+}
+
+// Cargo.toml:
+// [dependencies]
+// native-tls = "0.2"</code></pre>
+
+          <h3 class="text-2xl font-bold mt-12 mb-4">C</h3>
+          <p class="text-slate-600 mt-4">A plain TCP example using POSIX sockets. For production use, you would add TLS via OpenSSL.</p>
+          <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;netdb.h&gt;
+#include &lt;sys/socket.h&gt;
+
+static int irc_fd;
+
+void irc_send(const char *msg) {
+    dprintf(irc_fd, "%s\r\n", msg);
+}
+
+/* Strip trailing \r\n */
+void chomp(char *s) {
+    size_t len = strlen(s);
+    while (len &gt; 0 &amp;&amp; (s[len - 1] == '\r' || s[len - 1] == '\n'))
+        s[--len] = '\0';
+}
+
+int main(void) {
+    const char *server = "irc.libera.chat";
+    const char *port = "6667";
+    const char *nick = "mybot";
+    const char *channel = "#test";
+
+    struct addrinfo hints = { .ai_socktype = SOCK_STREAM }, *res;
+    getaddrinfo(server, port, &amp;hints, &amp;res);
+
+    irc_fd = socket(res-&gt;ai_family, res-&gt;ai_socktype, res-&gt;ai_protocol);
+    connect(irc_fd, res-&gt;ai_addr, res-&gt;ai_addrlen);
+    freeaddrinfo(res);
+
+    char buf[512];
+    snprintf(buf, sizeof(buf), "NICK %s", nick);
+    irc_send(buf);
+    snprintf(buf, sizeof(buf), "USER %s 0 * :%s", nick, nick);
+    irc_send(buf);
+
+    char line[512];
+    FILE *fp = fdopen(dup(irc_fd), "r");
+    while (fgets(line, sizeof(line), fp)) {
+        chomp(line);
+        printf("%s\n", line);
+
+        if (strncmp(line, "PING", 4) == 0) {
+            snprintf(buf, sizeof(buf), "PONG%s", line + 4);
+            irc_send(buf);
+        }
+
+        /* 001 = RPL_WELCOME */
+        if (strstr(line, " 001 ")) {
+            snprintf(buf, sizeof(buf), "JOIN %s", channel);
+            irc_send(buf);
+            snprintf(buf, sizeof(buf), "PRIVMSG %s :Hello from C!", channel);
+            irc_send(buf);
+            irc_send("QUIT :Bye");
+            break;
+        }
+    }
+
+    fclose(fp);
+    close(irc_fd);
+    return 0;
+}
+
+/* Compile: gcc -o irc irc.c */</code></pre>
+
+          <h3 class="text-2xl font-bold mt-12 mb-4">Java</h3>
+          <p class="text-slate-600 mt-4">Java's <code class="bg-slate-100 px-1 rounded text-sm">SSLSocketFactory</code> provides TLS out of the box.</p>
+          <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>import javax.net.ssl.SSLSocketFactory;
+import java.io.*;
+
+public class IrcClient {
+    static OutputStream raw;
+
+    static void send(String msg) throws Exception {
+        raw.write((msg + "\r\n").getBytes("UTF-8"));
+        raw.flush();
+    }
+
+    public static void main(String[] args) throws Exception {
+        String server = "irc.libera.chat";
+        int port = 6697;
+        String nick = "mybot";
+        String channel = "#test";
+
+        var socket = SSLSocketFactory.getDefault()
+            .createSocket(server, port);
+        raw = socket.getOutputStream();
+        var in = new BufferedReader(
+            new InputStreamReader(socket.getInputStream()));
+
+        send("NICK " + nick);
+        send("USER " + nick + " 0 * :" + nick);
+
+        String line;
+        while ((line = in.readLine()) != null) {
+            System.out.println(line);
+
+            if (line.startsWith("PING")) {
+                send("PONG" + line.substring(4));
+            }
+
+            // 001 = RPL_WELCOME
+            if (line.contains(" 001 ")) {
+                send("JOIN " + channel);
+                send("PRIVMSG " + channel + " :Hello from Java!");
+                send("QUIT :Bye");
+                break;
+            }
+        }
+
+        socket.close();
+    }
+}</code></pre>
+
+          <h3 class="text-2xl font-bold mt-12 mb-4">Ruby</h3>
+          <p class="text-slate-600 mt-4">Ruby's <code class="bg-slate-100 px-1 rounded text-sm">openssl</code> standard library handles TLS connections.</p>
+          <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>require "socket"
+require "openssl"
+
+server = "irc.libera.chat"
+port = 6697
+nick = "mybot"
+channel = "#test"
+
+tcp = TCPSocket.new(server, port)
+ctx = OpenSSL::SSL::SSLContext.new
+irc = OpenSSL::SSL::SSLSocket.new(tcp, ctx)
+irc.connect
+
+def irc_send(conn, msg)
+  conn.write("#{msg}\r\n")
+end
+
+irc_send(irc, "NICK #{nick}")
+irc_send(irc, "USER #{nick} 0 * :#{nick}")
+
+while line = irc.gets
+  line.chomp!
+  puts line
+
+  if line.start_with?("PING")
+    irc_send(irc, "PONG#{line[4..]}")
+  end
+
+  # 001 = RPL_WELCOME
+  if line.include?(" 001 ")
+    irc_send(irc, "JOIN #{channel}")
+    irc_send(irc, "PRIVMSG #{channel} :Hello from Ruby!")
+    irc_send(irc, "QUIT :Bye")
+    break
+  end
+end
+
+irc.close</code></pre>
+
+          <h3 class="text-2xl font-bold mt-12 mb-4">C#</h3>
+          <p class="text-slate-600 mt-4">Using .NET's <code class="bg-slate-100 px-1 rounded text-sm">SslStream</code> for a secure connection.</p>
+          <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>using System.Net.Security;
+using System.Net.Sockets;
+using System.Text;
+
+var server = "irc.libera.chat";
+var port = 6697;
+var nick = "mybot";
+var channel = "#test";
+
+using var tcp = new TcpClient(server, port);
+using var ssl = new SslStream(tcp.GetStream());
+ssl.AuthenticateAsClient(server);
+
+using var reader = new StreamReader(ssl, Encoding.UTF8);
+
+void Send(string msg)
+{
+    var bytes = Encoding.UTF8.GetBytes(msg + "\r\n");
+    ssl.Write(bytes);
+    ssl.Flush();
+}
+
+Send($"NICK {nick}");
+Send($"USER {nick} 0 * :{nick}");
+
+string? line;
+while ((line = reader.ReadLine()) != null)
+{
+    Console.WriteLine(line);
+
+    if (line.StartsWith("PING"))
+        Send("PONG" + line[4..]);
+
+    // 001 = RPL_WELCOME
+    if (line.Contains(" 001 "))
+    {
+        Send($"JOIN {channel}");
+        Send($"PRIVMSG {channel} :Hello from C#!");
+        Send("QUIT :Bye");
+        break;
+    }
+}</code></pre>
+
+          <h3 class="text-2xl font-bold mt-12 mb-4">PHP</h3>
+          <p class="text-slate-600 mt-4">PHP can open TLS sockets using the <code class="bg-slate-100 px-1 rounded text-sm">ssl://</code> stream wrapper.</p>
+          <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>&lt;?php
+
+$server = "irc.libera.chat";
+$port = 6697;
+$nick = "mybot";
+$channel = "#test";
+
+$irc = stream_socket_client("ssl://{$server}:{$port}");
+
+function irc_send($conn, string $msg): void {
+    fwrite($conn, "{$msg}\r\n");
+}
+
+irc_send($irc, "NICK {$nick}");
+irc_send($irc, "USER {$nick} 0 * :{$nick}");
+
+while ($line = fgets($irc)) {
+    $line = rtrim($line, "\r\n");
+    echo $line . "\n";
+
+    if (str_starts_with($line, "PING")) {
+        irc_send($irc, "PONG" . substr($line, 4));
+    }
+
+    // 001 = RPL_WELCOME
+    if (str_contains($line, " 001 ")) {
+        irc_send($irc, "JOIN {$channel}");
+        irc_send($irc, "PRIVMSG {$channel} :Hello from PHP!");
+        irc_send($irc, "QUIT :Bye");
+        break;
+    }
+}
+
+fclose($irc);</code></pre>
+
+          <h3 class="text-2xl font-bold mt-12 mb-4">Next Steps</h3>
+          <p class="text-slate-600 mt-4">These examples cover the bare minimum. A real IRC client would need to handle:</p>
+          <ul class="text-slate-600 mt-4 list-disc list-inside space-y-1">
+            <li><strong>Message parsing</strong> &mdash; properly parse the IRC message format (<code class="bg-slate-100 px-1 rounded text-sm">:prefix COMMAND params :trailing</code>)</li>
+            <li><strong>Multiple channels</strong> &mdash; track joined channels and route messages accordingly</li>
+            <li><strong>Nick collision</strong> &mdash; handle <code class="bg-slate-100 px-1 rounded text-sm">433 ERR_NICKNAMEINUSE</code> by trying alternative nicknames</li>
+            <li><strong>Reconnection</strong> &mdash; automatically reconnect on connection loss</li>
+            <li><strong>SASL authentication</strong> &mdash; log in to registered accounts via the <a href="https://ircv3.net/" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-slate-800 underline">IRCv3</a> SASL mechanism</li>
+            <li><strong>CAP negotiation</strong> &mdash; request IRCv3 capabilities for modern features like message history and tags</li>
+            <li><strong>User interface</strong> &mdash; a terminal UI, graphical interface, or web frontend for interactive use</li>
+          </ul>
+
+          <div class="mt-12 py-12 border-t border-slate-200">
+            <h3 class="text-2xl font-bold mb-4">References</h3>
+            <ul class="text-slate-600 space-y-1 list-disc list-inside">
+              <li><a href="https://datatracker.ietf.org/doc/html/rfc1459" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-slate-800 underline">RFC 1459 &mdash; Internet Relay Chat Protocol</a></li>
+              <li><a href="https://datatracker.ietf.org/doc/html/rfc2812" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-slate-800 underline">RFC 2812 &mdash; Internet Relay Chat: Client Protocol</a></li>
+              <li><a href="https://modern.ircdocs.horse/" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-slate-800 underline">Modern IRC Client Protocol</a></li>
+              <li><a href="https://ircv3.net/" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-slate-800 underline">IRCv3 Specifications</a></li>
+            </ul>
+          </div>
+        </details>
       </div>
 
       <!-- Embed IRC on Your Website -->
