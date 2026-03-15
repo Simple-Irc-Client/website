@@ -3,6 +3,7 @@
   "short_name": "IRC Client",
   "description": "A modern, minimalist IRC client that focuses on what matters.",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1e293b",

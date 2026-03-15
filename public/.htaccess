@@ -1,11 +1,24 @@
+Options -Indexes
+ServerSignature Off
+ErrorDocument 404 /404.html
+
 <IfModule mod_headers.c>
-    Header set X-Frame-Options "DENY"
-    Header set X-Content-Type-Options "nosniff"
-    Header set Referrer-Policy "strict-origin-when-cross-origin"
-    Header set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=(), interest-cohort=()"
-    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-    Header set Cross-Origin-Opener-Policy "same-origin"
+    Header always set X-Frame-Options "DENY"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=(), browsing-topics=()"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    Header always set Cross-Origin-Opener-Policy "same-origin"
+    Header always set Cross-Origin-Resource-Policy "same-origin"
+    Header always set X-XSS-Protection "0"
+    Header always set Content-Security-Policy "default-src 'none'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self'; img-src 'self'; connect-src https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com; manifest-src 'self'; worker-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    Header always unset X-Powered-By
 </IfModule>
+
+# Block access to all hidden (dot) files (.htaccess, .deploy-manifest, .gitkeep, etc.)
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
 
 # Enable compression
 <IfModule mod_brotli.c>
@@ -20,16 +33,27 @@
     # HTML: CSS is inlined by the build, so the HTML file IS the full page.
     # 5 minutes lets CDNs and browsers cache while keeping deploys fast to propagate.
     <FilesMatch "\.html$">
-        Header set Cache-Control "public, max-age=300, must-revalidate"
+        Header always set Cache-Control "public, max-age=300, must-revalidate"
     </FilesMatch>
 
-    # analytics.js: not content-hashed, but changes rarely. 1 day.
+    # JS: not content-hashed, but changes rarely. 1 day.
     <FilesMatch "\.js$">
-        Header set Cache-Control "public, max-age=86400, stale-while-revalidate=3600"
+        Header always set Cache-Control "public, max-age=86400, stale-while-revalidate=3600"
     </FilesMatch>
+
+    # Service worker: must not be aggressively cached so updates propagate immediately.
+    # This overrides the generic .js rule above.
+    <Files "sw.js">
+        Header always set Cache-Control "no-cache, must-revalidate"
+    </Files>
+
+    # manifest.json: changes rarely. 1 day, same as JS.
+    <Files "manifest.json">
+        Header always set Cache-Control "public, max-age=86400, stale-while-revalidate=3600"
+    </Files>
 
     # Images and icons: 1 year. These change only when the URL changes (e.g. logo.png → logo.webp).
     <FilesMatch "\.(webp|png|ico|svg)$">
-        Header set Cache-Control "public, max-age=31536000, immutable"
+        Header always set Cache-Control "public, max-age=31536000, immutable"
     </FilesMatch>
 </IfModule>
