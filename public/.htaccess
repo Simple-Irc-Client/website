@@ -11,7 +11,7 @@ ErrorDocument 404 /404.html
     Header always set Cross-Origin-Opener-Policy "same-origin"
     Header always set Cross-Origin-Resource-Policy "same-origin"
     Header always set X-XSS-Protection "0"
-    Header always set Content-Security-Policy "default-src 'none'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self'; img-src 'self'; connect-src https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com; manifest-src 'self'; worker-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    Header always set Content-Security-Policy "default-src 'none'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self'; img-src 'self'; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.googletagmanager.com; manifest-src 'self'; worker-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
     Header always unset X-Powered-By
 </IfModule>
 
