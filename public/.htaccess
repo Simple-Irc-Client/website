@@ -53,7 +53,10 @@ ErrorDocument 404 /404.html
     </Files>
 
     # Images and icons: 1 year. These change only when the URL changes (e.g. logo.png → logo.webp).
-    <FilesMatch "\.(webp|png|ico|svg)$">
+    # Allow cross-origin loading so the app (on a different origin) can use
+    # these as channel avatars. Overrides the blanket CORP: same-origin above.
+    <FilesMatch "\.(webp|png|jpg|jpeg|gif|svg|ico)$">
         Header always set Cache-Control "public, max-age=31536000, immutable"
+        Header always set Cross-Origin-Resource-Policy "cross-origin"
     </FilesMatch>
 </IfModule>
