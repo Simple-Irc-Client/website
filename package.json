@@ -3,11 +3,12 @@
   "description": "Simple Irc Client",
   "version": "1.0.25",
   "license": "AGPL-3.0-or-later",
+  "packageManager": "pnpm@10.33.0",
   "scripts": {
     "build:css": "npx tailwindcss -i ./public/app.css -o ./public/css/style.css --minify",
     "build:html": "node build-html.mjs",
-    "build:web": "cd core && printf 'VITE_GATEWAY_HOST=irc.simpleircclient.com\\nVITE_GATEWAY_PORT=443\\nVITE_GATEWAY_PATH=/webirc\\n' > .env.gateway && npm install && npm run build:gateway && mkdir -p ../dist-app && cp -r dist/* ../dist-app/",
-    "build": "npm run build:css && npm run build:html && npm run build:web",
+    "build:web": "cd core && printf 'VITE_GATEWAY_HOST=irc.simpleircclient.com\\nVITE_GATEWAY_PORT=443\\nVITE_GATEWAY_PATH=/webirc\\n' > .env.gateway && pnpm install && pnpm run build:gateway && mkdir -p ../dist-app && cp -r dist/* ../dist-app/",
+    "build": "pnpm run build:css && pnpm run build:html && pnpm run build:web",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

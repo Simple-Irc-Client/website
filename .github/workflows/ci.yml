@@ -18,13 +18,14 @@ jobs:
       - uses: actions/checkout@v6
         with:
           submodules: recursive
+      - uses: pnpm/action-setup@v5
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
       - run: |
-          npm ci
-          npm run build
+          pnpm install --frozen-lockfile
+          pnpm run build
 
       - name: Deploy via SFTP with SSH Key
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
