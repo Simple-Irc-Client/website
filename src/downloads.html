@@ -113,68 +113,100 @@
     <main id="main" class="container mx-auto px-4">
       <!-- Header -->
       <div class="text-center py-12">
-        <h1 class="font-bold text-4xl md:text-5xl">Downloads</h1>
-        <p class="text-slate-600 text-lg mt-3">Get Simple IRC Client for your platform</p>
+        <h1 class="font-bold text-4xl md:text-5xl">Download latest version</h1>
+        <p class="text-slate-400 text-3xl mt-3 font-light">{{VERSION}}</p>
       </div>
 
       <!-- Download Cards -->
-      <div class="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto pb-12">
+      <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto pb-12">
         <!-- Windows -->
-        <div class="border border-slate-200 rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
-          <svg class="w-12 h-12 text-[#0078D4] mb-4 mx-auto" fill="currentColor" aria-hidden="true"><use href="#icon-windows"/></svg>
-          <h2 class="font-bold text-xl">Windows</h2>
-          <p class="text-slate-600 mt-2 mb-4">Windows 10 and later</p>
-          <a
-            href="https://github.com/Simple-Irc-Client/desktop/releases/latest"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Download for Windows"
-            class="inline-block bg-slate-800 text-white px-5 py-2 rounded-lg font-medium hover:bg-slate-700 transition-colors"
-          >
-            <svg class="mr-2 inline-block w-4 h-4" fill="currentColor" aria-hidden="true"><use href="#icon-download"/></svg>
-            Download
-          </a>
+        <div class="bg-slate-50 rounded-xl p-8 text-center">
+          <svg class="w-16 h-16 text-[#0078D4] mb-6 mx-auto" fill="currentColor" aria-hidden="true"><use href="#icon-windows"/></svg>
+          <h2 class="font-bold text-xl mb-6">Windows</h2>
+          <div class="space-y-3">
+            <a
+              href="{{ASSET:*windows*.exe}}"
+              class="flex items-center justify-center gap-2 border border-slate-300 rounded-lg px-4 py-2.5 font-medium text-slate-700 hover:bg-white hover:border-slate-400 transition-colors"
+            >
+              <svg class="w-4 h-4" fill="currentColor" aria-hidden="true"><use href="#icon-download"/></svg>
+              EXE Installer
+            </a>
+            <a
+              href="{{ASSET:*windows*.msi}}"
+              class="flex items-center justify-center gap-2 border border-slate-300 rounded-lg px-4 py-2.5 font-medium text-slate-700 hover:bg-white hover:border-slate-400 transition-colors"
+            >
+              <svg class="w-4 h-4" fill="currentColor" aria-hidden="true"><use href="#icon-download"/></svg>
+              MSI Installer
+            </a>
+          </div>
+          <p class="text-slate-400 text-sm mt-4 italic">Windows 10 or newer. 64-bit only.</p>
         </div>
 
         <!-- Linux -->
-        <div class="border border-slate-200 rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
-          <svg class="w-12 h-12 text-[#FCC624] mb-4 mx-auto" fill="currentColor" aria-hidden="true"><use href="#icon-linux"/></svg>
-          <h2 class="font-bold text-xl">Linux</h2>
-          <p class="text-slate-600 mt-2 mb-4">AppImage, deb, rpm</p>
-          <a
-            href="https://github.com/Simple-Irc-Client/desktop/releases/latest"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Download for Linux"
-            class="inline-block bg-slate-800 text-white px-5 py-2 rounded-lg font-medium hover:bg-slate-700 transition-colors"
-          >
-            <svg class="mr-2 inline-block w-4 h-4" fill="currentColor" aria-hidden="true"><use href="#icon-download"/></svg>
-            Download
-          </a>
+        <div class="bg-slate-50 rounded-xl p-8 text-center">
+          <svg class="w-16 h-16 text-[#FCC624] mb-6 mx-auto" fill="currentColor" aria-hidden="true"><use href="#icon-linux"/></svg>
+          <h2 class="font-bold text-xl mb-6">Linux</h2>
+          <div class="space-y-3">
+            <a
+              href="{{ASSET:*.AppImage}}"
+              class="flex items-center justify-center gap-2 border border-slate-300 rounded-lg px-4 py-2.5 font-medium text-slate-700 hover:bg-white hover:border-slate-400 transition-colors"
+            >
+              <svg class="w-4 h-4" fill="currentColor" aria-hidden="true"><use href="#icon-download"/></svg>
+              AppImage
+            </a>
+            <a
+              href="{{ASSET:*.flatpak}}"
+              class="flex items-center justify-center gap-2 border border-slate-300 rounded-lg px-4 py-2.5 font-medium text-slate-700 hover:bg-white hover:border-slate-400 transition-colors"
+            >
+              <svg class="w-4 h-4" fill="currentColor" aria-hidden="true"><use href="#icon-download"/></svg>
+              Flatpak
+            </a>
+            <a
+              href="{{ASSET:*.deb}}"
+              class="flex items-center justify-center gap-2 border border-slate-300 rounded-lg px-4 py-2.5 font-medium text-slate-700 hover:bg-white hover:border-slate-400 transition-colors"
+            >
+              <svg class="w-4 h-4" fill="currentColor" aria-hidden="true"><use href="#icon-download"/></svg>
+              DEB
+            </a>
+            <a
+              href="{{ASSET:*.rpm}}"
+              class="flex items-center justify-center gap-2 border border-slate-300 rounded-lg px-4 py-2.5 font-medium text-slate-700 hover:bg-white hover:border-slate-400 transition-colors"
+            >
+              <svg class="w-4 h-4" fill="currentColor" aria-hidden="true"><use href="#icon-download"/></svg>
+              RPM
+            </a>
+            <a
+              href="{{ASSET:*.snap}}"
+              class="flex items-center justify-center gap-2 border border-slate-300 rounded-lg px-4 py-2.5 font-medium text-slate-700 hover:bg-white hover:border-slate-400 transition-colors"
+            >
+              <svg class="w-4 h-4" fill="currentColor" aria-hidden="true"><use href="#icon-download"/></svg>
+              Snap
+            </a>
+          </div>
+          <p class="text-slate-400 text-sm mt-4 italic">x86_64 only.</p>
         </div>
 
         <!-- macOS -->
-        <div class="border border-slate-200 rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
-          <svg class="w-12 h-12 text-[#A2AAAD] mb-4 mx-auto" fill="currentColor" aria-hidden="true"><use href="#icon-apple"/></svg>
-          <h2 class="font-bold text-xl">macOS</h2>
-          <p class="text-slate-600 mt-2 mb-4">dmg</p>
-          <a
-            href="https://github.com/Simple-Irc-Client/desktop/releases/latest"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Download for macOS"
-            class="inline-block bg-slate-800 text-white px-5 py-2 rounded-lg font-medium hover:bg-slate-700 transition-colors"
-          >
-            <svg class="mr-2 inline-block w-4 h-4" fill="currentColor" aria-hidden="true"><use href="#icon-download"/></svg>
-            Download
-          </a>
+        <div class="bg-slate-50 rounded-xl p-8 text-center">
+          <svg class="w-16 h-16 text-[#A2AAAD] mb-6 mx-auto" fill="currentColor" aria-hidden="true"><use href="#icon-apple"/></svg>
+          <h2 class="font-bold text-xl mb-6">macOS</h2>
+          <div class="space-y-3">
+            <a
+              href="{{ASSET:*darwin*.dmg}}"
+              class="flex items-center justify-center gap-2 border border-slate-300 rounded-lg px-4 py-2.5 font-medium text-slate-700 hover:bg-white hover:border-slate-400 transition-colors"
+            >
+              <svg class="w-4 h-4" fill="currentColor" aria-hidden="true"><use href="#icon-apple"/></svg>
+              Apple Silicon
+            </a>
+
+          </div>
+          <p class="text-slate-400 text-sm mt-4 italic">macOS 11 (Big Sur) or newer. ARM only.</p>
         </div>
       </div>
 
       <!-- All Releases -->
       <div class="py-12 border-t border-slate-200 text-center">
-        <h2 class="text-2xl font-bold mb-4">All Releases</h2>
-        <p class="text-slate-600 max-w-xl mx-auto">Looking for older versions or other formats? Check out all releases on GitHub.</p>
+        <p class="text-slate-600 max-w-xl mx-auto">Looking for older versions or other formats?</p>
         <a
           href="https://github.com/Simple-Irc-Client/desktop/releases"
           target="_blank"
@@ -182,42 +214,8 @@
           class="inline-flex items-center mt-4 text-slate-800 font-medium hover:text-slate-600"
         >
           <svg class="mr-2 inline-block w-4 h-4 text-slate-800" fill="currentColor" aria-hidden="true"><use href="#icon-github"/></svg>
-          View all releases
+          View all releases on GitHub
         </a>
-      </div>
-
-      <!-- System Requirements -->
-      <div class="py-12 border-t border-slate-200">
-        <h2 class="text-2xl font-bold text-center mb-8">System Requirements</h2>
-        <div class="grid md:grid-cols-3 gap-8 max-w-3xl mx-auto">
-          <div>
-            <h3 class="font-bold text-lg mb-3">
-              <svg class="mr-2 inline-block w-4 h-4 text-[#0078D4]" fill="currentColor" aria-hidden="true"><use href="#icon-windows"/></svg>Windows
-            </h3>
-            <ul class="text-slate-600 space-y-1">
-              <li>Windows 10 or later</li>
-              <li>64-bit processor</li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="font-bold text-lg mb-3">
-              <svg class="mr-2 inline-block w-4 h-4 text-[#FCC624]" fill="currentColor" aria-hidden="true"><use href="#icon-linux"/></svg>Linux
-            </h3>
-            <ul class="text-slate-600 space-y-1">
-              <li>Modern Linux distribution</li>
-              <li>64-bit processor</li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="font-bold text-lg mb-3">
-              <svg class="mr-2 inline-block w-4 h-4 text-[#A2AAAD]" fill="currentColor" aria-hidden="true"><use href="#icon-apple"/></svg>macOS
-            </h3>
-            <ul class="text-slate-600 space-y-1">
-              <li>macOS 11 or later</li>
-              <li>64-bit processor</li>
-            </ul>
-          </div>
-        </div>
       </div>
     </main>
 
