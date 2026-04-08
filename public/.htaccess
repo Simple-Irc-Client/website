@@ -11,7 +11,7 @@ ErrorDocument 404 /404.html
     Header always set Cross-Origin-Opener-Policy "same-origin"
     Header always set Cross-Origin-Resource-Policy "same-origin"
     Header always set X-XSS-Protection "0"
-    Header always set Content-Security-Policy "default-src 'none'; script-src 'self' https://plausible.io; style-src 'sha256-zJY2PS38QUo0aNUw3YnF6QF96VISOgL52VUib2MN6m0='; img-src 'self'; connect-src 'self' https://plausible.io; manifest-src 'self'; worker-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    Header always set Content-Security-Policy "default-src 'none'; script-src 'self' https://scripts.simpleanalyticscdn.com; style-src 'sha256-zJY2PS38QUo0aNUw3YnF6QF96VISOgL52VUib2MN6m0='; img-src 'self'; connect-src 'self' https://queue.simpleanalyticscdn.com; manifest-src 'self'; worker-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
     Header always unset X-Powered-By
 </IfModule>
 
