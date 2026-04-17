@@ -43,9 +43,9 @@ try {
   console.log(`Release: ${releaseVersion} (${releaseAssets.length} assets)`);
 } catch (err) {
   console.warn("Failed to fetch release data from GitHub:", err.message);
-  console.warn("Falling back to static version 1.1.0.");
+  console.warn("Falling back to static version 1.1.1.");
 
-  releaseVersion = "1.1.0";
+  releaseVersion = "1.1.1";
   const tag = `v${releaseVersion}`;
   const base = `https://github.com/${repo}/releases/download/${tag}`;
   const names = [
