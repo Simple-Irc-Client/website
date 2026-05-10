@@ -55,9 +55,7 @@ try {
     `simple-irc-client-${releaseVersion}-not-signed-windows-x64.msi`,
     `simple-irc-client-${releaseVersion}-x86_64.AppImage`,
     `simple-irc-client-${releaseVersion}-x86_64.deb`,
-    `simple-irc-client-${releaseVersion}-x86_64.flatpak`,
     `simple-irc-client-${releaseVersion}-x86_64.rpm`,
-    `simple-irc-client-${releaseVersion}-x86_64.snap`,
   ];
   releaseAssets = names.map((name) => ({ name, url: `${base}/${name}` }));
 }
