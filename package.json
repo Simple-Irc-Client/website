@@ -3,7 +3,7 @@
   "description": "Simple Irc Client",
   "version": "1.0.25",
   "license": "AGPL-3.0-or-later",
-  "packageManager": "pnpm@11.1.2",
+  "packageManager": "pnpm@11.5.0",
   "scripts": {
     "build:css": "tailwindcss -i ./public/app.css -o ./public/css/style.css --minify",
     "build:html": "node build-html.mjs",
