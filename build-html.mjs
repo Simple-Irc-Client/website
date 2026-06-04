@@ -49,13 +49,12 @@ try {
   const tag = `v${releaseVersion}`;
   const base = `https://github.com/${repo}/releases/download/${tag}`;
   const names = [
-    `simple-irc-client-${releaseVersion}-darwin-arm64.dmg`,
-    `simple-irc-client-${releaseVersion}-darwin-arm64.zip`,
-    `simple-irc-client-${releaseVersion}-not-signed-windows-x64.exe`,
-    `simple-irc-client-${releaseVersion}-not-signed-windows-x64.msi`,
-    `simple-irc-client-${releaseVersion}-x86_64.AppImage`,
-    `simple-irc-client-${releaseVersion}-x86_64.deb`,
-    `simple-irc-client-${releaseVersion}-x86_64.rpm`,
+    `Simple-Irc-Client_${releaseVersion}_aarch64.dmg`,
+    `Simple-Irc-Client_${releaseVersion}_x64-setup.exe`,
+    `Simple-Irc-Client_${releaseVersion}_x64_en-US.msi`,
+    `Simple-Irc-Client_${releaseVersion}_amd64.AppImage`,
+    `Simple-Irc-Client_${releaseVersion}_amd64.deb`,
+    `Simple-Irc-Client-${releaseVersion}-1.x86_64.rpm`,
   ];
   releaseAssets = names.map((name) => ({ name, url: `${base}/${name}` }));
 }
