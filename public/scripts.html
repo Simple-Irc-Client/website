@@ -3,21 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Themes - Simple Irc Client</title>
-    <meta name="description" content="Customize Simple IRC Client with CSS themes - switch between Classic and Modern layouts, edit their styling, or create your own theme. Includes ready-to-paste example themes." />
+    <title>Scripts - Simple Irc Client</title>
+    <meta name="description" content="Automate Simple IRC Client with JavaScript scripts - add custom /commands, filter and rewrite messages, react to events and call web APIs. Runs sandboxed, includes ready-to-paste examples." />
     <meta name="theme-color" content="#1e293b" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://scripts.simpleanalyticscdn.com; style-src 'sha256-ZyfJaLsw9s9879iDQvWjcA5bnXBxYcMdxIikepDvQSs='; img-src 'self' https://queue.simpleanalyticscdn.com; connect-src 'self' https://queue.simpleanalyticscdn.com https://scripts.simpleanalyticscdn.com; manifest-src 'self'; worker-src 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <link rel="canonical" href="https://simpleircclient.com/themes.html" />
+    <link rel="canonical" href="https://simpleircclient.com/scripts.html" />
 
     <!-- Open Graph -->
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="Simple IRC Client" />
-    <meta property="og:title" content="Themes - Simple IRC Client" />
-    <meta property="og:description" content="Customize Simple IRC Client with CSS themes - switch between Classic and Modern layouts, edit their styling, or create your own theme. Includes ready-to-paste example themes." />
+    <meta property="og:title" content="Scripts - Simple IRC Client" />
+    <meta property="og:description" content="Automate Simple IRC Client with JavaScript scripts - add custom /commands, filter and rewrite messages, react to events and call web APIs. Runs sandboxed, includes ready-to-paste examples." />
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://simpleircclient.com/themes.html" />
+    <meta property="og:url" content="https://simpleircclient.com/scripts.html" />
     <meta property="og:image" content="https://simpleircclient.com/assets/logo.webp" />
     <meta property="og:image:width" content="512" />
     <meta property="og:image:height" content="512" />
@@ -36,9 +36,9 @@
     {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "Themes for Simple IRC Client",
-      "description": "Customize Simple IRC Client with CSS themes - switch between Classic and Modern layouts, edit their styling, or create your own theme. Includes ready-to-paste example themes.",
-      "url": "https://simpleircclient.com/themes.html",
+      "headline": "Scripts for Simple IRC Client",
+      "description": "Automate Simple IRC Client with JavaScript scripts - add custom /commands, filter and rewrite messages, react to events and call web APIs. Runs sandboxed, includes ready-to-paste examples.",
+      "url": "https://simpleircclient.com/scripts.html",
       "author": {
         "@type": "Organization",
         "name": "Simple IRC Client",
@@ -82,315 +82,228 @@
     <main id="main" class="container mx-auto px-4">
       <!-- Header -->
       <div class="text-center py-12">
-        <h1 class="font-bold text-4xl md:text-5xl">Themes</h1>
-        <p class="text-slate-600 text-lg mt-3 max-w-xl mx-auto">Make the chat look exactly the way you want &mdash; every theme in Simple IRC Client is just CSS you can edit</p>
+        <h1 class="font-bold text-4xl md:text-5xl">Scripts</h1>
+        <p class="text-slate-600 text-lg mt-3 max-w-xl mx-auto">Automate your client with JavaScript &mdash; custom /commands, message filters, auto-responders and web API integrations, in the spirit of mIRC and irssi scripting</p>
       </div>
 
       <div class="max-w-3xl mx-auto pb-12">
-        <!-- How themes work -->
-        <h2 class="text-2xl font-bold mb-4">How Themes Work</h2>
-        <p class="text-slate-600 mt-4">Simple IRC Client ships with two built-in themes: <strong>Classic</strong>, a traditional one-line-per-message IRC layout, and <strong>Modern</strong>, an avatar-based layout with message grouping like contemporary chat apps. Under the hood a theme is nothing more than a CSS stylesheet &mdash; every chat message renders the same HTML, and the active theme's CSS decides which parts are visible and how they are arranged.</p>
-        <p class="text-slate-600 mt-4">To switch themes:</p>
+        <!-- How scripts work -->
+        <h2 class="text-2xl font-bold mb-4">How Scripts Work</h2>
+        <p class="text-slate-600 mt-4">A script is a small piece of JavaScript that reacts to what happens in the client: it can subscribe to events (messages, joins, parts, nick changes&hellip;), register its own slash commands, send messages, print local notes and fetch data from the web. Scripts run <strong>inside the client</strong> &mdash; there is nothing to install and no external process.</p>
+        <p class="text-slate-600 mt-4">To create one:</p>
         <ol class="text-slate-600 mt-4 list-decimal list-inside space-y-1">
           <li>Click your avatar in the toolbar and choose <strong>Profile Settings</strong></li>
-          <li>Pick a theme from the <strong>Theme</strong> dropdown &mdash; it applies immediately</li>
+          <li>Scroll to the <strong>Scripts</strong> section and click <strong>New script</strong></li>
+          <li>Write your code in the editor (it opens pre-filled with a commented example) and <strong>Save</strong></li>
+          <li>Flip the script's toggle to enable it &mdash; it starts immediately, no reconnect needed</li>
         </ol>
+        <p class="text-slate-600 mt-4">Scripts are stored locally in your browser or app &mdash; nothing is uploaded anywhere. The same scripts work in the <a href="https://app.simpleircclient.com/" class="font-medium hover:text-slate-800 underline">web app</a> and the <a href="https://simpleircclient.com/downloads.html" class="font-medium hover:text-slate-800 underline">desktop builds</a>.</p>
 
-        <h2 class="text-2xl font-bold mt-12 mb-4">Theme Creator &mdash; No CSS Required</h2>
-        <p class="text-slate-600 mt-4">The <strong>Edit</strong> and <strong>New theme</strong> buttons next to the theme dropdown open the <strong>Theme Creator</strong>, which builds the stylesheet for you from simple controls:</p>
+        <h2 class="text-2xl font-bold mt-12 mb-4">Sandboxed by Design</h2>
+        <p class="text-slate-600 mt-4">Every script runs in its own isolated JavaScript sandbox (a QuickJS engine compiled to WebAssembly). A script only sees the <code class="bg-slate-100 px-1 rounded text-sm">sic</code> API described below &mdash; it has no access to the page, your settings, your stored passwords or other scripts. On top of that:</p>
         <ul class="text-slate-600 mt-4 list-disc list-inside space-y-1">
-          <li><strong>Layout</strong> &mdash; start from the Classic or Modern base</li>
-          <li><strong>Options</strong> &mdash; toggle seconds in timestamps, avatars, link previews and compact spacing</li>
-          <li><strong>Message colors</strong> &mdash; color pickers for every message category (join, part, quit, kick, notice, action, errors and more), with separate <strong>Light mode</strong> and <strong>Dark mode</strong> palettes</li>
+          <li>An accidental infinite loop is interrupted automatically instead of freezing the client</li>
+          <li>Each script has its own memory limit</li>
+          <li>A script error never breaks message handling &mdash; it is reported on the script's row in settings and as a <code class="bg-slate-100 px-1 rounded text-sm">[script:Name]</code> line in the Status window</li>
+          <li>Disabling a script tears it down completely, including its commands and pending requests</li>
         </ul>
-        <p class="text-slate-600 mt-4">Everything previews live in the chat while you adjust it. Themes made with the Creator can be re-opened in the Creator later &mdash; and they are still plain CSS underneath, so you can switch to the CSS editor for the finishing touches at any time.</p>
 
-        <h2 class="text-2xl font-bold mt-12 mb-4">Editing Theme CSS</h2>
-        <p class="text-slate-600 mt-4">For full control, click <strong>Edit CSS</strong> inside the Creator &mdash; it switches to a CSS editor for the same theme (any unsaved Creator tweaks carry over):</p>
-        <ul class="text-slate-600 mt-4 list-disc list-inside space-y-1">
-          <li>You can edit the built-in Classic and Modern themes too; changes are previewed live in the chat while you type. A <strong>Reset to default</strong> button restores the shipped stylesheet at any time.</li>
-          <li>New themes are pre-filled with the CSS of the currently active one, so you never start from a blank page.</li>
-          <li><strong>Delete</strong> (next to the dropdown) removes a custom theme &mdash; built-in themes cannot be deleted.</li>
-        </ul>
-        <p class="text-slate-600 mt-4">Themes are stored locally in your browser or app &mdash; nothing is uploaded anywhere. The same themes work in the <a href="https://app.simpleircclient.com/" class="font-medium hover:text-slate-800 underline">web app</a> and the <a href="https://simpleircclient.com/downloads.html" class="font-medium hover:text-slate-800 underline">desktop builds</a>.</p>
-
-        <!-- Reference -->
-        <h2 class="text-2xl font-bold mt-12 mb-4">Theming Reference</h2>
-        <p class="text-slate-600 mt-4">Each chat message renders a fixed structure of elements with stable class names. Your CSS shows, hides, and arranges them:</p>
+        <!-- API reference -->
+        <h2 class="text-2xl font-bold mt-12 mb-4">The sic API</h2>
+        <p class="text-slate-600 mt-4">Scripts talk to the client through a single global object:</p>
         <div class="mt-6 grid gap-3">
           <div class="border border-slate-200 rounded-lg p-4">
-            <code class="bg-slate-100 px-1 rounded text-sm">.sic-msg</code>
-            <p class="text-slate-600 mt-1 text-sm">The message row. Carries data attributes you can style on: <code class="bg-slate-100 px-1 rounded text-sm">data-category</code> (<em>default, join, part, quit, kick, mode, notice, info, me, error, motd</em>), <code class="bg-slate-100 px-1 rounded text-sm">data-content</code> (present on default/me/notice messages), <code class="bg-slate-100 px-1 rounded text-sm">data-grouped</code> (consecutive message from the same nick) and <code class="bg-slate-100 px-1 rounded text-sm">data-highlight</code> (message mentions your nick).</p>
+            <code class="bg-slate-100 px-1 rounded text-sm">sic.on(event, handler)</code>
+            <p class="text-slate-600 mt-1 text-sm">Subscribes to an event (see the table below). Returns a function that unsubscribes the handler. Handlers for <em>message</em> and <em>notice</em> can call <code class="bg-slate-100 px-1 rounded text-sm">e.block()</code> to hide the message before it renders, or assign to <code class="bg-slate-100 px-1 rounded text-sm">e.text</code> to rewrite it.</p>
           </div>
           <div class="border border-slate-200 rounded-lg p-4">
-            <code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-gutter</code> / <code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-avatar</code>
-            <p class="text-slate-600 mt-1 text-sm">The avatar column and the avatar itself. Hide the gutter for single-line layouts.</p>
+            <code class="bg-slate-100 px-1 rounded text-sm">sic.command(name, handler, options?)</code>
+            <p class="text-slate-600 mt-1 text-sm">Registers a slash command; the handler receives <code class="bg-slate-100 px-1 rounded text-sm">(args, channel)</code> &mdash; the rest of the typed line and the window it was typed in. Optional <code class="bg-slate-100 px-1 rounded text-sm">{ aliases: [&hellip;] }</code>. Script commands show up in Tab completion; names that collide with built-in commands are rejected.</p>
           </div>
           <div class="border border-slate-200 rounded-lg p-4">
-            <code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-header</code>
-            <p class="text-slate-600 mt-1 text-sm">Header row with the sender (<code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-nick</code>), a bot icon and a right-side timestamp (<code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-time-header</code>).</p>
+            <code class="bg-slate-100 px-1 rounded text-sm">sic.say(target, text)</code> / <code class="bg-slate-100 px-1 rounded text-sm">sic.sendRaw(line)</code>
+            <p class="text-slate-600 mt-1 text-sm"><em>say</em> sends a normal message to a channel or nick. <em>sendRaw</em> sends a raw IRC line for anything the API does not cover (<code class="bg-slate-100 px-1 rounded text-sm">MODE</code>, <code class="bg-slate-100 px-1 rounded text-sm">TOPIC</code>, CTCP&hellip;).</p>
           </div>
           <div class="border border-slate-200 rounded-lg p-4">
-            <code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-line</code>
-            <p class="text-slate-600 mt-1 text-sm">The message line: an inline timestamp (<code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-time-inline</code>, with seconds in a nested <code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-time-seconds</code>), an inline nick (<code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-nick-inline</code> &mdash; bare text, add brackets with <code class="bg-slate-100 px-1 rounded text-sm">::before</code>/<code class="bg-slate-100 px-1 rounded text-sm">::after</code>), the message text (<code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-body</code>) and a trailing timestamp (<code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-time-trailing</code>).</p>
+            <code class="bg-slate-100 px-1 rounded text-sm">sic.print(text, target?)</code>
+            <p class="text-slate-600 mt-1 text-sm">Prints a local informational line that is <em>not</em> sent to the server &mdash; to the current window, or to a named one (for example <code class="bg-slate-100 px-1 rounded text-sm">'Status'</code>).</p>
           </div>
           <div class="border border-slate-200 rounded-lg p-4">
-            <code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-embeds</code>
-            <p class="text-slate-600 mt-1 text-sm">Link previews: YouTube thumbnails, images and social embeds.</p>
+            <code class="bg-slate-100 px-1 rounded text-sm">sic.fetch(url, options?)</code>
+            <p class="text-slate-600 mt-1 text-sm">HTTP request returning a Promise of <code class="bg-slate-100 px-1 rounded text-sm">{ ok, status, headers, body, json() }</code>. Options: <code class="bg-slate-100 px-1 rounded text-sm">method</code>, <code class="bg-slate-100 px-1 rounded text-sm">headers</code>, <code class="bg-slate-100 px-1 rounded text-sm">body</code>. Limits: http(s) only, 10&nbsp;second timeout, 1&nbsp;MB response, 4 concurrent requests &mdash; and the target API must allow cross-origin requests (CORS), like any browser fetch.</p>
+          </div>
+          <div class="border border-slate-200 rounded-lg p-4">
+            <code class="bg-slate-100 px-1 rounded text-sm">sic.nick()</code> / <code class="bg-slate-100 px-1 rounded text-sm">sic.currentChannel()</code>
+            <p class="text-slate-600 mt-1 text-sm">Your current nickname and the name of the active window.</p>
           </div>
         </div>
-        <p class="text-slate-600 mt-4">Theme CSS is injected globally, so you can also restyle the whole app by overriding CSS variables such as <code class="bg-slate-100 px-1 rounded text-sm">--background</code>, <code class="bg-slate-100 px-1 rounded text-sm">--primary</code> and the message palette (<code class="bg-slate-100 px-1 rounded text-sm">--msg-time</code>, <code class="bg-slate-100 px-1 rounded text-sm">--msg-body</code>, <code class="bg-slate-100 px-1 rounded text-sm">--msg-default</code>, <code class="bg-slate-100 px-1 rounded text-sm">--msg-join</code>, &hellip;). Prefix rules with <code class="bg-slate-100 px-1 rounded text-sm">.dark</code> to target dark mode. The Debug and Status channels keep a fixed monospace style that themes do not override.</p>
-        <p class="text-slate-600 mt-4">For example, to recolor join and part messages without touching anything else, add this to any theme's CSS (light-mode values on <code class="bg-slate-100 px-1 rounded text-sm">:root</code>, dark-mode values on <code class="bg-slate-100 px-1 rounded text-sm">.dark</code>):</p>
-        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>/* Recolor join/part messages - light and dark mode */
-:root {
-  --msg-join: #0a7d32;
-  --msg-part: #b3261e;
-}
 
-.dark {
-  --msg-join: #4cd07d;
-  --msg-part: #ff6b5e;
-}</code></pre>
-        <p class="text-slate-600 mt-4">The full message-color palette with the shipped default values &mdash; these are exactly the colors the Theme Creator's color pickers edit (no CSS needed if you prefer the UI), and every built-in theme's CSS ends with these variables ready to tweak:</p>
+        <h2 class="text-2xl font-bold mt-12 mb-4">Events</h2>
         <div class="mt-6 overflow-x-auto">
           <table class="w-full text-sm border border-slate-200 rounded-lg">
             <thead>
               <tr class="bg-slate-50 text-left">
-                <th class="p-3 font-semibold">Variable</th>
-                <th class="p-3 font-semibold">Colors</th>
-                <th class="p-3 font-semibold">Light default</th>
-                <th class="p-3 font-semibold">Dark default</th>
+                <th class="p-3 font-semibold">Event</th>
+                <th class="p-3 font-semibold">Handler receives</th>
+                <th class="p-3 font-semibold">Can block / rewrite</th>
               </tr>
             </thead>
             <tbody class="text-slate-600">
               <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-time</code></td>
-                <td class="p-3">Timestamps</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#666666]"></span><code>#666666</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#444466]"></span><code>#444466</code></td>
+                <td class="p-3"><code class="bg-slate-100 px-1 rounded">message</code></td>
+                <td class="p-3"><code>nick, target, text, self, tags</code></td>
+                <td class="p-3">Yes &mdash; <code>e.block()</code> and <code>e.text</code></td>
               </tr>
               <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-default</code></td>
-                <td class="p-3">System messages</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#000000]"></span><code>#000000</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#b8b8d0]"></span><code>#b8b8d0</code></td>
+                <td class="p-3"><code class="bg-slate-100 px-1 rounded">notice</code></td>
+                <td class="p-3"><code>nick, target, text, tags</code></td>
+                <td class="p-3">Yes &mdash; <code>e.block()</code> and <code>e.text</code></td>
               </tr>
               <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-body</code></td>
-                <td class="p-3">Message text</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#3a3a47]"></span><code>#3a3a47</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#b8b8d0]"></span><code>#b8b8d0</code></td>
+                <td class="p-3"><code class="bg-slate-100 px-1 rounded">join</code></td>
+                <td class="p-3"><code>nick, channel</code></td>
+                <td class="p-3">Observe only</td>
               </tr>
               <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-join</code></td>
-                <td class="p-3">Join messages</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#009300]"></span><code>#009300</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#5a8a5a]"></span><code>#5a8a5a</code></td>
+                <td class="p-3"><code class="bg-slate-100 px-1 rounded">part</code></td>
+                <td class="p-3"><code>nick, channel, reason</code></td>
+                <td class="p-3">Observe only</td>
               </tr>
               <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-part</code></td>
-                <td class="p-3">Part messages</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#4733ff]"></span><code>#4733ff</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#7a6a8a]"></span><code>#7a6a8a</code></td>
+                <td class="p-3"><code class="bg-slate-100 px-1 rounded">quit</code></td>
+                <td class="p-3"><code>nick, reason</code></td>
+                <td class="p-3">Observe only</td>
               </tr>
               <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-quit</code></td>
-                <td class="p-3">Quit messages</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#00007f]"></span><code>#00007f</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#6a6a8a]"></span><code>#6a6a8a</code></td>
+                <td class="p-3"><code class="bg-slate-100 px-1 rounded">nick</code></td>
+                <td class="p-3"><code>oldNick, newNick</code></td>
+                <td class="p-3">Observe only</td>
               </tr>
               <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-kick</code></td>
-                <td class="p-3">Kick messages</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#00007f]"></span><code>#00007f</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#8a5a5a]"></span><code>#8a5a5a</code></td>
+                <td class="p-3"><code class="bg-slate-100 px-1 rounded">connect</code> / <code class="bg-slate-100 px-1 rounded">disconnect</code></td>
+                <td class="p-3">&mdash;</td>
+                <td class="p-3">Observe only</td>
               </tr>
               <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-mode</code></td>
-                <td class="p-3">Mode changes</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#009300]"></span><code>#009300</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#6a8a6a]"></span><code>#6a8a6a</code></td>
-              </tr>
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-notice</code></td>
-                <td class="p-3">Notices</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#0066ff]"></span><code>#0066ff</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#6e9ecf]"></span><code>#6e9ecf</code></td>
-              </tr>
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-info</code></td>
-                <td class="p-3">Informational messages</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#666666]"></span><code>#666666</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#55557a]"></span><code>#55557a</code></td>
-              </tr>
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-me</code></td>
-                <td class="p-3">Actions (/me)</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#800080]"></span><code>#800080</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#c47ea0]"></span><code>#c47ea0</code></td>
-              </tr>
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-error</code></td>
-                <td class="p-3">Errors</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#ff0000]"></span><code>#ff0000</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#b05555]"></span><code>#b05555</code></td>
+                <td class="p-3"><code class="bg-slate-100 px-1 rounded">raw</code></td>
+                <td class="p-3"><code>line</code> (the unparsed IRC line)</td>
+                <td class="p-3"><code>e.block()</code> &mdash; advanced, use with care</td>
               </tr>
             </tbody>
           </table>
         </div>
+        <p class="text-slate-600 mt-4">A blocked message is gone for good: it does not render, does not bump unread counters and does not trigger mention notifications. When several scripts are enabled they run in the order they were created &mdash; each sees the text as rewritten by the previous one, and the first <code class="bg-slate-100 px-1 rounded text-sm">block()</code> wins.</p>
 
-        <!-- Example themes -->
-        <h2 class="text-2xl font-bold mt-12 mb-4">Example Themes</h2>
-        <p class="text-slate-600 mt-4">These themes are not shipped with the app &mdash; copy one, open <strong>Profile Settings &rarr; New theme &rarr; Edit CSS</strong>, replace the pre-filled CSS with the example and save. Use them as they are or as a starting point for your own design.</p>
+        <!-- Examples -->
+        <h2 class="text-2xl font-bold mt-12 mb-4">Example Scripts</h2>
+        <p class="text-slate-600 mt-4">Copy any example, open <strong>Profile Settings &rarr; Scripts &rarr; New script</strong>, replace the pre-filled code, save and enable. Each one is self-contained &mdash; use them as they are or as starting points.</p>
 
-        <h3 class="font-bold text-lg mt-8">Terminal</h3>
-        <p class="text-slate-600 mt-2">Green-on-dark monospace, one message per line, timestamps with seconds &mdash; like chatting from a phosphor terminal.</p>
-        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>/* Terminal - green phosphor, single-line messages */
-:root, .dark {
-  --background: #0a0f0a;
-  --foreground: #33ff66;
-  --msg-time: #1f9944;
-  --msg-default: #33ff66;
-  --msg-body: #33ff66;
-  /* category colors readable on the dark background */
-  --msg-join: #27c46f;
-  --msg-part: #1f9944;
-  --msg-quit: #1f9944;
-  --msg-kick: #d9c15a;
-  --msg-mode: #27c46f;
-  --msg-notice: #4dd0e1;
-  --msg-info: #1f9944;
-  --msg-me: #cf9fff;
-  --msg-error: #ff5f5f;
-}
+        <h3 class="font-bold text-lg mt-8">The Classic /slap</h3>
+        <p class="text-slate-600 mt-2">No IRC client is complete without it. Registers <code class="bg-slate-100 px-1 rounded text-sm">/slap</code> (alias <code class="bg-slate-100 px-1 rounded text-sm">/trout</code>) and sends the traditional action message.</p>
+        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// /slap &lt;nick&gt; - the IRC classic
+sic.command('slap', (args, channel) => {
+  const victim = args.trim() || 'someone';
+  sic.sendRaw('PRIVMSG ' + channel +
+    ' :\u0001ACTION slaps ' + victim +
+    ' around a bit with a large trout\u0001');
+}, { aliases: ['trout'] });</code></pre>
 
-.sic-msg {
-  display: block;
-  padding: 0.125rem 1rem;
-  font-family: ui-monospace, 'Cascadia Mono', Consolas, monospace;
-}
+        <h3 class="font-bold text-lg mt-8">Ignore List and Word Filter</h3>
+        <p class="text-slate-600 mt-2">Hides messages from nicks you never want to hear from and anything containing blocked phrases &mdash; filtered messages never render and never trigger notifications.</p>
+        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// Personal ignore list + spam filter
+const ignoredNicks = ['spammer42', 'flooder'];
+const blockedPhrases = ['free crypto', 'casino bonus'];
 
-.sic-msg[data-highlight] {
-  background-color: rgba(51, 255, 102, 0.12);
-}
+sic.on('message', (e) => {
+  if (ignoredNicks.includes(e.nick.toLowerCase())) {
+    e.block();
+    return;
+  }
+  const text = e.text.toLowerCase();
+  if (blockedPhrases.some((phrase) => text.includes(phrase))) {
+    e.block();
+  }
+});</code></pre>
 
-/* single-line layout: no avatars, no header row */
-.sic-msg-gutter,
-.sic-msg-header,
-.sic-msg-time-trailing {
-  display: none;
-}
+        <h3 class="font-bold text-lg mt-8">Tame the Shouting</h3>
+        <p class="text-slate-600 mt-2">Rewrites incoming messages instead of hiding them: anything written in ALL CAPS arrives in calm lowercase.</p>
+        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// Lowercase ALL-CAPS messages
+sic.on('message', (e) => {
+  const letters = e.text.replace(/[^a-z]/gi, '');
+  if (letters.length >= 8 &amp;&amp; letters === letters.toUpperCase()) {
+    e.text = e.text.toLowerCase();
+  }
+});</code></pre>
 
-.sic-msg-time {
-  color: var(--msg-time);
-}
+        <h3 class="font-bold text-lg mt-8">Mention Log</h3>
+        <p class="text-slate-600 mt-2">Collects every message that mentions your nick into the Status window &mdash; one place to catch up after being away, no matter how many channels you are in.</p>
+        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// Copy mentions to the Status window
+sic.on('message', (e) => {
+  if (e.self) { return; }
+  if (e.text.toLowerCase().includes(sic.nick().toLowerCase())) {
+    sic.print('[mention] ' + e.nick + ' in ' + e.target + ': ' + e.text, 'Status');
+  }
+});</code></pre>
 
-.sic-msg-time-inline {
-  margin-right: 0.75rem;
-}
+        <h3 class="font-bold text-lg mt-8">Channel Greeter</h3>
+        <p class="text-slate-600 mt-2">Welcomes people joining your channel. The nick check keeps it from greeting you on reconnect.</p>
+        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// Greet joins in one channel
+const myChannel = '#mychannel';
 
-.sic-msg-nick-inline::before { content: '&lt;'; }
-.sic-msg-nick-inline::after { content: '&gt;'; }
+sic.on('join', (e) => {
+  if (e.channel === myChannel &amp;&amp; e.nick !== sic.nick()) {
+    sic.say(myChannel, 'Welcome to ' + myChannel + ', ' + e.nick + '!');
+  }
+});</code></pre>
 
-.sic-msg-body {
-  margin-left: 0.5rem;
-  color: var(--msg-default);
-}
+        <h3 class="font-bold text-lg mt-8">/weather &mdash; Web APIs from a Script</h3>
+        <p class="text-slate-600 mt-2">Fetches a one-line forecast from <a href="https://wttr.in" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-slate-800 underline">wttr.in</a> and shares it with the channel. The same pattern works with any CORS-enabled JSON or text API.</p>
+        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// /weather &lt;city&gt; - share the forecast
+sic.command('weather', (args, channel) => {
+  const city = args.trim();
+  if (!city) {
+    sic.print('Usage: /weather &lt;city&gt;');
+    return;
+  }
+  sic.fetch('https://wttr.in/' + encodeURIComponent(city) + '?format=3')
+    .then((res) => sic.say(channel, res.body.trim()))
+    .catch((err) => sic.print('weather: ' + err.message));
+});</code></pre>
 
-.sic-msg[data-category='join'] .sic-msg-body,
-.sic-msg[data-category='part'] .sic-msg-body,
-.sic-msg[data-category='quit'] .sic-msg-body,
-.sic-msg[data-category='kick'] .sic-msg-body {
-  font-style: italic;
-  opacity: 0.7;
-}</code></pre>
+        <h3 class="font-bold text-lg mt-8">/github &mdash; JSON APIs</h3>
+        <p class="text-slate-600 mt-2">Looks up a repository on the GitHub API and posts a summary &mdash; a compact example of <code class="bg-slate-100 px-1 rounded text-sm">json()</code>, error handling and status checks.</p>
+        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// /github owner/repo - repository summary
+sic.command('github', (args, channel) => {
+  const repo = args.trim();
+  if (!repo.includes('/')) {
+    sic.print('Usage: /github owner/repo');
+    return;
+  }
+  sic.fetch('https://api.github.com/repos/' + repo)
+    .then((res) => {
+      if (!res.ok) {
+        sic.print('github: HTTP ' + res.status);
+        return;
+      }
+      const data = res.json();
+      sic.say(channel, data.full_name + ' — ' +
+        (data.description || 'no description') +
+        ' | ⭐ ' + data.stargazers_count);
+    })
+    .catch((err) => sic.print('github: ' + err.message));
+});</code></pre>
 
-        <h3 class="font-bold text-lg mt-8">Compact</h3>
-        <p class="text-slate-600 mt-2">Maximum density for busy channels: no avatars, no link previews, a fixed-width right-aligned nick column and tight line spacing.</p>
-        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>/* Compact - maximum density, aligned nick column */
-.sic-msg {
-  display: block;
-  padding: 0 0.75rem;
-  line-height: 1.4;
-}
-
-.sic-msg[data-highlight] {
-  border-left: 2px solid var(--primary);
-  background-color: color-mix(in oklab, var(--primary) 8%, transparent);
-}
-
-/* hide everything except the message line */
-.sic-msg-gutter,
-.sic-msg-header,
-.sic-msg-time-trailing,
-.sic-msg-time-seconds,
-.sic-msg-embeds {
-  display: none;
-}
-
-.sic-msg-line {
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-}
-
-.sic-msg-time {
-  color: var(--msg-time);
-  font-size: 0.7rem;
-  flex-shrink: 0;
-}
-
-.sic-msg-nick-inline {
-  flex-shrink: 0;
-  width: 7rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  text-align: right;
-  font-weight: 600;
-}
-
-.sic-msg-body {
-  flex: 1;
-  min-width: 0;
-  color: var(--msg-default);
-}
-
-.sic-msg[data-category='join'] .sic-msg-body,
-.sic-msg[data-category='part'] .sic-msg-body,
-.sic-msg[data-category='quit'] .sic-msg-body,
-.sic-msg[data-category='kick'] .sic-msg-body {
-  font-style: italic;
-}</code></pre>
-
-        <h3 class="font-bold text-lg mt-8">High Contrast</h3>
-        <p class="text-slate-600 mt-2">Not a full theme but an accessibility tweak: open <strong>Edit CSS</strong> on the Modern theme and paste this at the <em>end</em> of its stylesheet. It strengthens text colors in both light and dark mode and makes mentions much harder to miss.</p>
-        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>/* High contrast - paste at the END of the Modern theme CSS */
-:root {
-  --msg-time: #3d3d3d;
-  --msg-default: #1a1a1a;
-  --msg-body: #000000;
-}
-
-.dark {
-  --msg-time: #c0c0c0;
-  --msg-default: #f0f0f0;
-  --msg-body: #ffffff;
-}
-
-.sic-msg-body {
-  font-weight: 500;
-}
-
-.sic-msg[data-highlight] {
-  border-left: 4px solid var(--primary);
-  background-color: color-mix(in oklab, var(--primary) 18%, transparent);
-}</code></pre>
+        <h3 class="font-bold text-lg mt-8">Auto-Join on Connect</h3>
+        <p class="text-slate-600 mt-2">Runs whenever registration with the server completes &mdash; handy for anything you would otherwise type by hand after connecting.</p>
+        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// Extra channels on every (re)connect
+sic.on('connect', () => {
+  sic.sendRaw('JOIN #linux,#security');
+});</code></pre>
 
         <!-- CTA -->
         <div class="mt-12 text-center py-12 border-t border-slate-200">
           <h2 class="text-2xl font-bold mb-4">Try It Yourself</h2>
-          <p class="text-slate-600 max-w-xl mx-auto">Open Simple IRC Client, head to Profile Settings and make the chat yours &mdash; it is just CSS.</p>
+          <p class="text-slate-600 max-w-xl mx-auto">Open Simple IRC Client, head to Profile Settings and write your first script &mdash; it is just JavaScript.</p>
           <div class="mt-6 flex flex-col items-center gap-4">
             <a href="https://app.simpleircclient.com/" class="bg-slate-800 text-white px-6 py-3 rounded-lg font-medium hover:bg-slate-700 transition-colors">
               Try Web Chat
