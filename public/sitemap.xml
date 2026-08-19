@@ -16,6 +16,11 @@
     </url>
 
     <url>
+        <loc>https://simpleircclient.com/encryption.html</loc>
+        <changefreq>monthly</changefreq>
+    </url>
+
+    <url>
         <loc>https://simpleircclient.com/web/</loc>
         <changefreq>weekly</changefreq>
     </url>
