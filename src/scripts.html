@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Scripts - Simple Irc Client</title>
     <meta name="description" content="Automate Simple IRC Client with JavaScript scripts - add custom /commands, filter and rewrite messages, react to events and call web APIs. Runs sandboxed, includes ready-to-paste examples." />
-    <meta name="theme-color" content="#1e293b" />
+    <meta name="theme-color" content="#ffffff" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://scripts.simpleanalyticscdn.com; style-src 'self'; img-src 'self' https://queue.simpleanalyticscdn.com; connect-src 'self' https://queue.simpleanalyticscdn.com https://scripts.simpleanalyticscdn.com; manifest-src 'self'; worker-src 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -79,128 +79,166 @@
       </div>
     </nav>
 
-    <main id="main" class="container mx-auto px-4">
-      <!-- Header -->
-      <div class="text-center py-12">
-        <h1 class="font-bold text-4xl md:text-5xl">Scripts</h1>
-        <p class="text-slate-600 text-lg mt-3 max-w-xl mx-auto">Automate your client with JavaScript &mdash; custom /commands, message filters, auto-responders and web API integrations, in the spirit of mIRC and irssi scripting</p>
+    <main id="main">
+      <!-- Hero -->
+      <div class="bg-[#ffffff] text-[#1e293b]">
+        <div class="max-w-5xl mx-auto px-4 pt-10 pb-16">
+          <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
+            <div class="max-w-xl">
+              <p class="font-mono text-xs tracking-[0.2em] text-[#2563eb] uppercase">Scripting Reference</p>
+              <h1 class="text-3xl md:text-4xl font-bold text-[#0f172a] mt-3 leading-tight">Scripts</h1>
+              <p class="text-[#475569] mt-4">Automate your client with JavaScript &mdash; custom /commands, message filters, auto-responders and web API integrations, in the spirit of mIRC and irssi scripting.</p>
+            </div>
+            <div class="inline-grid grid-cols-[auto_auto] gap-x-6 gap-y-1.5 border border-[#cbd5e1] px-5 py-4 font-mono text-[11px] tracking-wide h-fit shrink-0">
+              <span class="text-[#94a3b8]">RUNTIME</span><span class="text-[#0f172a]">QuickJS &middot; WASM</span>
+              <span class="text-[#94a3b8]">LANGUAGE</span><span class="text-[#0f172a]">JavaScript</span>
+              <span class="text-[#94a3b8]">SANDBOX</span><span class="text-[#0f172a]">Isolated per script</span>
+              <span class="text-[#94a3b8]">GLOBAL</span><span class="text-[#0f172a]">sic</span>
+              <span class="text-[#94a3b8]">STATUS</span><span class="text-[#16a34a]">OPEN SOURCE</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="max-w-3xl mx-auto pb-12">
-        <!-- How scripts work -->
-        <h2 class="text-2xl font-bold mb-4">How Scripts Work</h2>
-        <p class="text-slate-600 mt-4">A script is a small piece of JavaScript that reacts to what happens in the client: it can subscribe to events (messages, joins, parts, nick changes&hellip;), register its own slash commands, send messages, print local notes and fetch data from the web. Scripts run <strong>inside the client</strong> &mdash; there is nothing to install and no external process.</p>
-        <p class="text-slate-600 mt-4">To create one:</p>
-        <ol class="text-slate-600 mt-4 list-decimal list-inside space-y-1">
-          <li>Click your avatar in the toolbar and choose <strong>Profile Settings</strong></li>
-          <li>Scroll to the <strong>Scripts</strong> section and click <strong>New script</strong></li>
-          <li>Write your code in the editor (it opens pre-filled with a commented example) and <strong>Save</strong></li>
-          <li>Flip the script's toggle to enable it &mdash; it starts immediately, no reconnect needed</li>
-        </ol>
-        <p class="text-slate-600 mt-4">Scripts are stored locally in your browser or app &mdash; nothing is uploaded anywhere. The same scripts work in the <a href="https://app.simpleircclient.com/" class="font-medium hover:text-slate-800 underline">web app</a> and the <a href="https://simpleircclient.com/downloads.html" class="font-medium hover:text-slate-800 underline">desktop builds</a>.</p>
+      <!-- 01 How Scripts Work -->
+      <div class="bg-[#ffffff] text-[#1e293b] border-t border-[#e2e8f0]">
+        <div class="max-w-3xl mx-auto px-4 py-14">
+          <p class="font-mono text-xs tracking-[0.2em] text-[#2563eb]">01 &mdash; HOW SCRIPTS WORK</p>
+          <h2 class="text-2xl font-bold text-[#0f172a] mt-2">Small pieces of JavaScript, running inside the client</h2>
+          <p class="text-[#475569] mt-4">A script is a small piece of JavaScript that reacts to what happens in the client: it can subscribe to events (messages, joins, parts, nick changes&hellip;), register its own slash commands, send messages, print local notes and fetch data from the web. Scripts run <strong class="text-[#0f172a]">inside the client</strong> &mdash; there is nothing to install and no external process.</p>
+          <p class="text-[#475569] mt-4">To create one:</p>
+          <ol class="text-[#475569] mt-4 list-decimal list-inside space-y-1">
+            <li>Click your avatar in the toolbar and choose <strong class="text-[#0f172a]">Profile Settings</strong></li>
+            <li>Scroll to the <strong class="text-[#0f172a]">Scripts</strong> section and click <strong class="text-[#0f172a]">New script</strong></li>
+            <li>Write your code in the editor (it opens pre-filled with a commented example) and <strong class="text-[#0f172a]">Save</strong></li>
+            <li>Flip the script's toggle to enable it &mdash; it starts immediately, no reconnect needed</li>
+          </ol>
+          <p class="text-[#475569] mt-4">Scripts are stored locally in your browser or app &mdash; nothing is uploaded anywhere. The same scripts work in the <a href="https://app.simpleircclient.com/" class="text-[#2563eb] hover:text-[#0f172a] underline">web app</a> and the <a href="https://simpleircclient.com/downloads.html" class="text-[#2563eb] hover:text-[#0f172a] underline">desktop builds</a>.</p>
+        </div>
+      </div>
 
-        <h2 class="text-2xl font-bold mt-12 mb-4">Sandboxed by Design</h2>
-        <p class="text-slate-600 mt-4">Every script runs in its own isolated JavaScript sandbox (a QuickJS engine compiled to WebAssembly). A script only sees the <code class="bg-slate-100 px-1 rounded text-sm">sic</code> API described below &mdash; it has no access to the page, your settings, your stored passwords or other scripts. On top of that:</p>
-        <ul class="text-slate-600 mt-4 list-disc list-inside space-y-1">
-          <li>An accidental infinite loop is interrupted automatically instead of freezing the client</li>
-          <li>Each script has its own memory limit</li>
-          <li>A script error never breaks message handling &mdash; it is reported on the script's row in settings and as a <code class="bg-slate-100 px-1 rounded text-sm">[script:Name]</code> line in the Status window</li>
-          <li>Disabling a script tears it down completely, including its commands and pending requests</li>
-        </ul>
+      <!-- 02 Sandboxed by Design -->
+      <div class="bg-[#f8fafc] text-[#1e293b] border-t border-[#e2e8f0]">
+        <div class="max-w-3xl mx-auto px-4 py-14">
+          <p class="font-mono text-xs tracking-[0.2em] text-[#2563eb]">02 &mdash; SANDBOXED BY DESIGN</p>
+          <h2 class="text-2xl font-bold text-[#0f172a] mt-2">Isolated, by default</h2>
+          <p class="text-[#475569] mt-4">Every script runs in its own isolated JavaScript sandbox (a QuickJS engine compiled to WebAssembly). A script only sees the <code class="bg-slate-100 px-1 rounded text-sm">sic</code> API described below &mdash; it has no access to the page, your settings, your stored passwords or other scripts. On top of that:</p>
+          <ul class="text-[#475569] mt-4 list-disc list-inside space-y-1">
+            <li>An accidental infinite loop is interrupted automatically instead of freezing the client</li>
+            <li>Each script has its own memory limit</li>
+            <li>A script error never breaks message handling &mdash; it is reported on the script's row in settings and as a <code class="bg-slate-100 px-1 rounded text-sm">[script:Name]</code> line in the Status window</li>
+            <li>Disabling a script tears it down completely, including its commands and pending requests</li>
+          </ul>
+        </div>
+      </div>
 
-        <!-- API reference -->
-        <h2 class="text-2xl font-bold mt-12 mb-4">The sic API</h2>
-        <p class="text-slate-600 mt-4">Scripts talk to the client through a single global object:</p>
-        <div class="mt-6 grid gap-3">
-          <div class="border border-slate-200 rounded-lg p-4">
-            <code class="bg-slate-100 px-1 rounded text-sm">sic.on(event, handler)</code>
-            <p class="text-slate-600 mt-1 text-sm">Subscribes to an event (see the table below). Returns a function that unsubscribes the handler. Handlers for <em>message</em> and <em>notice</em> can call <code class="bg-slate-100 px-1 rounded text-sm">e.block()</code> to hide the message before it renders, or assign to <code class="bg-slate-100 px-1 rounded text-sm">e.text</code> to rewrite it.</p>
-          </div>
-          <div class="border border-slate-200 rounded-lg p-4">
-            <code class="bg-slate-100 px-1 rounded text-sm">sic.command(name, handler, options?)</code>
-            <p class="text-slate-600 mt-1 text-sm">Registers a slash command; the handler receives <code class="bg-slate-100 px-1 rounded text-sm">(args, channel)</code> &mdash; the rest of the typed line and the window it was typed in. Optional <code class="bg-slate-100 px-1 rounded text-sm">{ aliases: [&hellip;] }</code>. Script commands show up in Tab completion; names that collide with built-in commands are rejected.</p>
-          </div>
-          <div class="border border-slate-200 rounded-lg p-4">
-            <code class="bg-slate-100 px-1 rounded text-sm">sic.say(target, text)</code> / <code class="bg-slate-100 px-1 rounded text-sm">sic.sendRaw(line)</code>
-            <p class="text-slate-600 mt-1 text-sm"><em>say</em> sends a normal message to a channel or nick. <em>sendRaw</em> sends a raw IRC line for anything the API does not cover (<code class="bg-slate-100 px-1 rounded text-sm">MODE</code>, <code class="bg-slate-100 px-1 rounded text-sm">TOPIC</code>, CTCP&hellip;).</p>
-          </div>
-          <div class="border border-slate-200 rounded-lg p-4">
-            <code class="bg-slate-100 px-1 rounded text-sm">sic.print(text, target?)</code>
-            <p class="text-slate-600 mt-1 text-sm">Prints a local informational line that is <em>not</em> sent to the server &mdash; to the current window, or to a named one (for example <code class="bg-slate-100 px-1 rounded text-sm">'Status'</code>).</p>
-          </div>
-          <div class="border border-slate-200 rounded-lg p-4">
-            <code class="bg-slate-100 px-1 rounded text-sm">sic.fetch(url, options?)</code>
-            <p class="text-slate-600 mt-1 text-sm">HTTP request returning a Promise of <code class="bg-slate-100 px-1 rounded text-sm">{ ok, status, headers, body, json() }</code>. Options: <code class="bg-slate-100 px-1 rounded text-sm">method</code>, <code class="bg-slate-100 px-1 rounded text-sm">headers</code>, <code class="bg-slate-100 px-1 rounded text-sm">body</code>. Limits: http(s) only, 10&nbsp;second timeout, 1&nbsp;MB response, 4 concurrent requests &mdash; and the target API must allow cross-origin requests (CORS), like any browser fetch.</p>
-          </div>
-          <div class="border border-slate-200 rounded-lg p-4">
-            <code class="bg-slate-100 px-1 rounded text-sm">sic.nick()</code> / <code class="bg-slate-100 px-1 rounded text-sm">sic.currentChannel()</code>
-            <p class="text-slate-600 mt-1 text-sm">Your current nickname and the name of the active window.</p>
+      <!-- 03 The sic API -->
+      <div class="bg-[#ffffff] text-[#1e293b] border-t border-[#e2e8f0]">
+        <div class="max-w-3xl mx-auto px-4 py-14">
+          <p class="font-mono text-xs tracking-[0.2em] text-[#2563eb]">03 &mdash; THE SIC API</p>
+          <h2 class="text-2xl font-bold text-[#0f172a] mt-2">One global object, six entry points</h2>
+          <p class="text-[#475569] mt-4">Scripts talk to the client through a single global object:</p>
+          <div class="mt-6 grid gap-3">
+            <div class="border border-[#e2e8f0] rounded-lg p-4">
+              <code class="bg-slate-100 px-1 rounded text-sm">sic.on(event, handler)</code>
+              <p class="text-[#475569] mt-1 text-sm">Subscribes to an event (see the table below). Returns a function that unsubscribes the handler. Handlers for <em>message</em> and <em>notice</em> can call <code class="bg-slate-100 px-1 rounded text-sm">e.block()</code> to hide the message before it renders, or assign to <code class="bg-slate-100 px-1 rounded text-sm">e.text</code> to rewrite it.</p>
+            </div>
+            <div class="border border-[#e2e8f0] rounded-lg p-4">
+              <code class="bg-slate-100 px-1 rounded text-sm">sic.command(name, handler, options?)</code>
+              <p class="text-[#475569] mt-1 text-sm">Registers a slash command; the handler receives <code class="bg-slate-100 px-1 rounded text-sm">(args, channel)</code> &mdash; the rest of the typed line and the window it was typed in. Optional <code class="bg-slate-100 px-1 rounded text-sm">{ aliases: [&hellip;] }</code>. Script commands show up in Tab completion; names that collide with built-in commands are rejected.</p>
+            </div>
+            <div class="border border-[#e2e8f0] rounded-lg p-4">
+              <code class="bg-slate-100 px-1 rounded text-sm">sic.say(target, text)</code> / <code class="bg-slate-100 px-1 rounded text-sm">sic.sendRaw(line)</code>
+              <p class="text-[#475569] mt-1 text-sm"><em>say</em> sends a normal message to a channel or nick. <em>sendRaw</em> sends a raw IRC line for anything the API does not cover (<code class="bg-slate-100 px-1 rounded text-sm">MODE</code>, <code class="bg-slate-100 px-1 rounded text-sm">TOPIC</code>, CTCP&hellip;).</p>
+            </div>
+            <div class="border border-[#e2e8f0] rounded-lg p-4">
+              <code class="bg-slate-100 px-1 rounded text-sm">sic.print(text, target?)</code>
+              <p class="text-[#475569] mt-1 text-sm">Prints a local informational line that is <em>not</em> sent to the server &mdash; to the current window, or to a named one (for example <code class="bg-slate-100 px-1 rounded text-sm">'Status'</code>).</p>
+            </div>
+            <div class="border border-[#e2e8f0] rounded-lg p-4">
+              <code class="bg-slate-100 px-1 rounded text-sm">sic.fetch(url, options?)</code>
+              <p class="text-[#475569] mt-1 text-sm">HTTP request returning a Promise of <code class="bg-slate-100 px-1 rounded text-sm">{ ok, status, headers, body, json() }</code>. Options: <code class="bg-slate-100 px-1 rounded text-sm">method</code>, <code class="bg-slate-100 px-1 rounded text-sm">headers</code>, <code class="bg-slate-100 px-1 rounded text-sm">body</code>. Limits: http(s) only, 10&nbsp;second timeout, 1&nbsp;MB response, 4 concurrent requests &mdash; and the target API must allow cross-origin requests (CORS), like any browser fetch.</p>
+            </div>
+            <div class="border border-[#e2e8f0] rounded-lg p-4">
+              <code class="bg-slate-100 px-1 rounded text-sm">sic.nick()</code> / <code class="bg-slate-100 px-1 rounded text-sm">sic.currentChannel()</code>
+              <p class="text-[#475569] mt-1 text-sm">Your current nickname and the name of the active window.</p>
+            </div>
           </div>
         </div>
+      </div>
 
-        <h2 class="text-2xl font-bold mt-12 mb-4">Events</h2>
-        <div class="mt-6 overflow-x-auto">
-          <table class="w-full text-sm border border-slate-200 rounded-lg">
-            <thead>
-              <tr class="bg-slate-50 text-left">
-                <th class="p-3 font-semibold">Event</th>
-                <th class="p-3 font-semibold">Handler receives</th>
-                <th class="p-3 font-semibold">Can block / rewrite</th>
-              </tr>
-            </thead>
-            <tbody class="text-slate-600">
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">message</code></td>
-                <td class="p-3"><code>nick, target, text, self, tags</code></td>
-                <td class="p-3">Yes &mdash; <code>e.block()</code> and <code>e.text</code></td>
-              </tr>
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">notice</code></td>
-                <td class="p-3"><code>nick, target, text, tags</code></td>
-                <td class="p-3">Yes &mdash; <code>e.block()</code> and <code>e.text</code></td>
-              </tr>
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">join</code></td>
-                <td class="p-3"><code>nick, channel</code></td>
-                <td class="p-3">Observe only</td>
-              </tr>
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">part</code></td>
-                <td class="p-3"><code>nick, channel, reason</code></td>
-                <td class="p-3">Observe only</td>
-              </tr>
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">quit</code></td>
-                <td class="p-3"><code>nick, reason</code></td>
-                <td class="p-3">Observe only</td>
-              </tr>
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">nick</code></td>
-                <td class="p-3"><code>oldNick, newNick</code></td>
-                <td class="p-3">Observe only</td>
-              </tr>
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">connect</code> / <code class="bg-slate-100 px-1 rounded">disconnect</code></td>
-                <td class="p-3">&mdash;</td>
-                <td class="p-3">Observe only</td>
-              </tr>
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">raw</code></td>
-                <td class="p-3"><code>line</code> (the unparsed IRC line)</td>
-                <td class="p-3"><code>e.block()</code> &mdash; advanced, use with care</td>
-              </tr>
-            </tbody>
-          </table>
+      <!-- 04 Events -->
+      <div class="bg-[#f8fafc] text-[#1e293b] border-t border-[#e2e8f0]">
+        <div class="max-w-3xl mx-auto px-4 py-14">
+          <p class="font-mono text-xs tracking-[0.2em] text-[#2563eb]">04 &mdash; EVENTS</p>
+          <h2 class="text-2xl font-bold text-[#0f172a] mt-2">What sic.on can subscribe to</h2>
+          <div class="mt-6 overflow-x-auto">
+            <table class="w-full text-sm border border-[#e2e8f0] rounded-lg">
+              <thead>
+                <tr class="bg-white text-left">
+                  <th class="p-3 font-semibold text-[#0f172a]">Event</th>
+                  <th class="p-3 font-semibold text-[#0f172a]">Handler receives</th>
+                  <th class="p-3 font-semibold text-[#0f172a]">Can block / rewrite</th>
+                </tr>
+              </thead>
+              <tbody class="text-[#475569]">
+                <tr class="border-t border-[#e2e8f0]">
+                  <td class="p-3"><code class="bg-slate-100 px-1 rounded">message</code></td>
+                  <td class="p-3"><code>nick, target, text, self, tags</code></td>
+                  <td class="p-3">Yes &mdash; <code>e.block()</code> and <code>e.text</code></td>
+                </tr>
+                <tr class="border-t border-[#e2e8f0]">
+                  <td class="p-3"><code class="bg-slate-100 px-1 rounded">notice</code></td>
+                  <td class="p-3"><code>nick, target, text, tags</code></td>
+                  <td class="p-3">Yes &mdash; <code>e.block()</code> and <code>e.text</code></td>
+                </tr>
+                <tr class="border-t border-[#e2e8f0]">
+                  <td class="p-3"><code class="bg-slate-100 px-1 rounded">join</code></td>
+                  <td class="p-3"><code>nick, channel</code></td>
+                  <td class="p-3">Observe only</td>
+                </tr>
+                <tr class="border-t border-[#e2e8f0]">
+                  <td class="p-3"><code class="bg-slate-100 px-1 rounded">part</code></td>
+                  <td class="p-3"><code>nick, channel, reason</code></td>
+                  <td class="p-3">Observe only</td>
+                </tr>
+                <tr class="border-t border-[#e2e8f0]">
+                  <td class="p-3"><code class="bg-slate-100 px-1 rounded">quit</code></td>
+                  <td class="p-3"><code>nick, reason</code></td>
+                  <td class="p-3">Observe only</td>
+                </tr>
+                <tr class="border-t border-[#e2e8f0]">
+                  <td class="p-3"><code class="bg-slate-100 px-1 rounded">nick</code></td>
+                  <td class="p-3"><code>oldNick, newNick</code></td>
+                  <td class="p-3">Observe only</td>
+                </tr>
+                <tr class="border-t border-[#e2e8f0]">
+                  <td class="p-3"><code class="bg-slate-100 px-1 rounded">connect</code> / <code class="bg-slate-100 px-1 rounded">disconnect</code></td>
+                  <td class="p-3">&mdash;</td>
+                  <td class="p-3">Observe only</td>
+                </tr>
+                <tr class="border-t border-[#e2e8f0]">
+                  <td class="p-3"><code class="bg-slate-100 px-1 rounded">raw</code></td>
+                  <td class="p-3"><code>line</code> (the unparsed IRC line)</td>
+                  <td class="p-3"><code>e.block()</code> &mdash; advanced, use with care</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-[#475569] mt-4">A blocked message is gone for good: it does not render, does not bump unread counters and does not trigger mention notifications. When several scripts are enabled they run in the order they were created &mdash; each sees the text as rewritten by the previous one, and the first <code class="bg-slate-100 px-1 rounded text-sm">block()</code> wins.</p>
         </div>
-        <p class="text-slate-600 mt-4">A blocked message is gone for good: it does not render, does not bump unread counters and does not trigger mention notifications. When several scripts are enabled they run in the order they were created &mdash; each sees the text as rewritten by the previous one, and the first <code class="bg-slate-100 px-1 rounded text-sm">block()</code> wins.</p>
+      </div>
 
-        <!-- Examples -->
-        <h2 class="text-2xl font-bold mt-12 mb-4">Example Scripts</h2>
-        <p class="text-slate-600 mt-4">Copy any example, open <strong>Profile Settings &rarr; Scripts &rarr; New script</strong>, replace the pre-filled code, save and enable. Each one is self-contained &mdash; use them as they are or as starting points.</p>
+      <!-- 05 Example Scripts -->
+      <div class="bg-[#ffffff] text-[#1e293b] border-t border-[#e2e8f0]">
+        <div class="max-w-3xl mx-auto px-4 py-14">
+          <p class="font-mono text-xs tracking-[0.2em] text-[#2563eb]">05 &mdash; EXAMPLE SCRIPTS</p>
+          <h2 class="text-2xl font-bold text-[#0f172a] mt-2">Copy, paste, enable</h2>
+          <p class="text-[#475569] mt-4">Copy any example, open <strong class="text-[#0f172a]">Profile Settings &rarr; Scripts &rarr; New script</strong>, replace the pre-filled code, save and enable. Each one is self-contained &mdash; use them as they are or as starting points.</p>
 
-        <h3 class="font-bold text-lg mt-8">The Classic /slap</h3>
-        <p class="text-slate-600 mt-2">No IRC client is complete without it. Registers <code class="bg-slate-100 px-1 rounded text-sm">/slap</code> (alias <code class="bg-slate-100 px-1 rounded text-sm">/trout</code>) and sends the traditional action message.</p>
-        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// /slap &lt;nick&gt; - the IRC classic
+          <h3 class="font-bold text-lg text-[#0f172a] mt-8">The Classic /slap</h3>
+          <p class="text-[#475569] mt-2">No IRC client is complete without it. Registers <code class="bg-slate-100 px-1 rounded text-sm">/slap</code> (alias <code class="bg-slate-100 px-1 rounded text-sm">/trout</code>) and sends the traditional action message.</p>
+          <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// /slap &lt;nick&gt; - the IRC classic
 sic.command('slap', (args, channel) => {
   const victim = args.trim() || 'someone';
   sic.sendRaw('PRIVMSG ' + channel +
@@ -208,9 +246,9 @@ sic.command('slap', (args, channel) => {
     ' around a bit with a large trout\u0001');
 }, { aliases: ['trout'] });</code></pre>
 
-        <h3 class="font-bold text-lg mt-8">Ignore List and Word Filter</h3>
-        <p class="text-slate-600 mt-2">Hides messages from nicks you never want to hear from and anything containing blocked phrases &mdash; filtered messages never render and never trigger notifications.</p>
-        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// Personal ignore list + spam filter
+          <h3 class="font-bold text-lg text-[#0f172a] mt-8">Ignore List and Word Filter</h3>
+          <p class="text-[#475569] mt-2">Hides messages from nicks you never want to hear from and anything containing blocked phrases &mdash; filtered messages never render and never trigger notifications.</p>
+          <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// Personal ignore list + spam filter
 const ignoredNicks = ['spammer42', 'flooder'];
 const blockedPhrases = ['free crypto', 'casino bonus'];
 
@@ -225,9 +263,9 @@ sic.on('message', (e) => {
   }
 });</code></pre>
 
-        <h3 class="font-bold text-lg mt-8">Tame the Shouting</h3>
-        <p class="text-slate-600 mt-2">Rewrites incoming messages instead of hiding them: anything written in ALL CAPS arrives in calm lowercase.</p>
-        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// Lowercase ALL-CAPS messages
+          <h3 class="font-bold text-lg text-[#0f172a] mt-8">Tame the Shouting</h3>
+          <p class="text-[#475569] mt-2">Rewrites incoming messages instead of hiding them: anything written in ALL CAPS arrives in calm lowercase.</p>
+          <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// Lowercase ALL-CAPS messages
 sic.on('message', (e) => {
   const letters = e.text.replace(/[^a-z]/gi, '');
   if (letters.length >= 8 &amp;&amp; letters === letters.toUpperCase()) {
@@ -235,9 +273,9 @@ sic.on('message', (e) => {
   }
 });</code></pre>
 
-        <h3 class="font-bold text-lg mt-8">Mention Log</h3>
-        <p class="text-slate-600 mt-2">Collects every message that mentions your nick into the Status window &mdash; one place to catch up after being away, no matter how many channels you are in.</p>
-        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// Copy mentions to the Status window
+          <h3 class="font-bold text-lg text-[#0f172a] mt-8">Mention Log</h3>
+          <p class="text-[#475569] mt-2">Collects every message that mentions your nick into the Status window &mdash; one place to catch up after being away, no matter how many channels you are in.</p>
+          <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// Copy mentions to the Status window
 sic.on('message', (e) => {
   if (e.self) { return; }
   if (e.text.toLowerCase().includes(sic.nick().toLowerCase())) {
@@ -245,9 +283,9 @@ sic.on('message', (e) => {
   }
 });</code></pre>
 
-        <h3 class="font-bold text-lg mt-8">Channel Greeter</h3>
-        <p class="text-slate-600 mt-2">Welcomes people joining your channel. The nick check keeps it from greeting you on reconnect.</p>
-        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// Greet joins in one channel
+          <h3 class="font-bold text-lg text-[#0f172a] mt-8">Channel Greeter</h3>
+          <p class="text-[#475569] mt-2">Welcomes people joining your channel. The nick check keeps it from greeting you on reconnect.</p>
+          <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// Greet joins in one channel
 const myChannel = '#mychannel';
 
 sic.on('join', (e) => {
@@ -256,9 +294,9 @@ sic.on('join', (e) => {
   }
 });</code></pre>
 
-        <h3 class="font-bold text-lg mt-8">/weather &mdash; Web APIs from a Script</h3>
-        <p class="text-slate-600 mt-2">Fetches a one-line forecast from <a href="https://wttr.in" target="_blank" rel="noopener noreferrer" class="font-medium hover:text-slate-800 underline">wttr.in</a> and shares it with the channel. The same pattern works with any CORS-enabled JSON or text API.</p>
-        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// /weather &lt;city&gt; - share the forecast
+          <h3 class="font-bold text-lg text-[#0f172a] mt-8">/weather &mdash; Web APIs from a Script</h3>
+          <p class="text-[#475569] mt-2">Fetches a one-line forecast from <a href="https://wttr.in" target="_blank" rel="noopener noreferrer" class="text-[#2563eb] hover:text-[#0f172a] underline">wttr.in</a> and shares it with the channel. The same pattern works with any CORS-enabled JSON or text API.</p>
+          <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// /weather &lt;city&gt; - share the forecast
 sic.command('weather', (args, channel) => {
   const city = args.trim();
   if (!city) {
@@ -270,9 +308,9 @@ sic.command('weather', (args, channel) => {
     .catch((err) => sic.print('weather: ' + err.message));
 });</code></pre>
 
-        <h3 class="font-bold text-lg mt-8">/github &mdash; JSON APIs</h3>
-        <p class="text-slate-600 mt-2">Looks up a repository on the GitHub API and posts a summary &mdash; a compact example of <code class="bg-slate-100 px-1 rounded text-sm">json()</code>, error handling and status checks.</p>
-        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// /github owner/repo - repository summary
+          <h3 class="font-bold text-lg text-[#0f172a] mt-8">/github &mdash; JSON APIs</h3>
+          <p class="text-[#475569] mt-2">Looks up a repository on the GitHub API and posts a summary &mdash; a compact example of <code class="bg-slate-100 px-1 rounded text-sm">json()</code>, error handling and status checks.</p>
+          <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// /github owner/repo - repository summary
 sic.command('github', (args, channel) => {
   const repo = args.trim();
   if (!repo.includes('/')) {
@@ -293,31 +331,30 @@ sic.command('github', (args, channel) => {
     .catch((err) => sic.print('github: ' + err.message));
 });</code></pre>
 
-        <h3 class="font-bold text-lg mt-8">Auto-Join on Connect</h3>
-        <p class="text-slate-600 mt-2">Runs whenever registration with the server completes &mdash; handy for anything you would otherwise type by hand after connecting.</p>
-        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// Extra channels on every (re)connect
+          <h3 class="font-bold text-lg text-[#0f172a] mt-8">Auto-Join on Connect</h3>
+          <p class="text-[#475569] mt-2">Runs whenever registration with the server completes &mdash; handy for anything you would otherwise type by hand after connecting.</p>
+          <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>// Extra channels on every (re)connect
 sic.on('connect', () => {
   sic.sendRaw('JOIN #linux,#security');
 });</code></pre>
+        </div>
+      </div>
 
-        <!-- CTA -->
-        <div class="mt-12 text-center py-12 border-t border-slate-200">
-          <h2 class="text-2xl font-bold mb-4">Try It Yourself</h2>
-          <p class="text-slate-600 max-w-xl mx-auto">Open Simple IRC Client, head to Profile Settings and write your first script &mdash; it is just JavaScript.</p>
-          <div class="mt-6 flex flex-col items-center gap-4">
-            <a href="https://app.simpleircclient.com/" class="bg-slate-800 text-white px-6 py-3 rounded-lg font-medium hover:bg-slate-700 transition-colors">
-              Try Web Chat
-            </a>
-            <a href="https://simpleircclient.com/downloads.html" class="border-2 border-slate-800 text-slate-800 px-6 py-3 rounded-lg font-medium hover:bg-slate-100 transition-colors">
-              Download Now
-            </a>
+      <!-- CTA -->
+      <div class="bg-[#f8fafc] text-[#1e293b] border-t border-[#e2e8f0]">
+        <div class="max-w-5xl mx-auto px-4 py-14 text-center">
+          <h2 class="text-2xl font-bold text-[#0f172a]">Try It Yourself</h2>
+          <p class="text-[#475569] mt-3 max-w-xl mx-auto">Open Simple IRC Client, head to Profile Settings and write your first script &mdash; it is just JavaScript.</p>
+          <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+            <a href="https://app.simpleircclient.com/" class="inline-flex items-center justify-center bg-slate-800 text-white px-6 py-3 rounded-lg font-medium hover:bg-slate-700 transition-colors">Try Web Chat</a>
+            <a href="https://simpleircclient.com/downloads.html" class="inline-flex items-center justify-center border-2 border-slate-800 text-slate-800 px-6 py-3 rounded-lg font-medium hover:bg-slate-100 transition-colors">Download Now</a>
           </div>
         </div>
       </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-50 py-6 mt-12">
+    <footer class="bg-slate-50 py-6">
       <div class="container mx-auto px-4 text-center text-slate-600 text-sm">
         <p>&copy; 2026 Simple IRC Client. Open source under AGPL-3.0 license.</p>
       </div>

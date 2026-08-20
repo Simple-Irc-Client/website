@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Themes - Simple Irc Client</title>
     <meta name="description" content="Customize Simple IRC Client with CSS themes - switch between Classic and Modern layouts, edit their styling, or create your own theme. Includes ready-to-paste example themes." />
-    <meta name="theme-color" content="#1e293b" />
+    <meta name="theme-color" content="#ffffff" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://scripts.simpleanalyticscdn.com; style-src 'self'; img-src 'self' https://queue.simpleanalyticscdn.com; connect-src 'self' https://queue.simpleanalyticscdn.com https://scripts.simpleanalyticscdn.com; manifest-src 'self'; worker-src 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
@@ -79,69 +79,102 @@
       </div>
     </nav>
 
-    <main id="main" class="container mx-auto px-4">
-      <!-- Header -->
-      <div class="text-center py-12">
-        <h1 class="font-bold text-4xl md:text-5xl">Themes</h1>
-        <p class="text-slate-600 text-lg mt-3 max-w-xl mx-auto">Make the chat look exactly the way you want &mdash; every theme in Simple IRC Client is just CSS you can edit</p>
-      </div>
-
-      <div class="max-w-3xl mx-auto pb-12">
-        <!-- How themes work -->
-        <h2 class="text-2xl font-bold mb-4">How Themes Work</h2>
-        <p class="text-slate-600 mt-4">Simple IRC Client ships with two built-in themes: <strong>Classic</strong>, a traditional one-line-per-message IRC layout, and <strong>Modern</strong>, an avatar-based layout with message grouping like contemporary chat apps. Under the hood a theme is nothing more than a CSS stylesheet &mdash; every chat message renders the same HTML, and the active theme's CSS decides which parts are visible and how they are arranged.</p>
-        <p class="text-slate-600 mt-4">To switch themes:</p>
-        <ol class="text-slate-600 mt-4 list-decimal list-inside space-y-1">
-          <li>Click your avatar in the toolbar and choose <strong>Profile Settings</strong></li>
-          <li>Pick a theme from the <strong>Theme</strong> dropdown &mdash; it applies immediately</li>
-        </ol>
-
-        <h2 class="text-2xl font-bold mt-12 mb-4">Theme Creator &mdash; No CSS Required</h2>
-        <p class="text-slate-600 mt-4">The <strong>Edit</strong> and <strong>New theme</strong> buttons next to the theme dropdown open the <strong>Theme Creator</strong>, which builds the stylesheet for you from simple controls:</p>
-        <ul class="text-slate-600 mt-4 list-disc list-inside space-y-1">
-          <li><strong>Layout</strong> &mdash; start from the Classic or Modern base</li>
-          <li><strong>Options</strong> &mdash; toggle seconds in timestamps, avatars, link previews and compact spacing</li>
-          <li><strong>Message colors</strong> &mdash; color pickers for every message category (join, part, quit, kick, notice, action, errors and more), with separate <strong>Light mode</strong> and <strong>Dark mode</strong> palettes</li>
-        </ul>
-        <p class="text-slate-600 mt-4">Everything previews live in the chat while you adjust it. Themes made with the Creator can be re-opened in the Creator later &mdash; and they are still plain CSS underneath, so you can switch to the CSS editor for the finishing touches at any time.</p>
-
-        <h2 class="text-2xl font-bold mt-12 mb-4">Editing Theme CSS</h2>
-        <p class="text-slate-600 mt-4">For full control, click <strong>Edit CSS</strong> inside the Creator &mdash; it switches to a CSS editor for the same theme (any unsaved Creator tweaks carry over):</p>
-        <ul class="text-slate-600 mt-4 list-disc list-inside space-y-1">
-          <li>You can edit the built-in Classic and Modern themes too; changes are previewed live in the chat while you type. A <strong>Reset to default</strong> button restores the shipped stylesheet at any time.</li>
-          <li>New themes are pre-filled with the CSS of the currently active one, so you never start from a blank page.</li>
-          <li><strong>Delete</strong> (next to the dropdown) removes a custom theme &mdash; built-in themes cannot be deleted.</li>
-        </ul>
-        <p class="text-slate-600 mt-4">Themes are stored locally in your browser or app &mdash; nothing is uploaded anywhere. The same themes work in the <a href="https://app.simpleircclient.com/" class="font-medium hover:text-slate-800 underline">web app</a> and the <a href="https://simpleircclient.com/downloads.html" class="font-medium hover:text-slate-800 underline">desktop builds</a>.</p>
-
-        <!-- Reference -->
-        <h2 class="text-2xl font-bold mt-12 mb-4">Theming Reference</h2>
-        <p class="text-slate-600 mt-4">Each chat message renders a fixed structure of elements with stable class names. Your CSS shows, hides, and arranges them:</p>
-        <div class="mt-6 grid gap-3">
-          <div class="border border-slate-200 rounded-lg p-4">
-            <code class="bg-slate-100 px-1 rounded text-sm">.sic-msg</code>
-            <p class="text-slate-600 mt-1 text-sm">The message row. Carries data attributes you can style on: <code class="bg-slate-100 px-1 rounded text-sm">data-category</code> (<em>default, join, part, quit, kick, mode, notice, info, me, error, motd</em>), <code class="bg-slate-100 px-1 rounded text-sm">data-content</code> (present on default/me/notice messages), <code class="bg-slate-100 px-1 rounded text-sm">data-grouped</code> (consecutive message from the same nick) and <code class="bg-slate-100 px-1 rounded text-sm">data-highlight</code> (message mentions your nick).</p>
-          </div>
-          <div class="border border-slate-200 rounded-lg p-4">
-            <code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-gutter</code> / <code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-avatar</code>
-            <p class="text-slate-600 mt-1 text-sm">The avatar column and the avatar itself. Hide the gutter for single-line layouts.</p>
-          </div>
-          <div class="border border-slate-200 rounded-lg p-4">
-            <code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-header</code>
-            <p class="text-slate-600 mt-1 text-sm">Header row with the sender (<code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-nick</code>), a bot icon and a right-side timestamp (<code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-time-header</code>).</p>
-          </div>
-          <div class="border border-slate-200 rounded-lg p-4">
-            <code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-line</code>
-            <p class="text-slate-600 mt-1 text-sm">The message line: an inline timestamp (<code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-time-inline</code>, with seconds in a nested <code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-time-seconds</code>), an inline nick (<code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-nick-inline</code> &mdash; bare text, add brackets with <code class="bg-slate-100 px-1 rounded text-sm">::before</code>/<code class="bg-slate-100 px-1 rounded text-sm">::after</code>), the message text (<code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-body</code>) and a trailing timestamp (<code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-time-trailing</code>).</p>
-          </div>
-          <div class="border border-slate-200 rounded-lg p-4">
-            <code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-embeds</code>
-            <p class="text-slate-600 mt-1 text-sm">Link previews: YouTube thumbnails, images and social embeds.</p>
+    <main id="main">
+      <!-- Hero -->
+      <div class="bg-[#ffffff] text-[#1e293b]">
+        <div class="max-w-5xl mx-auto px-4 pt-10 pb-16">
+          <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
+            <div class="max-w-xl">
+              <p class="font-mono text-xs tracking-[0.2em] text-[#2563eb] uppercase">Appearance Reference</p>
+              <h1 class="text-3xl md:text-4xl font-bold text-[#0f172a] mt-3 leading-tight">Themes</h1>
+              <p class="text-[#475569] mt-4">Make the chat look exactly the way you want &mdash; every theme in Simple IRC Client is just CSS you can edit.</p>
+            </div>
+            <div class="inline-grid grid-cols-[auto_auto] gap-x-6 gap-y-1.5 border border-[#cbd5e1] px-5 py-4 font-mono text-[11px] tracking-wide h-fit shrink-0">
+              <span class="text-[#94a3b8]">BASE LAYOUTS</span><span class="text-[#0f172a]">Classic &middot; Modern</span>
+              <span class="text-[#94a3b8]">STYLE MODEL</span><span class="text-[#0f172a]">CSS + custom properties</span>
+              <span class="text-[#94a3b8]">EDITOR</span><span class="text-[#0f172a]">Visual creator &middot; Raw CSS</span>
+              <span class="text-[#94a3b8]">STORAGE</span><span class="text-[#0f172a]">Local only</span>
+              <span class="text-[#94a3b8]">STATUS</span><span class="text-[#16a34a]">OPEN SOURCE</span>
+            </div>
           </div>
         </div>
-        <p class="text-slate-600 mt-4">Theme CSS is injected globally, so you can also restyle the whole app by overriding CSS variables such as <code class="bg-slate-100 px-1 rounded text-sm">--background</code>, <code class="bg-slate-100 px-1 rounded text-sm">--primary</code> and the message palette (<code class="bg-slate-100 px-1 rounded text-sm">--msg-time</code>, <code class="bg-slate-100 px-1 rounded text-sm">--msg-body</code>, <code class="bg-slate-100 px-1 rounded text-sm">--msg-default</code>, <code class="bg-slate-100 px-1 rounded text-sm">--msg-join</code>, &hellip;). Prefix rules with <code class="bg-slate-100 px-1 rounded text-sm">.dark</code> to target dark mode. The Debug and Status channels keep a fixed monospace style that themes do not override.</p>
-        <p class="text-slate-600 mt-4">For example, to recolor join and part messages without touching anything else, add this to any theme's CSS (light-mode values on <code class="bg-slate-100 px-1 rounded text-sm">:root</code>, dark-mode values on <code class="bg-slate-100 px-1 rounded text-sm">.dark</code>):</p>
-        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>/* Recolor join/part messages - light and dark mode */
+      </div>
+
+      <!-- 01 How Themes Work -->
+      <div class="bg-[#ffffff] text-[#1e293b] border-t border-[#e2e8f0]">
+        <div class="max-w-3xl mx-auto px-4 py-14">
+          <p class="font-mono text-xs tracking-[0.2em] text-[#2563eb]">01 &mdash; HOW THEMES WORK</p>
+          <h2 class="text-2xl font-bold text-[#0f172a] mt-2">One HTML structure, swappable CSS</h2>
+          <p class="text-[#475569] mt-4">Simple IRC Client ships with two built-in themes: <strong class="text-[#0f172a]">Classic</strong>, a traditional one-line-per-message IRC layout, and <strong class="text-[#0f172a]">Modern</strong>, an avatar-based layout with message grouping like contemporary chat apps. Under the hood a theme is nothing more than a CSS stylesheet &mdash; every chat message renders the same HTML, and the active theme's CSS decides which parts are visible and how they are arranged.</p>
+          <p class="text-[#475569] mt-4">To switch themes:</p>
+          <ol class="text-[#475569] mt-4 list-decimal list-inside space-y-1">
+            <li>Click your avatar in the toolbar and choose <strong class="text-[#0f172a]">Profile Settings</strong></li>
+            <li>Pick a theme from the <strong class="text-[#0f172a]">Theme</strong> dropdown &mdash; it applies immediately</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- 02 Theme Creator -->
+      <div class="bg-[#f8fafc] text-[#1e293b] border-t border-[#e2e8f0]">
+        <div class="max-w-3xl mx-auto px-4 py-14">
+          <p class="font-mono text-xs tracking-[0.2em] text-[#2563eb]">02 &mdash; THEME CREATOR</p>
+          <h2 class="text-2xl font-bold text-[#0f172a] mt-2">No CSS required</h2>
+          <p class="text-[#475569] mt-4">The <strong class="text-[#0f172a]">Edit</strong> and <strong class="text-[#0f172a]">New theme</strong> buttons next to the theme dropdown open the <strong class="text-[#0f172a]">Theme Creator</strong>, which builds the stylesheet for you from simple controls:</p>
+          <ul class="text-[#475569] mt-4 list-disc list-inside space-y-1">
+            <li><strong class="text-[#0f172a]">Layout</strong> &mdash; start from the Classic or Modern base</li>
+            <li><strong class="text-[#0f172a]">Options</strong> &mdash; toggle seconds in timestamps, avatars, link previews and compact spacing</li>
+            <li><strong class="text-[#0f172a]">Message colors</strong> &mdash; color pickers for every message category (join, part, quit, kick, notice, action, errors and more), with separate <strong class="text-[#0f172a]">Light mode</strong> and <strong class="text-[#0f172a]">Dark mode</strong> palettes</li>
+          </ul>
+          <p class="text-[#475569] mt-4">Everything previews live in the chat while you adjust it. Themes made with the Creator can be re-opened in the Creator later &mdash; and they are still plain CSS underneath, so you can switch to the CSS editor for the finishing touches at any time.</p>
+        </div>
+      </div>
+
+      <!-- 03 Editing Theme CSS -->
+      <div class="bg-[#ffffff] text-[#1e293b] border-t border-[#e2e8f0]">
+        <div class="max-w-3xl mx-auto px-4 py-14">
+          <p class="font-mono text-xs tracking-[0.2em] text-[#2563eb]">03 &mdash; EDITING THEME CSS</p>
+          <h2 class="text-2xl font-bold text-[#0f172a] mt-2">Full control when you want it</h2>
+          <p class="text-[#475569] mt-4">For full control, click <strong class="text-[#0f172a]">Edit CSS</strong> inside the Creator &mdash; it switches to a CSS editor for the same theme (any unsaved Creator tweaks carry over):</p>
+          <ul class="text-[#475569] mt-4 list-disc list-inside space-y-1">
+            <li>You can edit the built-in Classic and Modern themes too; changes are previewed live in the chat while you type. A <strong class="text-[#0f172a]">Reset to default</strong> button restores the shipped stylesheet at any time.</li>
+            <li>New themes are pre-filled with the CSS of the currently active one, so you never start from a blank page.</li>
+            <li><strong class="text-[#0f172a]">Delete</strong> (next to the dropdown) removes a custom theme &mdash; built-in themes cannot be deleted.</li>
+          </ul>
+          <p class="text-[#475569] mt-4">Themes are stored locally in your browser or app &mdash; nothing is uploaded anywhere. The same themes work in the <a href="https://app.simpleircclient.com/" class="text-[#2563eb] hover:text-[#0f172a] underline">web app</a> and the <a href="https://simpleircclient.com/downloads.html" class="text-[#2563eb] hover:text-[#0f172a] underline">desktop builds</a>.</p>
+        </div>
+      </div>
+
+      <!-- 04 Theming Reference -->
+      <div class="bg-[#f8fafc] text-[#1e293b] border-t border-[#e2e8f0]">
+        <div class="max-w-3xl mx-auto px-4 py-14">
+          <p class="font-mono text-xs tracking-[0.2em] text-[#2563eb]">04 &mdash; THEMING REFERENCE</p>
+          <h2 class="text-2xl font-bold text-[#0f172a] mt-2">Stable class names, fixed structure</h2>
+          <p class="text-[#475569] mt-4">Each chat message renders a fixed structure of elements with stable class names. Your CSS shows, hides, and arranges them:</p>
+          <div class="mt-6 grid gap-3">
+            <div class="border border-[#e2e8f0] rounded-lg p-4">
+              <code class="bg-slate-100 px-1 rounded text-sm">.sic-msg</code>
+              <p class="text-[#475569] mt-1 text-sm">The message row. Carries data attributes you can style on: <code class="bg-slate-100 px-1 rounded text-sm">data-category</code> (<em>default, join, part, quit, kick, mode, notice, info, me, error, motd</em>), <code class="bg-slate-100 px-1 rounded text-sm">data-content</code> (present on default/me/notice messages), <code class="bg-slate-100 px-1 rounded text-sm">data-grouped</code> (consecutive message from the same nick) and <code class="bg-slate-100 px-1 rounded text-sm">data-highlight</code> (message mentions your nick).</p>
+            </div>
+            <div class="border border-[#e2e8f0] rounded-lg p-4">
+              <code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-gutter</code> / <code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-avatar</code>
+              <p class="text-[#475569] mt-1 text-sm">The avatar column and the avatar itself. Hide the gutter for single-line layouts.</p>
+            </div>
+            <div class="border border-[#e2e8f0] rounded-lg p-4">
+              <code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-header</code>
+              <p class="text-[#475569] mt-1 text-sm">Header row with the sender (<code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-nick</code>), a bot icon and a right-side timestamp (<code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-time-header</code>).</p>
+            </div>
+            <div class="border border-[#e2e8f0] rounded-lg p-4">
+              <code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-line</code>
+              <p class="text-[#475569] mt-1 text-sm">The message line: an inline timestamp (<code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-time-inline</code>, with seconds in a nested <code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-time-seconds</code>), an inline nick (<code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-nick-inline</code> &mdash; bare text, add brackets with <code class="bg-slate-100 px-1 rounded text-sm">::before</code>/<code class="bg-slate-100 px-1 rounded text-sm">::after</code>), the message text (<code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-body</code>) and a trailing timestamp (<code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-time-trailing</code>).</p>
+            </div>
+            <div class="border border-[#e2e8f0] rounded-lg p-4">
+              <code class="bg-slate-100 px-1 rounded text-sm">.sic-msg-embeds</code>
+              <p class="text-[#475569] mt-1 text-sm">Link previews: YouTube thumbnails, images and social embeds.</p>
+            </div>
+          </div>
+          <p class="text-[#475569] mt-4">Theme CSS is injected globally, so you can also restyle the whole app by overriding CSS variables such as <code class="bg-slate-100 px-1 rounded text-sm">--background</code>, <code class="bg-slate-100 px-1 rounded text-sm">--primary</code> and the message palette (<code class="bg-slate-100 px-1 rounded text-sm">--msg-time</code>, <code class="bg-slate-100 px-1 rounded text-sm">--msg-body</code>, <code class="bg-slate-100 px-1 rounded text-sm">--msg-default</code>, <code class="bg-slate-100 px-1 rounded text-sm">--msg-join</code>, &hellip;). Prefix rules with <code class="bg-slate-100 px-1 rounded text-sm">.dark</code> to target dark mode. The Debug and Status channels keep a fixed monospace style that themes do not override.</p>
+          <p class="text-[#475569] mt-4">For example, to recolor join and part messages without touching anything else, add this to any theme's CSS (light-mode values on <code class="bg-slate-100 px-1 rounded text-sm">:root</code>, dark-mode values on <code class="bg-slate-100 px-1 rounded text-sm">.dark</code>):</p>
+          <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>/* Recolor join/part messages - light and dark mode */
 :root {
   --msg-join: #0a7d32;
   --msg-part: #b3261e;
@@ -151,101 +184,114 @@
   --msg-join: #4cd07d;
   --msg-part: #ff6b5e;
 }</code></pre>
-        <p class="text-slate-600 mt-4">The full message-color palette with the shipped default values &mdash; these are exactly the colors the Theme Creator's color pickers edit (no CSS needed if you prefer the UI), and every built-in theme's CSS ends with these variables ready to tweak:</p>
-        <div class="mt-6 overflow-x-auto">
-          <table class="w-full text-sm border border-slate-200 rounded-lg">
-            <thead>
-              <tr class="bg-slate-50 text-left">
-                <th class="p-3 font-semibold">Variable</th>
-                <th class="p-3 font-semibold">Colors</th>
-                <th class="p-3 font-semibold">Light default</th>
-                <th class="p-3 font-semibold">Dark default</th>
-              </tr>
-            </thead>
-            <tbody class="text-slate-600">
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-time</code></td>
-                <td class="p-3">Timestamps</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#666666]"></span><code>#666666</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#444466]"></span><code>#444466</code></td>
-              </tr>
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-default</code></td>
-                <td class="p-3">System messages</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#000000]"></span><code>#000000</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#b8b8d0]"></span><code>#b8b8d0</code></td>
-              </tr>
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-body</code></td>
-                <td class="p-3">Message text</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#3a3a47]"></span><code>#3a3a47</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#b8b8d0]"></span><code>#b8b8d0</code></td>
-              </tr>
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-join</code></td>
-                <td class="p-3">Join messages</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#009300]"></span><code>#009300</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#5a8a5a]"></span><code>#5a8a5a</code></td>
-              </tr>
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-part</code></td>
-                <td class="p-3">Part messages</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#4733ff]"></span><code>#4733ff</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#7a6a8a]"></span><code>#7a6a8a</code></td>
-              </tr>
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-quit</code></td>
-                <td class="p-3">Quit messages</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#00007f]"></span><code>#00007f</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#6a6a8a]"></span><code>#6a6a8a</code></td>
-              </tr>
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-kick</code></td>
-                <td class="p-3">Kick messages</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#00007f]"></span><code>#00007f</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#8a5a5a]"></span><code>#8a5a5a</code></td>
-              </tr>
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-mode</code></td>
-                <td class="p-3">Mode changes</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#009300]"></span><code>#009300</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#6a8a6a]"></span><code>#6a8a6a</code></td>
-              </tr>
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-notice</code></td>
-                <td class="p-3">Notices</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#0066ff]"></span><code>#0066ff</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#6e9ecf]"></span><code>#6e9ecf</code></td>
-              </tr>
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-info</code></td>
-                <td class="p-3">Informational messages</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#666666]"></span><code>#666666</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#55557a]"></span><code>#55557a</code></td>
-              </tr>
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-me</code></td>
-                <td class="p-3">Actions (/me)</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#800080]"></span><code>#800080</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#c47ea0]"></span><code>#c47ea0</code></td>
-              </tr>
-              <tr class="border-t border-slate-200">
-                <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-error</code></td>
-                <td class="p-3">Errors</td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#ff0000]"></span><code>#ff0000</code></td>
-                <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#b05555]"></span><code>#b05555</code></td>
-              </tr>
-            </tbody>
-          </table>
         </div>
+      </div>
 
-        <!-- Example themes -->
-        <h2 class="text-2xl font-bold mt-12 mb-4">Example Themes</h2>
-        <p class="text-slate-600 mt-4">These themes are not shipped with the app &mdash; copy one, open <strong>Profile Settings &rarr; New theme &rarr; Edit CSS</strong>, replace the pre-filled CSS with the example and save. Use them as they are or as a starting point for your own design.</p>
+      <!-- 05 Message Color Palette -->
+      <div class="bg-[#ffffff] text-[#1e293b] border-t border-[#e2e8f0]">
+        <div class="max-w-3xl mx-auto px-4 py-14">
+          <p class="font-mono text-xs tracking-[0.2em] text-[#2563eb]">05 &mdash; MESSAGE COLOR PALETTE</p>
+          <h2 class="text-2xl font-bold text-[#0f172a] mt-2">Every variable the Theme Creator edits</h2>
+          <p class="text-[#475569] mt-4">The full message-color palette with the shipped default values &mdash; these are exactly the colors the Theme Creator's color pickers edit (no CSS needed if you prefer the UI), and every built-in theme's CSS ends with these variables ready to tweak:</p>
+          <div class="mt-6 overflow-x-auto">
+            <table class="w-full text-sm border border-[#e2e8f0] rounded-lg">
+              <thead>
+                <tr class="bg-slate-50 text-left">
+                  <th class="p-3 font-semibold text-[#0f172a]">Variable</th>
+                  <th class="p-3 font-semibold text-[#0f172a]">Colors</th>
+                  <th class="p-3 font-semibold text-[#0f172a]">Light default</th>
+                  <th class="p-3 font-semibold text-[#0f172a]">Dark default</th>
+                </tr>
+              </thead>
+              <tbody class="text-[#475569]">
+                <tr class="border-t border-[#e2e8f0]">
+                  <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-time</code></td>
+                  <td class="p-3">Timestamps</td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#666666]"></span><code>#666666</code></td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#444466]"></span><code>#444466</code></td>
+                </tr>
+                <tr class="border-t border-[#e2e8f0]">
+                  <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-default</code></td>
+                  <td class="p-3">System messages</td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#000000]"></span><code>#000000</code></td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#b8b8d0]"></span><code>#b8b8d0</code></td>
+                </tr>
+                <tr class="border-t border-[#e2e8f0]">
+                  <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-body</code></td>
+                  <td class="p-3">Message text</td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#3a3a47]"></span><code>#3a3a47</code></td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#b8b8d0]"></span><code>#b8b8d0</code></td>
+                </tr>
+                <tr class="border-t border-[#e2e8f0]">
+                  <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-join</code></td>
+                  <td class="p-3">Join messages</td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#009300]"></span><code>#009300</code></td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#5a8a5a]"></span><code>#5a8a5a</code></td>
+                </tr>
+                <tr class="border-t border-[#e2e8f0]">
+                  <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-part</code></td>
+                  <td class="p-3">Part messages</td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#4733ff]"></span><code>#4733ff</code></td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#7a6a8a]"></span><code>#7a6a8a</code></td>
+                </tr>
+                <tr class="border-t border-[#e2e8f0]">
+                  <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-quit</code></td>
+                  <td class="p-3">Quit messages</td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#00007f]"></span><code>#00007f</code></td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#6a6a8a]"></span><code>#6a6a8a</code></td>
+                </tr>
+                <tr class="border-t border-[#e2e8f0]">
+                  <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-kick</code></td>
+                  <td class="p-3">Kick messages</td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#00007f]"></span><code>#00007f</code></td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#8a5a5a]"></span><code>#8a5a5a</code></td>
+                </tr>
+                <tr class="border-t border-[#e2e8f0]">
+                  <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-mode</code></td>
+                  <td class="p-3">Mode changes</td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#009300]"></span><code>#009300</code></td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#6a8a6a]"></span><code>#6a8a6a</code></td>
+                </tr>
+                <tr class="border-t border-[#e2e8f0]">
+                  <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-notice</code></td>
+                  <td class="p-3">Notices</td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#0066ff]"></span><code>#0066ff</code></td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#6e9ecf]"></span><code>#6e9ecf</code></td>
+                </tr>
+                <tr class="border-t border-[#e2e8f0]">
+                  <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-info</code></td>
+                  <td class="p-3">Informational messages</td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#666666]"></span><code>#666666</code></td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#55557a]"></span><code>#55557a</code></td>
+                </tr>
+                <tr class="border-t border-[#e2e8f0]">
+                  <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-me</code></td>
+                  <td class="p-3">Actions (/me)</td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#800080]"></span><code>#800080</code></td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#c47ea0]"></span><code>#c47ea0</code></td>
+                </tr>
+                <tr class="border-t border-[#e2e8f0]">
+                  <td class="p-3"><code class="bg-slate-100 px-1 rounded">--msg-error</code></td>
+                  <td class="p-3">Errors</td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#ff0000]"></span><code>#ff0000</code></td>
+                  <td class="p-3 whitespace-nowrap"><span class="inline-block w-4 h-4 rounded border border-slate-300 align-middle mr-2 bg-[#b05555]"></span><code>#b05555</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
 
-        <h3 class="font-bold text-lg mt-8">Terminal</h3>
-        <p class="text-slate-600 mt-2">Green-on-dark monospace, one message per line, timestamps with seconds &mdash; like chatting from a phosphor terminal.</p>
-        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>/* Terminal - green phosphor, single-line messages */
+      <!-- 06 Example Themes -->
+      <div class="bg-[#f8fafc] text-[#1e293b] border-t border-[#e2e8f0]">
+        <div class="max-w-3xl mx-auto px-4 py-14">
+          <p class="font-mono text-xs tracking-[0.2em] text-[#2563eb]">06 &mdash; EXAMPLE THEMES</p>
+          <h2 class="text-2xl font-bold text-[#0f172a] mt-2">Copy, paste, adjust</h2>
+          <p class="text-[#475569] mt-4">These themes are not shipped with the app &mdash; copy one, open <strong class="text-[#0f172a]">Profile Settings &rarr; New theme &rarr; Edit CSS</strong>, replace the pre-filled CSS with the example and save. Use them as they are or as a starting point for your own design.</p>
+
+          <h3 class="font-bold text-lg text-[#0f172a] mt-8">Terminal</h3>
+          <p class="text-[#475569] mt-2">Green-on-dark monospace, one message per line, timestamps with seconds &mdash; like chatting from a phosphor terminal.</p>
+          <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>/* Terminal - green phosphor, single-line messages */
 :root, .dark {
   --background: #0a0f0a;
   --foreground: #33ff66;
@@ -305,9 +351,9 @@
   opacity: 0.7;
 }</code></pre>
 
-        <h3 class="font-bold text-lg mt-8">Compact</h3>
-        <p class="text-slate-600 mt-2">Maximum density for busy channels: no avatars, no link previews, a fixed-width right-aligned nick column and tight line spacing.</p>
-        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>/* Compact - maximum density, aligned nick column */
+          <h3 class="font-bold text-lg text-[#0f172a] mt-8">Compact</h3>
+          <p class="text-[#475569] mt-2">Maximum density for busy channels: no avatars, no link previews, a fixed-width right-aligned nick column and tight line spacing.</p>
+          <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>/* Compact - maximum density, aligned nick column */
 .sic-msg {
   display: block;
   padding: 0 0.75rem;
@@ -363,9 +409,9 @@
   font-style: italic;
 }</code></pre>
 
-        <h3 class="font-bold text-lg mt-8">High Contrast</h3>
-        <p class="text-slate-600 mt-2">Not a full theme but an accessibility tweak: open <strong>Edit CSS</strong> on the Modern theme and paste this at the <em>end</em> of its stylesheet. It strengthens text colors in both light and dark mode and makes mentions much harder to miss.</p>
-        <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>/* High contrast - paste at the END of the Modern theme CSS */
+          <h3 class="font-bold text-lg text-[#0f172a] mt-8">High Contrast</h3>
+          <p class="text-[#475569] mt-2">Not a full theme but an accessibility tweak: open <strong class="text-[#0f172a]">Edit CSS</strong> on the Modern theme and paste this at the <em>end</em> of its stylesheet. It strengthens text colors in both light and dark mode and makes mentions much harder to miss.</p>
+          <pre class="bg-slate-100 rounded-lg p-6 mt-4 overflow-x-auto text-sm leading-relaxed"><code>/* High contrast - paste at the END of the Modern theme CSS */
 :root {
   --msg-time: #3d3d3d;
   --msg-default: #1a1a1a;
@@ -386,25 +432,24 @@
   border-left: 4px solid var(--primary);
   background-color: color-mix(in oklab, var(--primary) 18%, transparent);
 }</code></pre>
+        </div>
+      </div>
 
-        <!-- CTA -->
-        <div class="mt-12 text-center py-12 border-t border-slate-200">
-          <h2 class="text-2xl font-bold mb-4">Try It Yourself</h2>
-          <p class="text-slate-600 max-w-xl mx-auto">Open Simple IRC Client, head to Profile Settings and make the chat yours &mdash; it is just CSS.</p>
-          <div class="mt-6 flex flex-col items-center gap-4">
-            <a href="https://app.simpleircclient.com/" class="bg-slate-800 text-white px-6 py-3 rounded-lg font-medium hover:bg-slate-700 transition-colors">
-              Try Web Chat
-            </a>
-            <a href="https://simpleircclient.com/downloads.html" class="border-2 border-slate-800 text-slate-800 px-6 py-3 rounded-lg font-medium hover:bg-slate-100 transition-colors">
-              Download Now
-            </a>
+      <!-- CTA -->
+      <div class="bg-[#ffffff] text-[#1e293b] border-t border-[#e2e8f0]">
+        <div class="max-w-5xl mx-auto px-4 py-14 text-center">
+          <h2 class="text-2xl font-bold text-[#0f172a]">Try It Yourself</h2>
+          <p class="text-[#475569] mt-3 max-w-xl mx-auto">Open Simple IRC Client, head to Profile Settings and make the chat yours &mdash; it is just CSS.</p>
+          <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+            <a href="https://app.simpleircclient.com/" class="inline-flex items-center justify-center bg-slate-800 text-white px-6 py-3 rounded-lg font-medium hover:bg-slate-700 transition-colors">Try Web Chat</a>
+            <a href="https://simpleircclient.com/downloads.html" class="inline-flex items-center justify-center border-2 border-slate-800 text-slate-800 px-6 py-3 rounded-lg font-medium hover:bg-slate-100 transition-colors">Download Now</a>
           </div>
         </div>
       </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-50 py-6 mt-12">
+    <footer class="bg-slate-50 py-6">
       <div class="container mx-auto px-4 text-center text-slate-600 text-sm">
         <p>&copy; 2026 Simple IRC Client. Open source under AGPL-3.0 license.</p>
       </div>
