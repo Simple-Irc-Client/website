@@ -258,7 +258,7 @@
             <li>Off: plaintext, readable by the server.</li>
           </ul>
 
-          <p class="text-[#475569] mt-6 max-w-3xl">You can compare fingerprints with your peer over a channel you both already trust &mdash; a phone call, an existing verified conversation, in person &mdash; to rule out interception. If a peer's key ever changes after you've verified them, or a previously-encrypted conversation quietly drops back to plaintext, you get a warning before your next message goes out instead of a silent, unnoticed downgrade.</p>
+          <p class="text-[#475569] mt-6 max-w-3xl">Encrypting a conversation doesn't wait on verification &mdash; the moment you or your peer starts one, messages are protected end-to-end, and the "unverified" state above is just the normal starting point, not a warning to clear. Verifying is there for when you want to rule out interception at the very first handshake: your client spells out each side's fingerprint using the NATO phonetic alphabet, one word per hex digit (e.g. <code class="text-[#0f172a]">Zero One Two Three</code>&hellip;) &mdash; the same internationally standard scheme used to read letters and numbers unambiguously over a phone or radio &mdash; over a channel you both already trust: a phone call, an existing verified conversation, in person. If a peer's key ever changes after you've verified them, or a previously-encrypted conversation quietly drops back to plaintext, you get a warning before your next message goes out instead of a silent, unnoticed downgrade.</p>
         </div>
       </div>
 
