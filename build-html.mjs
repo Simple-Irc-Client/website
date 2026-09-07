@@ -78,7 +78,14 @@ function resolveAssetPlaceholders(html) {
   return html;
 }
 
-const htmlFiles = readdirSync(srcDir).filter((f) => f.endsWith(".html"));
+// Temporarily excluded from the build: the Scripts feature is not implemented yet.
+// Re-enable by removing the entry here, restoring the nav link on every page and
+// the sitemap entry, and re-adding public/scripts.html.
+const excludedHtml = new Set(["scripts.html"]);
+
+const htmlFiles = readdirSync(srcDir).filter(
+  (f) => f.endsWith(".html") && !excludedHtml.has(f),
+);
 
 for (const file of htmlFiles) {
   let html = readFileSync(new URL(file, srcDir), "utf8");

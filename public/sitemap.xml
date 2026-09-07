@@ -40,9 +40,4 @@
         <changefreq>monthly</changefreq>
     </url>
 
-    <url>
-        <loc>https://simpleircclient.com/scripts.html</loc>
-        <changefreq>monthly</changefreq>
-    </url>
-
 </urlset>
