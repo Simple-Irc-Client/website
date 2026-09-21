@@ -1,6 +1,5 @@
 import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { createHash } from "node:crypto";
-import { execFileSync } from "node:child_process";
 
 const srcDir = new URL("./src/", import.meta.url);
 const publicDir = new URL("./public/", import.meta.url);
@@ -10,54 +9,18 @@ const htaccessPath = new URL("./public/.htaccess", import.meta.url);
 const css = readFileSync(cssPath, "utf8");
 const hash = createHash("sha256").update(css).digest("base64");
 
-// Fetch latest release info from GitHub
+// Desktop release published on GitHub. Bump releaseVersion when a new release is out.
 const repo = "Simple-Irc-Client/desktop";
-let releaseVersion = "";
-let releaseAssets = [];
-
-try {
-  const raw = execFileSync("gh", [
-    "release", "view",
-    "--repo", repo,
-    "--json", "tagName,assets",
-  ], { encoding: "utf8" });
-
-  const data = JSON.parse(raw);
-  const version = data.tagName.replace(/^v/, "");
-  if (!/^\d+\.\d+\.\d+$/.test(version)) {
-    throw new Error(`Invalid version format: ${version}`);
-  }
-  releaseVersion = version;
-
-  const allowedUrlPrefix = `https://github.com/${repo}/releases/download/`;
-  releaseAssets = data.assets
-    .filter((a) => {
-      if (!a.url.startsWith(allowedUrlPrefix)) {
-        console.warn(`Skipping asset with unexpected URL: ${a.url}`);
-        return false;
-      }
-      return true;
-    })
-    .map((a) => ({ name: a.name, url: a.url }));
-
-  console.log(`Release: ${releaseVersion} (${releaseAssets.length} assets)`);
-} catch (err) {
-  console.warn("Failed to fetch release data from GitHub:", err.message);
-  console.warn("Falling back to static version 2.0.9.");
-
-  releaseVersion = "2.0.9";
-  const tag = `v${releaseVersion}`;
-  const base = `https://github.com/${repo}/releases/download/${tag}`;
-  const names = [
-    `Simple-Irc-Client_${releaseVersion}_aarch64.dmg`,
-    `Simple-Irc-Client_${releaseVersion}_x64-setup.exe`,
-    `Simple-Irc-Client_${releaseVersion}_x64_en-US.msi`,
-    `Simple-Irc-Client_${releaseVersion}_amd64.AppImage`,
-    `Simple-Irc-Client_${releaseVersion}_amd64.deb`,
-    `Simple-Irc-Client-${releaseVersion}-1.x86_64.rpm`,
-  ];
-  releaseAssets = names.map((name) => ({ name, url: `${base}/${name}` }));
-}
+const releaseVersion = "2.0.9";
+const releaseBase = `https://github.com/${repo}/releases/download/v${releaseVersion}`;
+const releaseAssets = [
+  `Simple-Irc-Client_${releaseVersion}_aarch64.dmg`,
+  `Simple-Irc-Client_${releaseVersion}_x64-setup.exe`,
+  `Simple-Irc-Client_${releaseVersion}_x64_en-US.msi`,
+  `Simple-Irc-Client_${releaseVersion}_amd64.AppImage`,
+  `Simple-Irc-Client_${releaseVersion}_amd64.deb`,
+  `Simple-Irc-Client-${releaseVersion}-1.x86_64.rpm`,
+].map((name) => ({ name, url: `${releaseBase}/${name}` }));
 
 function globToRegex(glob) {
   const escaped = glob.replace(/[.+^${}()|[\]\\]/g, "\\$&");
