@@ -26,6 +26,8 @@ jobs:
       - run: |
           pnpm install --frozen-lockfile
           pnpm run build
+        env:
+          VITE_SENTRY_DSN: ${{ secrets.VITE_SENTRY_DSN }}
 
       - name: Deploy via SFTP with SSH Key
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
