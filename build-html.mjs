@@ -11,7 +11,7 @@ const hash = createHash("sha256").update(css).digest("base64");
 
 // Desktop release published on GitHub. Bump releaseVersion when a new release is out.
 const repo = "Simple-Irc-Client/desktop";
-const releaseVersion = "2.0.9";
+const releaseVersion = "2.0.10";
 const releaseBase = `https://github.com/${repo}/releases/download/v${releaseVersion}`;
 const releaseAssets = [
   `Simple-Irc-Client_${releaseVersion}_aarch64.dmg`,
