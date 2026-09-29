@@ -1,12 +1,12 @@
 {
   "name": "Simple IRC Client",
   "short_name": "IRC Client",
-  "description": "A modern, minimalist IRC client that focuses on what matters.",
+  "description": "Open-source IRC client for Windows, Linux, macOS and the browser, with end-to-end encrypted private messages.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#1e293b",
+  "background_color": "#fbfaf7",
+  "theme_color": "#fbfaf7",
   "icons": [
     {
       "src": "/assets/apple-touch-icon-72x72.png",

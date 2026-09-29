@@ -1,4 +1,4 @@
-const CACHE_NAME = "sic-v7";
+const CACHE_NAME = "sic-v8";
 const MAX_CACHED_ENTRIES = 30;
 const ASSETS = [
   "/",

@@ -29,6 +29,8 @@ public/downloads.html
 public/404.html
 public/what-is-irc.html
 public/build-irc-client.html
+public/encryption.html
+public/themes.html
 
 dist-app/
 .env*

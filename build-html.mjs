@@ -27,16 +27,20 @@ function globToRegex(glob) {
   return new RegExp("^" + escaped.replace(/\*/g, ".*") + "$");
 }
 
+function findAsset(pattern) {
+  const re = globToRegex(pattern);
+  const asset = releaseAssets.find((a) => re.test(a.name));
+  if (!asset) {
+    console.warn(`  No asset matched pattern: ${pattern}`);
+  }
+  return asset;
+}
+
+// {{VERSION}} and {{ASSET:glob}} (download URL of the matching release file).
 function resolveAssetPlaceholders(html) {
   html = html.replace(/\{\{VERSION\}\}/g, releaseVersion);
   html = html.replace(/\{\{ASSET:([^}]+)\}\}/g, (_match, pattern) => {
-    const re = globToRegex(pattern);
-    const asset = releaseAssets.find((a) => re.test(a.name));
-    if (!asset) {
-      console.warn(`  No asset matched pattern: ${pattern}`);
-      return `https://github.com/${repo}/releases/latest`;
-    }
-    return asset.url;
+    return findAsset(pattern)?.url ?? `https://github.com/${repo}/releases/latest`;
   });
   return html;
 }
@@ -46,6 +50,24 @@ function resolveAssetPlaceholders(html) {
 // the sitemap entry, and re-adding public/scripts.html.
 const excludedHtml = new Set(["scripts.html"]);
 
+// Shared markup, injected where a page has the matching `<!-- @name -->` marker.
+const partials = {
+  nav: readFileSync(new URL("partials/nav.html", srcDir), "utf8").trim(),
+  footer: readFileSync(new URL("partials/footer.html", srcDir), "utf8").trim(),
+};
+
+// Replace exactly one occurrence of `marker`. Uses split/join instead of
+// .replace() to avoid $ backreference interpretation in the inserted content,
+// and throws so a page can't silently ship without its nav, footer or CSS.
+function replaceOnce(html, marker, content, file) {
+  const parts = html.split(marker);
+  if (parts.length !== 2) {
+    throw new Error(`${file}: expected exactly one ${marker}, found ${parts.length - 1}`);
+  }
+  return parts[0] + content + parts[1];
+}
+
+// Top-level src/*.html only; partials live in a subdirectory.
 const htmlFiles = readdirSync(srcDir).filter(
   (f) => f.endsWith(".html") && !excludedHtml.has(f),
 );
@@ -53,12 +75,15 @@ const htmlFiles = readdirSync(srcDir).filter(
 for (const file of htmlFiles) {
   let html = readFileSync(new URL(file, srcDir), "utf8");
 
-  // Use split/join instead of .replace() to avoid $ backreference interpretation in CSS content
-  const cssLinkTag = '<link rel="stylesheet" href="/css/style.css" />';
-  const parts = html.split(cssLinkTag);
-  if (parts.length === 2) {
-    html = parts[0] + `<style>${css}</style>` + parts[1];
+  for (const [name, content] of Object.entries(partials)) {
+    html = replaceOnce(html, `<!-- @${name} -->`, content, file);
   }
+
+  // Highlight the nav link of the page being built.
+  const pageAttr = `data-page="${file}"`;
+  html = html.split(pageAttr).join(`${pageAttr} aria-current="page"`);
+
+  html = replaceOnce(html, '<link rel="stylesheet" href="/css/style.css" />', `<style>${css}</style>`, file);
 
   html = html.replace(
     /style-src '(?:self|sha256-[A-Za-z0-9+/=]+)'/g,
