@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Themes - Simple IRC Client</title>
-    <meta name="description" content="Customize Simple IRC Client with CSS themes - switch between Classic and Modern layouts, edit their styling, or create your own theme. Includes ready-to-paste example themes." />
+    <meta name="description" content="Customize Simple IRC Client with CSS themes - switch between the Classic, Modern and IRC themes, edit their styling, or create your own theme. Includes ready-to-paste example themes." />
     <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#141311" media="(prefers-color-scheme: dark)" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://scripts.simpleanalyticscdn.com; style-src 'self'; img-src 'self' https://queue.simpleanalyticscdn.com; connect-src 'self' https://queue.simpleanalyticscdn.com https://scripts.simpleanalyticscdn.com; manifest-src 'self'; worker-src 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;" />
@@ -16,7 +16,7 @@
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content="Simple IRC Client" />
     <meta property="og:title" content="Themes - Simple IRC Client" />
-    <meta property="og:description" content="Customize Simple IRC Client with CSS themes - switch between Classic and Modern layouts, edit their styling, or create your own theme. Includes ready-to-paste example themes." />
+    <meta property="og:description" content="Customize Simple IRC Client with CSS themes - switch between the Classic, Modern and IRC themes, edit their styling, or create your own theme. Includes ready-to-paste example themes." />
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://simpleircclient.com/themes.html" />
     <meta property="og:image" content="https://simpleircclient.com/assets/logo.webp" />
@@ -37,7 +37,7 @@
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": "Themes for Simple IRC Client",
-      "description": "Customize Simple IRC Client with CSS themes - switch between Classic and Modern layouts, edit their styling, or create your own theme. Includes ready-to-paste example themes.",
+      "description": "Customize Simple IRC Client with CSS themes - switch between the Classic, Modern and IRC themes, edit their styling, or create your own theme. Includes ready-to-paste example themes.",
       "url": "https://simpleircclient.com/themes.html",
       "author": {
         "@type": "Organization",
@@ -65,7 +65,16 @@
 
       <div class="prose mt-4">
         <h2 id="how-themes-work">How themes work</h2>
-        <p>Simple IRC Client ships with two built-in themes: <strong>Classic</strong>, a traditional one-line-per-message IRC layout, and <strong>Modern</strong>, an avatar-based layout that groups messages like most chat apps do today. A theme is only a stylesheet: every message renders the same HTML, and the theme's CSS decides which parts show and how they are laid out.</p>
+        <p>Simple IRC Client ships with three built-in themes:</p>
+        <dl class="dl-columns">
+          <dt>Classic</dt>
+          <dd>A traditional one-line-per-message IRC layout in the app's regular colors.</dd>
+          <dt>Modern</dt>
+          <dd>An avatar-based layout that groups messages like most chat apps do today.</dd>
+          <dt>IRC</dt>
+          <dd>The look of this website, applied to the whole app: monospace text, warm paper colors (near-black in dark mode), square corners and a terminal-style transcript with <code>&lt;nick&gt;</code> brackets, <code>* nick</code> actions and <code>-!-</code> in front of joins, parts and other status lines.</dd>
+        </dl>
+        <p>A theme is only a stylesheet: every message renders the same HTML, and the theme's CSS decides which parts show and how they are laid out.</p>
         <p>To switch themes:</p>
         <ol>
           <li>Click your avatar in the toolbar and choose <strong>Profile Settings</strong>.</li>
@@ -76,7 +85,7 @@
         <p>The <strong>Edit</strong> and <strong>New theme</strong> buttons next to the theme dropdown open the <strong>Theme Creator</strong>, which writes the stylesheet for you. No CSS needed.</p>
         <dl class="dl-columns">
           <dt>Layout</dt>
-          <dd>Start from the Classic or Modern base.</dd>
+          <dd>Start from the Classic, Modern or IRC base. If you haven't changed any colors yet, switching the base also switches to that base's palette.</dd>
           <dt>Options</dt>
           <dd>Seconds in timestamps, avatars, link previews, compact spacing.</dd>
           <dt>Message colors</dt>
@@ -87,7 +96,7 @@
         <h2 id="editing-css">Editing the CSS</h2>
         <p>Click <strong>Edit CSS</strong> in the Creator to switch to a CSS editor for the same theme. Unsaved Creator changes carry over.</p>
         <ul>
-          <li>You can edit the built-in Classic and Modern themes too; changes are previewed live in the chat while you type. A <strong>Reset to default</strong> button restores the shipped stylesheet at any time.</li>
+          <li>You can edit the built-in Classic, Modern and IRC themes too; changes are previewed live in the chat while you type. A <strong>Reset to default</strong> button restores the shipped stylesheet at any time.</li>
           <li>New themes are pre-filled with the CSS of the currently active one, so you never start from a blank page.</li>
           <li><strong>Delete</strong> (next to the dropdown) removes a custom theme. Built-in themes can't be deleted.</li>
         </ul>
@@ -121,7 +130,7 @@
 }</code></pre>
 
         <h2 id="message-colors">Message colors</h2>
-        <p>The full message palette and its default values. These are the colors the Theme Creator's pickers edit, and every built-in theme's CSS ends with them, ready to change:</p>
+        <p>The full message palette and its default values, used by the Classic and Modern themes. These are the colors the Theme Creator's pickers edit, and every built-in theme's CSS ends with its palette, ready to change:</p>
         <div class="table-scroll">
           <table>
             <thead>
@@ -204,6 +213,94 @@
                 <td>Errors</td>
                 <td><span class="swatch bg-[#ff0000]" aria-hidden="true"></span><code>#ff0000</code></td>
                 <td><span class="swatch bg-[#b05555]" aria-hidden="true"></span><code>#b05555</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>The IRC theme ships its own palette, taken from this website's colors. Every value has at least a 4.5:1 contrast ratio against the theme's background:</p>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Variable</th>
+                <th>Used for</th>
+                <th>IRC light</th>
+                <th>IRC dark</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>--msg-time</code></td>
+                <td>Timestamps</td>
+                <td><span class="swatch bg-[#6f6a60]" aria-hidden="true"></span><code>#6f6a60</code></td>
+                <td><span class="swatch bg-[#948f84]" aria-hidden="true"></span><code>#948f84</code></td>
+              </tr>
+              <tr>
+                <td><code>--msg-default</code></td>
+                <td>System messages</td>
+                <td><span class="swatch bg-[#1c1b18]" aria-hidden="true"></span><code>#1c1b18</code></td>
+                <td><span class="swatch bg-[#ebe8e1]" aria-hidden="true"></span><code>#ebe8e1</code></td>
+              </tr>
+              <tr>
+                <td><code>--msg-body</code></td>
+                <td>Message text</td>
+                <td><span class="swatch bg-[#1c1b18]" aria-hidden="true"></span><code>#1c1b18</code></td>
+                <td><span class="swatch bg-[#ebe8e1]" aria-hidden="true"></span><code>#ebe8e1</code></td>
+              </tr>
+              <tr>
+                <td><code>--msg-join</code></td>
+                <td>Join messages</td>
+                <td><span class="swatch bg-[#4a7309]" aria-hidden="true"></span><code>#4a7309</code></td>
+                <td><span class="swatch bg-[#9ccc4a]" aria-hidden="true"></span><code>#9ccc4a</code></td>
+              </tr>
+              <tr>
+                <td><code>--msg-part</code></td>
+                <td>Part messages</td>
+                <td><span class="swatch bg-[#9a4a06]" aria-hidden="true"></span><code>#9a4a06</code></td>
+                <td><span class="swatch bg-[#e9a23b]" aria-hidden="true"></span><code>#e9a23b</code></td>
+              </tr>
+              <tr>
+                <td><code>--msg-quit</code></td>
+                <td>Quit messages</td>
+                <td><span class="swatch bg-[#57534b]" aria-hidden="true"></span><code>#57534b</code></td>
+                <td><span class="swatch bg-[#b3aea3]" aria-hidden="true"></span><code>#b3aea3</code></td>
+              </tr>
+              <tr>
+                <td><code>--msg-kick</code></td>
+                <td>Kick messages</td>
+                <td><span class="swatch bg-[#b42318]" aria-hidden="true"></span><code>#b42318</code></td>
+                <td><span class="swatch bg-[#f47c6f]" aria-hidden="true"></span><code>#f47c6f</code></td>
+              </tr>
+              <tr>
+                <td><code>--msg-mode</code></td>
+                <td>Mode changes</td>
+                <td><span class="swatch bg-[#391dd8]" aria-hidden="true"></span><code>#391dd8</code></td>
+                <td><span class="swatch bg-[#a597ff]" aria-hidden="true"></span><code>#a597ff</code></td>
+              </tr>
+              <tr>
+                <td><code>--msg-notice</code></td>
+                <td>Notices</td>
+                <td><span class="swatch bg-[#391dd8]" aria-hidden="true"></span><code>#391dd8</code></td>
+                <td><span class="swatch bg-[#a597ff]" aria-hidden="true"></span><code>#a597ff</code></td>
+              </tr>
+              <tr>
+                <td><code>--msg-info</code></td>
+                <td>Informational messages</td>
+                <td><span class="swatch bg-[#6f6a60]" aria-hidden="true"></span><code>#6f6a60</code></td>
+                <td><span class="swatch bg-[#948f84]" aria-hidden="true"></span><code>#948f84</code></td>
+              </tr>
+              <tr>
+                <td><code>--msg-me</code></td>
+                <td>Actions (/me)</td>
+                <td><span class="swatch bg-[#7c2d86]" aria-hidden="true"></span><code>#7c2d86</code></td>
+                <td><span class="swatch bg-[#d99ae0]" aria-hidden="true"></span><code>#d99ae0</code></td>
+              </tr>
+              <tr>
+                <td><code>--msg-error</code></td>
+                <td>Errors</td>
+                <td><span class="swatch bg-[#b42318]" aria-hidden="true"></span><code>#b42318</code></td>
+                <td><span class="swatch bg-[#f47c6f]" aria-hidden="true"></span><code>#f47c6f</code></td>
               </tr>
             </tbody>
           </table>
