@@ -2,6 +2,20 @@
 
 [![Build Status](https://github.com/Simple-Irc-Client/website/actions/workflows/ci.yml/badge.svg)](https://github.com/Simple-Irc-Client/website/actions/workflows/ci.yml)
 
-## Continuous Deployment to Hetzner via SFTP
+Static site for simpleircclient.com. The build also produces the web app from the `core` submodule in gateway mode.
 
-This project is configured for continuous deployment to a Hetzner server using SFTP. Every commit to the `main` branch will automatically trigger a new build and deploy the changes to your Hetzner server via SFTP.
+## Build
+
+```bash
+git submodule update --init
+pnpm install
+pnpm run build
+```
+
+- `build:css` compiles Tailwind into `public/css/style.css`
+- `build:html` renders the pages in `src/` into `public/`
+- `build:web` builds `core` against the public gateway into `dist-app/`
+
+## Deployment
+
+Every push to `main` builds the site and uploads it to the Hetzner server over SFTP (`.github/workflows/ci.yml`).
