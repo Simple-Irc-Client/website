@@ -131,6 +131,25 @@
     text-decoration: underline;
   }
 
+  .analytics-credit {
+    display: block;
+  }
+
+  /* Wordmark sized to the cap height of the surrounding text */
+  .analytics-credit svg {
+    display: inline-block;
+    height: 0.914em;
+    vertical-align: -0.2em;
+    fill: currentColor;
+  }
+
+  @supports (height: 1cap) {
+    .analytics-credit svg {
+      height: 1.305714cap;
+      vertical-align: -0.285714cap;
+    }
+  }
+
   /* The one column every page uses: nav, text, images and footer line up */
   .page {
     max-width: 50rem;
