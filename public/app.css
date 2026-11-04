@@ -169,6 +169,44 @@
     color: var(--color-muted);
   }
 
+  /* Jump links under the introduction of a long page */
+  .toc ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+  }
+
+  .toc a {
+    color: var(--color-muted);
+    text-decoration: underline;
+    text-decoration-color: var(--color-line);
+    text-underline-offset: 4px;
+  }
+
+  .toc a:hover {
+    color: var(--color-fg);
+    text-decoration-color: var(--color-accent);
+  }
+
+  /* Touch screens: fingers need bigger targets than the small text links offer */
+  @media (pointer: coarse) {
+    /* Grow the hit area without moving the link */
+    .site-nav a {
+      padding: 0.75rem 0.5rem;
+      margin: -0.75rem -0.5rem;
+    }
+
+    /* Links stacked in lists get room between them */
+    .site-footer li a,
+    .prose ul.downloads a,
+    .toc a {
+      display: inline-block;
+      padding-block: 0.625rem;
+    }
+  }
+
   /* Buttons */
   .btn {
     display: inline-flex;
@@ -275,10 +313,17 @@
   .prose pre:not(.buffer-body) {
     padding: 1rem 1.25rem;
     border-left: 2px solid var(--color-accent);
-    background-color: var(--color-surface);
     font-size: 0.875rem;
     line-height: 1.6;
     overflow-x: auto;
+    /* Edge shadows show that a block scrolls sideways: the covers scroll with the text and hide a shadow once its edge is reached */
+    --scroll-shadow: color-mix(in srgb, var(--color-fg) 22%, transparent);
+    background:
+      linear-gradient(to right, var(--color-surface) 30%, transparent) left / 2.5rem 100% no-repeat local,
+      linear-gradient(to left, var(--color-surface) 30%, transparent) right / 2.5rem 100% no-repeat local,
+      radial-gradient(farthest-side at 0 50%, var(--scroll-shadow), transparent) left / 0.75rem 100% no-repeat scroll,
+      radial-gradient(farthest-side at 100% 50%, var(--scroll-shadow), transparent) right / 0.75rem 100% no-repeat scroll,
+      var(--color-surface);
   }
 
   .prose dl {

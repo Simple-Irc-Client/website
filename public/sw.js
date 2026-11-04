@@ -1,4 +1,4 @@
-const CACHE_NAME = "sic-v8";
+const CACHE_NAME = "sic-v9";
 const MAX_CACHED_ENTRIES = 30;
 const ASSETS = [
   "/",
@@ -6,7 +6,7 @@ const ASSETS = [
   "/favicon.ico",
   "/manifest.json",
   "/assets/logo.svg",
-  "/assets/screenshot-450w.webp",
+  "/assets/screenshot-mobile.webp",
   "/assets/screenshot.webp",
 ];
 

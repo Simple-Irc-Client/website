@@ -91,16 +91,17 @@
       </section>
 
       <div class="page">
-        <img
-          src="/assets/screenshot.webp"
-          srcset="/assets/screenshot-450w.webp 450w, /assets/screenshot.webp 900w"
-          sizes="(max-width: 50rem) 100vw, 48rem"
-          alt="Simple IRC Client with a channel open: channel list on the left, messages in the middle, user list on the right"
-          class="w-full border border-line"
-          width="900"
-          height="489"
-          fetchpriority="high"
-        />
+        <picture>
+          <source media="(max-width: 39.99rem)" srcset="/assets/screenshot-mobile.webp" width="377" height="812" />
+          <img
+            src="/assets/screenshot.webp"
+            alt="Simple IRC Client with a channel open and a conversation in progress"
+            class="mx-auto w-full max-w-60 border border-line sm:max-w-none"
+            width="900"
+            height="489"
+            fetchpriority="high"
+          />
+        </picture>
       </div>
 
       <div class="page prose mt-8">
@@ -166,7 +167,7 @@
 
         <h2 id="embed">Put a chat room on your website</h2>
         <p>The web client works in an iframe. URL parameters choose the network and the channels, so visitors land straight in your channel.</p>
-        <pre><code>&lt;iframe
+        <pre class="whitespace-pre-wrap break-all"><code>&lt;iframe
   src="https://app.simpleircclient.com/?server=Libera.Chat&amp;channel=%23your-channel"
   width="100%"
   height="500"
@@ -185,7 +186,7 @@
             </tbody>
           </table>
         </div>
-        <pre><code># Libera.Chat, #general
+        <pre class="whitespace-pre-wrap break-all"><code># Libera.Chat, #general
 https://app.simpleircclient.com/?server=Libera.Chat&amp;channel=%23general
 
 # OFTC, #debian

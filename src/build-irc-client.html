@@ -63,6 +63,23 @@
       <h1 class="mt-3 text-3xl md:text-4xl">Write your own IRC client</h1>
       <p class="lede mt-5">IRC is plain text over a TCP socket, which makes it one of the easiest network protocols to implement. Below: the handful of commands you need, and the same small client in nine languages.</p>
 
+      <nav aria-label="On this page" class="toc mt-8">
+        <ul>
+          <li><a href="#protocol">The protocol</a></li>
+          <li><a href="#python">Python</a></li>
+          <li><a href="#javascript">JavaScript</a></li>
+          <li><a href="#go">Go</a></li>
+          <li><a href="#rust">Rust</a></li>
+          <li><a href="#c">C</a></li>
+          <li><a href="#java">Java</a></li>
+          <li><a href="#ruby">Ruby</a></li>
+          <li><a href="#csharp">C#</a></li>
+          <li><a href="#php">PHP</a></li>
+          <li><a href="#next-steps">What a real client needs</a></li>
+          <li><a href="#references">References</a></li>
+        </ul>
+      </nav>
+
       <div class="prose mt-4">
         <!-- Introduction -->
         <h2 id="protocol">The protocol</h2>
@@ -97,7 +114,7 @@
         <p>Each example below does exactly that: connects to Libera Chat, joins #test, says hello and quits, answering PINGs along the way.</p>
 
         <!-- Python -->
-        <h2>Python</h2>
+        <h2 id="python">Python</h2>
         <p>Only the standard library: <code>socket</code> plus <code>ssl</code> for TLS. Tested with Python 3.6 and 3.14.</p>
         <pre><code>import socket
 import ssl
@@ -142,7 +159,7 @@ while True:
 irc.close()</code></pre>
 
         <!-- JavaScript (Node.js) -->
-        <h2>JavaScript (Node.js)</h2>
+        <h2 id="javascript">JavaScript (Node.js)</h2>
         <p>The built-in <code>tls</code> module. Tested with Node.js 8 and 26.</p>
         <pre><code>const tls = require("tls");
 
@@ -184,7 +201,7 @@ socket.on("data", (data) =&gt; {
 });</code></pre>
 
         <!-- Go -->
-        <h2>Go</h2>
+        <h2 id="go">Go</h2>
         <p>Standard library only: <code>crypto/tls</code> and <code>bufio</code>. Tested with Go 1.13 and 1.27.</p>
         <pre><code>package main
 
@@ -233,7 +250,7 @@ func main() {
 }</code></pre>
 
         <!-- Rust -->
-        <h2>Rust</h2>
+        <h2 id="rust">Rust</h2>
         <p>The standard library plus the <code>native-tls</code> crate for TLS. Needs Rust 1.80 or newer, because the current TLS crates do. Tested with 1.80 and 1.98.</p>
         <pre><code>use native_tls::TlsConnector;
 use std::io::{BufRead, BufReader, Write};
@@ -285,7 +302,7 @@ fn main() {
 // native-tls = "0.2"</code></pre>
 
         <!-- C -->
-        <h2>C</h2>
+        <h2 id="c">C</h2>
         <p>POSIX sockets over plain TCP. For anything real you would add TLS with OpenSSL. Tested with GCC 7 and 16.</p>
         <pre><code>#include &lt;stdio.h&gt;
 #include &lt;string.h&gt;
@@ -372,7 +389,7 @@ int main(void) {
 /* Compile: gcc -o irc irc.c */</code></pre>
 
         <!-- Java -->
-        <h2>Java</h2>
+        <h2 id="java">Java</h2>
         <p><code>SSLSocketFactory</code> gives you TLS out of the box. Tested with Java 8 and 25.</p>
         <pre><code>import javax.net.ssl.SSLSocketFactory;
 import java.io.*;
@@ -424,7 +441,7 @@ public class IrcClient {
 }</code></pre>
 
         <!-- Ruby -->
-        <h2>Ruby</h2>
+        <h2 id="ruby">Ruby</h2>
         <p>The <code>openssl</code> standard library handles TLS. Tested with Ruby 2.3 and 4.0.</p>
         <pre><code>require "socket"
 require "openssl"
@@ -470,7 +487,7 @@ end
 irc.close</code></pre>
 
         <!-- C# -->
-        <h2>C#</h2>
+        <h2 id="csharp">C#</h2>
         <p><code>SslStream</code> from .NET. Uses top-level statements, so it needs .NET 6 or newer. Tested with .NET 6 and 10.</p>
         <pre><code>using System.Net.Security;
 using System.Net.Sockets;
@@ -516,7 +533,7 @@ while ((line = reader.ReadLine()) != null)
 }</code></pre>
 
         <!-- PHP -->
-        <h2>PHP</h2>
+        <h2 id="php">PHP</h2>
         <p>The <code>ssl://</code> stream wrapper opens a TLS socket. Tested with PHP 7.0 and 8.5.</p>
         <pre><code>&lt;?php
 
