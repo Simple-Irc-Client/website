@@ -21,11 +21,6 @@
     </url>
 
     <url>
-        <loc>https://simpleircclient.com/web/</loc>
-        <changefreq>weekly</changefreq>
-    </url>
-
-    <url>
         <loc>https://simpleircclient.com/what-is-irc.html</loc>
         <changefreq>monthly</changefreq>
     </url>

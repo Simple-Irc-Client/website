@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { markdownPath, pageSummary, pageToMarkdown } from "./build-markdown.mjs";
 import { pagesMarker, renderFullText, renderPageList } from "./build-llms.mjs";
+import { describeNewTabLinks, makeCodeBlocksFocusable } from "./build-accessibility.mjs";
 
 const srcDir = new URL("./src/", import.meta.url);
 const publicDir = new URL("./public/", import.meta.url);
@@ -97,6 +98,8 @@ for (const file of htmlFiles) {
   for (const [name, content] of Object.entries(partials)) {
     html = replaceOnce(html, `<!-- @${name} -->`, content, file);
   }
+
+  html = describeNewTabLinks(makeCodeBlocksFocusable(html), file);
 
   // Highlight the nav link of the page being built.
   const pageAttr = `data-page="${file}"`;

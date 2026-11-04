@@ -84,7 +84,7 @@
           <p class="lede mt-5 max-w-xl">Chat on Libera.Chat, OFTC or any other IRC network, from a desktop app or straight from the browser. Private messages between Simple IRC Client users can be end-to-end encrypted.</p>
           <div class="mt-8 flex flex-wrap gap-3">
             <a href="https://app.simpleircclient.com/" class="btn btn-primary">Open web chat</a>
-            <a href="https://simpleircclient.com/downloads.html" class="btn">Download</a>
+            <a href="https://simpleircclient.com/downloads.html" class="btn hidden sm:inline-flex">Download</a>
           </div>
           <p class="mt-4 text-sm text-faint">The web chat needs no install or account. Source code is on <a href="https://github.com/Simple-Irc-Client" target="_blank" rel="noopener noreferrer" class="underline hover:text-fg">GitHub</a>, AGPL-3.0.</p>
         </div>
@@ -103,8 +103,6 @@
         />
       </div>
 
-      <!-- Everything below the screenshot is hidden on phones -->
-      <div class="hidden sm:block">
       <div class="page prose mt-8">
         <h2 id="encryption">Encrypted private messages</h2>
         <p>Direct messages between two Simple IRC Client users can be end-to-end encrypted. The IRC server still relays them; it just can't read them. The same message, from both ends:</p>
@@ -205,7 +203,6 @@ https://app.simpleircclient.com/?server=irc.example.com&amp;port=6697&amp;tls=tr
           <li><a href="https://simpleircclient.com/build-irc-client.html">Write your own IRC client</a>, with working examples in Python, JavaScript, Go, Rust, C, Java, Ruby, C# and PHP.</li>
           <li><a href="https://simpleircclient.com/themes.html">Themes</a>: switch between the built-in looks or write your own in CSS.</li>
         </ul>
-      </div>
       </div>
     </main>
 
