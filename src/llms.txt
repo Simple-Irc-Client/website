@@ -1,0 +1,13 @@
+# Simple IRC Client
+
+> Open-source IRC client for Windows, Linux, macOS and the browser, with end-to-end encrypted private messages between Simple IRC Client users.
+
+- Web chat, no install or account: https://app.simpleircclient.com/
+- Desktop app, release {{VERSION}}: https://simpleircclient.com/downloads.html
+- Source code, AGPL-3.0: https://github.com/Simple-Irc-Client
+- Embed a channel on any website with an iframe pointing at `https://app.simpleircclient.com/?server=<network>&channel=%23<channel>`; the home page lists every URL parameter.
+- The full text of every page below, in one file: https://simpleircclient.com/llms-full.txt
+
+## Pages
+
+<!-- @pages -->

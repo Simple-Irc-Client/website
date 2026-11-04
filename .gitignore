@@ -31,6 +31,9 @@ public/what-is-irc.html
 public/build-irc-client.html
 public/encryption.html
 public/themes.html
+public/*.html.md
+public/llms.txt
+public/llms-full.txt
 
 dist-app/
 .env*

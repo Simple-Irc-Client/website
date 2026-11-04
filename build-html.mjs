@@ -1,5 +1,7 @@
 import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { createHash } from "node:crypto";
+import { markdownPath, pageSummary, pageToMarkdown } from "./build-markdown.mjs";
+import { pagesMarker, renderFullText, renderPageList } from "./build-llms.mjs";
 
 const srcDir = new URL("./src/", import.meta.url);
 const publicDir = new URL("./public/", import.meta.url);
@@ -67,10 +69,27 @@ function replaceOnce(html, marker, content, file) {
   return parts[0] + content + parts[1];
 }
 
-// Top-level src/*.html only; partials live in a subdirectory.
-const htmlFiles = readdirSync(srcDir).filter(
-  (f) => f.endsWith(".html") && !excludedHtml.has(f),
-);
+// Pages that get no Markdown version and no llms.txt entry.
+const pagesWithoutMarkdown = new Set(["404.html"]);
+
+// Top-level src/*.html only; partials live in a subdirectory. The home page comes first in llms.txt.
+const htmlFiles = readdirSync(srcDir)
+  .filter((f) => f.endsWith(".html") && !excludedHtml.has(f))
+  .sort((a, b) => (a === "index.html" ? -1 : b === "index.html" ? 1 : a.localeCompare(b)));
+
+const markdownPages = [];
+
+function linkMarkdownVersion(html, file) {
+  const link = `<link rel="alternate" type="text/markdown" href="/${markdownPath(file)}" />`;
+  return replaceOnce(html, "</head>", `  ${link}\n  </head>`, file);
+}
+
+function writeMarkdownVersion(html, file) {
+  const markdown = pageToMarkdown(html, file);
+  writeFileSync(new URL(markdownPath(file), publicDir), markdown);
+  markdownPages.push({ ...pageSummary(html, file), markdown });
+  console.log(`${file} -> public/${markdownPath(file)}`);
+}
 
 for (const file of htmlFiles) {
   let html = readFileSync(new URL(file, srcDir), "utf8");
@@ -92,9 +111,24 @@ for (const file of htmlFiles) {
 
   html = resolveAssetPlaceholders(html);
 
+  const hasMarkdownVersion = !pagesWithoutMarkdown.has(file);
+  if (hasMarkdownVersion) {
+    html = linkMarkdownVersion(html, file);
+  }
+
   writeFileSync(new URL(file, publicDir), html);
   console.log(`${file} -> public/${file} (CSP: sha256-${hash})`);
+
+  if (hasMarkdownVersion) {
+    writeMarkdownVersion(html, file);
+  }
 }
+
+const llmsTemplate = readFileSync(new URL("llms.txt", srcDir), "utf8");
+const llms = replaceOnce(llmsTemplate, pagesMarker, renderPageList(markdownPages), "llms.txt");
+writeFileSync(new URL("llms.txt", publicDir), resolveAssetPlaceholders(llms));
+writeFileSync(new URL("llms-full.txt", publicDir), renderFullText(markdownPages));
+console.log("llms.txt, llms-full.txt -> public/");
 
 let htaccess = readFileSync(htaccessPath, "utf8");
 htaccess = htaccess.replace(

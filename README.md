@@ -13,8 +13,10 @@ pnpm run build
 ```
 
 - `build:css` compiles Tailwind into `public/css/style.css`
-- `build:html` renders the pages in `src/` into `public/`
+- `build:html` renders the pages in `src/` into `public/`, plus a Markdown version of each page (`page.html.md`), `llms.txt` and `llms-full.txt` for AI agents
 - `build:web` builds `core` against the public gateway into `dist-app/`
+
+`pnpm test` runs the unit tests of the build scripts.
 
 ## Deployment
 

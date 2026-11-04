@@ -9,10 +9,14 @@
     "build:html": "node build-html.mjs",
     "build:web": "cd core && printf 'VITE_GATEWAY_HOST=irc.simpleircclient.com\\nVITE_GATEWAY_PORT=443\\nVITE_GATEWAY_PATH=/webirc\\n' > .env.gateway && pnpm install && pnpm run build:gateway && mkdir -p ../dist-app && cp -r dist/* ../dist-app/",
     "build": "pnpm run build:css && pnpm run build:html && pnpm run build:web",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test \"build-*.test.mjs\""
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.3.3",
+    "node-html-markdown": "^2.0.0",
     "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "fast-check": "^4.10.2"
   }
 }

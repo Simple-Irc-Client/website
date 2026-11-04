@@ -20,12 +20,33 @@ ErrorDocument 404 /404.html
     Require all denied
 </FilesMatch>
 
+# Markdown versions of the pages (page.html.md), llms.txt and llms-full.txt are for AI agents.
+AddType "text/markdown; charset=utf-8" .md
+AddType "text/plain; charset=utf-8" .txt
+
+# Agents that ask for Markdown get a page's Markdown version at the page's own URL.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTP_ACCEPT} text/markdown
+    RewriteRule ^$ index.html.md [L]
+    RewriteCond %{HTTP_ACCEPT} text/markdown
+    RewriteCond %{REQUEST_FILENAME}.md -f
+    RewriteRule ^(.+\.html)$ $1.md [L]
+</IfModule>
+
+# Point search engines from a page's Markdown version back to the HTML page.
+SetEnvIf Request_URI "^(.+\.html)\.md$" HTML_PAGE=$1
+SetEnvIf Request_URI "^/index\.html\.md$" HTML_PAGE=/
+<IfModule mod_headers.c>
+    Header always set Link "<https://simpleircclient.com%{HTML_PAGE}e>; rel=\"canonical\"" env=HTML_PAGE
+</IfModule>
+
 # Enable compression
 <IfModule mod_brotli.c>
-    AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/javascript application/javascript application/json image/svg+xml
+    AddOutputFilterByType BROTLI_COMPRESS text/html text/markdown text/plain text/css text/javascript application/javascript application/json image/svg+xml
 </IfModule>
 <IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
+    AddOutputFilterByType DEFLATE text/html text/markdown text/plain text/css text/javascript application/javascript application/json image/svg+xml
 </IfModule>
 
 # Cache-Control
@@ -34,6 +55,15 @@ ErrorDocument 404 /404.html
     # 5 minutes lets CDNs and browsers cache while keeping deploys fast to propagate.
     <FilesMatch "\.html$">
         Header always set Cache-Control "public, max-age=300, must-revalidate"
+    </FilesMatch>
+
+    # Markdown and text: rebuilt with the HTML, so cached the same way. HTML and Markdown
+    # share URLs through Accept negotiation, so caches must key on Accept too.
+    <FilesMatch "\.(md|txt)$">
+        Header always set Cache-Control "public, max-age=300, must-revalidate"
+    </FilesMatch>
+    <FilesMatch "\.(html|md)$">
+        Header always merge Vary "Accept"
     </FilesMatch>
 
     # JS: not content-hashed, but changes rarely. 1 day.
