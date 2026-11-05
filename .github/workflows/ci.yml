@@ -29,6 +29,10 @@ jobs:
           pnpm run build
         env:
           VITE_SENTRY_DSN: ${{ secrets.VITE_SENTRY_DSN }}
+          # Uploads the app's source maps to Sentry, only for the builds that get deployed; without a token the build makes none
+          SENTRY_AUTH_TOKEN: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' && secrets.SENTRY_AUTH_TOKEN || '' }}
+          SENTRY_ORG: piotr-luczko-ge
+          SENTRY_PROJECT: simplr-irc-client-web-chat
 
       - name: Deploy via SFTP with SSH Key
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
